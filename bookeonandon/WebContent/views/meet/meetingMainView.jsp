@@ -19,6 +19,7 @@
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
 %>
+<!--연동되면 보임 ㅇㅇㅇㅇㅇㅇ 깃허브  -->
 <!DOCTYPE html>
 <html>
 <head>

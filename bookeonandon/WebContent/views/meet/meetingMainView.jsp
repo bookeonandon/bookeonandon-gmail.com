@@ -40,6 +40,7 @@
 
 </head>
 <body>
+<!-- 아무거나 -->
 	<%@ include file="../common/menubar.jsp"%>
 	<div style="clear:both;"></div>
 	<div class="meetContent">

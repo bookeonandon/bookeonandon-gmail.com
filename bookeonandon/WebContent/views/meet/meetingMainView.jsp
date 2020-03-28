@@ -44,7 +44,7 @@
 	<%@ include file="../common/menubar.jsp"%>
 	<div style="clear:both;"></div>
 	<div class="meetContent">
-		<!-- 미팅방ewerewrwe  -->
+		<!-- 최종수정 되나  -->
 		<% if(list.isEmpty()){ %>	
 					<p>조회된 리스트가 없습니다.</p>
 				<% }else{ %>

@@ -19,9 +19,13 @@
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
 %>
+<<<<<<< HEAD
 <!--커밋커밋 주희주희ㄷㅈrewarerwerwerewwarwareeeeeeeerewrwerweaewㄱewrwaeㅈㄷㄴ-->
 
 <!-- zjzjzjzjzaataetaet dgsdj -->
+=======
+<!--커밋커밋 주희주희ㄷㅈㄱㅈㄱㅈㄷㄱㅈㄷㄱㅈㄷㄷㄴ-->
+>>>>>>> branch 'master' of https://github.com/bookeonandon/bookeonandon-gmail.com.git
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,7 +47,7 @@
 
 </head>
 <body>
-<!-- 아무eee거나 -->
+<!-- 아무eee거rewrewrew나 -->
 	<%@ include file="../common/menubar.jsp"%>
 	<div style="clear:both;"></div>
 	<div class="meetContent">

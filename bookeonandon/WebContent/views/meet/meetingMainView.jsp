@@ -19,7 +19,7 @@
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
 %>
-<!--저는 연동이 언제 되나요ㄱㅈㄷㄱㄷㄷㅈㅂㄷㅂㅈㄷ주희 커밋ㅂㅈㅈ?ㄴ-->
+<!--커밋커밋 주희주희ㄴ-->
 <!DOCTYPE html>
 <html>
 <head>

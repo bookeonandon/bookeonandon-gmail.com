@@ -17,7 +17,7 @@
 </head>
 <body>
     <!-- 헤더 -->
-<!-- ㅇㅇ오ㅗㅅ소ㅗ솟 -->
+<!-- 터져라 -->
     <div id="header">
         <div id="header-1">
             <div id="logoForm">

@@ -45,7 +45,6 @@ public class FaqUpdateServlet extends HttpServlet {
 		f.setFaqTitle(title);
 		f.setFaqContent(content);
 		
-		System.out.println(f);
 		int result = new FaqService().updateFaq(f);
 		
 		if(result > 0) {

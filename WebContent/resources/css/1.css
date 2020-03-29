@@ -1,0 +1,50 @@
+/* div{border:1px solid black} */
+button:hover{cursor: pointer;}
+body{
+	font-family: 'Nanum Gothic';
+	width: 100%;
+	max-width: 1200px;
+	min-width: 300px;
+	margin: auto;
+}
+#header{width:1200px; height:150px; margin:auto;}
+#header-hr{width:1200px; margin-top:20px; margin-bottom: 50px; border:1px solid rgb(112 48 160);}
+#header-1, #navigator{height:50%; box-sizing:border-box; padding-top:15px}
+/* 로고 */
+#logoForm{margin-left:10px; margin-top:-4px;width:260px; height:40px; overflow: hidden; float:left; margin-right:150px;}
+/* #logoForm:hover{cursor: pointer;} */
+
+/* 검색 */
+#searchForm{float:left; width:400px; height:40px; box-sizing: border-box;}
+#search{float:left; margin-top:10px;}
+#searchBtnForm{float:left; margin-top:10px;}
+#search-1{height:25px; width:250px; padding:1px 0 0 10px; border-radius: 4px; border:1px solid gray; opacity:0.8}
+#search-1:focus{border-radius:4px; outline:2px solid rgb(112 48 160);}
+#searchBtn{width:38px; height:30px; border-radius: 5px; margin-left:1px; background:rgb(249 247 247); border:0; outline:0; background-color:white;}
+#searchBtn:hover{cursor:pointer;}
+
+/* 로그인, 회원가입 */
+#joinForm{float:right; width:150px; height:40px; margin-right:10px;}
+#joinForm-1,#joinForm-2{width:50%; height:100%; float:left; box-sizing:border-box;}
+.joinBtn{margin-top:15px; border:0; height:25px; background:white;}
+.joinBtn:hover{cursor:pointer; color:rgb(112 48 160); font-weight:bolder;}
+
+/* 메뉴바 */
+#navigator{width:1150px; height:40px; padding-top:30px;}
+#navi{list-style-type:none; padding:20px; margin:0px; height:100%;}
+#navi>li{float:left; width:20%; height:10px; text-align:center;}
+#navi>li>a{padding-bottom: 2px; text-decoration:none; font-size:18px; font-weight:600; color:rgb(36 36 36);}
+#navi>li>a:hover{color:rgb(112 48 160);}
+#navi>li>ul>li{list-style-type:none;}
+#navi-1{width:600px; float:left;}
+.menu{text-decoration:none; float:left; margin:40px 0 0 40px; font-size:16px; font-weight:600; color:rgb(36 36 36);}
+.menu:hover{font-weight:900;}
+#navi-1{display:none;}
+#navi-1>li>a{text-decoration:none; display:block;}
+#navi>li>a:hover+ul{display:block;}
+#navi>li>ul:hover{display:block;}
+.menu:hover{color:rgb(112 48 160)}
+.myPage{position: relative; right:200px;}
+.home{position:relative; right:50px}
+.group{position: relative; right:200px;}
+.service{position: relative; right:110px;}

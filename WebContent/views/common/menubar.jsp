@@ -62,7 +62,7 @@
 
                 <li><a href="">MEET & ON</a>
                     <ul id="navi-1" class="group">
-                        <li><a href="" class="menu">전체모임</a></li>
+                        <li><a href="<%=request.getContextPath()%>/meetMain.mt" class="menu">전체모임</a></li>
                         <li><a href="" class="menu">참여중인 모임</a></li>
                         <li><a href="" class="menu">내모임</a></li>
                         <li><a href="" class="menu">스케쥴 캘린더</a></li>
@@ -87,7 +87,7 @@
             </ul>
         </div>
     </div>
-    <hr>
+    <hr class="menubar-hr">
     <script>
     function logout(){
     	location.href="<%=request.getContextPath()%>/logout.me";

@@ -40,7 +40,7 @@ public class NoticeDao {
 		ResultSet rset = null;
 		
 		
-		String sql = prop.getProperty("selectList");
+		String sql = prop.getProperty("selectListNotice");
 		System.out.println(sql);
 		
 		try {

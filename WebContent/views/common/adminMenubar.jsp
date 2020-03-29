@@ -11,7 +11,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	<link href="<%=request.getContextPath() %>/resources/css/style.css" rel="stylesheet">
+	<link href="<%=request.getContextPath() %>/resources/admin/css/style.css" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
 
@@ -24,9 +25,9 @@
         <div class="nav-header">
             <div class="brand-logo">
                 <a href="index.html">
-                    <b class="logo-abbr"><img src="<%=contextPath%>/resources/images/logo.png" alt=""> </b>
+                    <b class="logo-abbr"><img src="<%=request.getContextPath()%>/resources/admin/images/logo.png" alt=""> </b>
                     <span class="brand-title">
-                        <img src="<%=contextPath%>/resources/images/bookeon.png" alt="">
+                        <img src="<%=request.getContextPath()%>/resources/admin/images/bookeon.png" alt="">
                     </span>
                 </a>
             </div>
@@ -39,29 +40,23 @@
             <div class="header-content clearfix">
                 <div class="header-right">
                     <ul class="clearfix">
-                        <li class="icons dropdown">
-                            <div class="user-img c-pointer position-relative" data-toggle="dropdown">
-                                <span class="activity active"></span>
-                                <img src="<%=contextPath%>/resources/images/user/1.png" height="40" width="40" alt="">
-                            </div>
-                            
-                            <!-- 프로필 클릭 시 드롭다운 메뉴 -->
-                            <div class="drop-down dropdown-profile dropdown-menu">
-                                <div class="dropdown-content-body">
-                                    <ul>
-                                        <li>
-                                            <a href="app-profile.html"><i class="icon-user"></i> <span>Profile</span></a>
-                                        </li>
-                                        <li><a href="page-login.html"><i class="icon-key"></i> <span>Logout</span></a></li>
-                                    </ul>
-                                </div>
-                            </div>
+                        <li class="icons">
+                        <!--  홈으로  -->
+                            <a href="<%=request.getContextPath()%>">
+                                <img src="<%=request.getContextPath()%>/resources/admin/icons/aHome.PNG">
+                            </a>
+                        </li>
+                        <!--  로그아웃  -->
+                        <li class="icons">
+                            <a href="javascript:void(0)">
+                                <img src="<%=request.getContextPath()%>/resources/admin/icons/aOff.PNG">
+                            </a>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
-
+        
         <!--**********************************
             		사이드바
         ***********************************-->
@@ -122,7 +117,7 @@
 
 	
 	</div>
-		
+	
 		
 	
 	
@@ -187,14 +182,18 @@
 			
 
 	
+	
+	
+	
+	
 	<!--**********************************
         Scripts
     ***********************************-->
-    <script src="<%=request.getContextPath() %>/resources/plugins/common/common.min.js"></script>
-    <script src="<%=request.getContextPath() %>/resources/js/custom.min.js"></script>
-    <script src="<%=request.getContextPath() %>/resources/js/settings.js"></script>
-    <script src="<%=request.getContextPath() %>/resources/js/gleek.js"></script>
-    <script src="<%=request.getContextPath() %>/resources/js/styleSwitcher.js"></script>
+    <script src="<%=request.getContextPath() %>/resources/admin/plugins/common/common.min.js"></script>
+    <script src="<%=request.getContextPath() %>/resources/admin/js/custom.min.js"></script>
+    <script src="<%=request.getContextPath() %>/resources/admin/js/settings.js"></script>
+    <script src="<%=request.getContextPath() %>/resources/admin/js/gleek.js"></script>
+    <script src="<%=request.getContextPath() %>/resources/admin/js/styleSwitcher.js"></script>
 	
 	
 </body>

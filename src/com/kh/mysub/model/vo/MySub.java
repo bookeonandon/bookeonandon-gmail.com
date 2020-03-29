@@ -10,9 +10,12 @@ public class MySub {
 	private int sbNo;			// 보유한 구독권 번호
 	private String sbStatus;	// 보유 구독권 상태
 	
+	private String sbName;		// 보유한 구독권명
+	
 	public MySub() {
 		
 	}
+	
 	public MySub(int userNo, Date sbStart, Date sbEnd, int sbNo, String sbStatus) {
 		super();
 		this.userNo = userNo;
@@ -21,6 +24,18 @@ public class MySub {
 		this.sbNo = sbNo;
 		this.sbStatus = sbStatus;
 	}
+	
+	public MySub(int userNo, Date sbStart, Date sbEnd, int sbNo, String sbStatus, String sbName) {
+		super();
+		this.userNo = userNo;
+		this.sbStart = sbStart;
+		this.sbEnd = sbEnd;
+		this.sbNo = sbNo;
+		this.sbStatus = sbStatus;
+		this.sbName = sbName;
+	}
+
+	
 	public int getUserNo() {
 		return userNo;
 	}
@@ -51,6 +66,16 @@ public class MySub {
 	public void setSbStatus(String sbStatus) {
 		this.sbStatus = sbStatus;
 	}
+	
+	
+	public String getSbName() {
+		return sbName;
+	}
+
+	public void setSbName(String sbName) {
+		this.sbName = sbName;
+	}
+
 	@Override
 	public String toString() {
 		return "MySub [userNo=" + userNo + ", sbStart=" + sbStart + ", sbEnd=" + sbEnd + ", sbNo=" + sbNo

@@ -137,8 +137,6 @@ $(function(){
 			data:{chkR:chkR},
 			type:"post",
 			success:function(result){
-				//location.reload(true);
-				//$("#test").click();
 				ttt.css("display", 'block');
 				reportList(nno);
 			},
@@ -246,6 +244,7 @@ $(function(){
 		}
 	    
 	    var userNo = "";
+	    
 	    // 체크된 멤버 번호 담기
 	    $("input:checkbox[name=chk]:checked").each(function(){
 	    	userNo = $(this).next().val();
@@ -256,12 +255,16 @@ $(function(){
 	   $.ajax({
 			url:"detail.msb",
 			data:{userNo:userNo},
-			type:"post",
-			success:function(result){
-				//location.reload(true);
-				//$("#test").click();
-				ttt.css("display", 'block');
-				reportList(nno);
+			type:"get",
+			success:function(ms){
+				
+			 var value="";
+				if(!ms.length){
+					value += "<option class='haveSub' value='none'>구매한 쿠폰이 없습니다.</option>";
+				}else{
+					value += "<option class='haveSub' value='"+ ms.sbNo + "'>"+ ms.sbName + "</option>";
+				}
+				$(".sub1").html(value);
 			},
 			error:function(){
 				console.log("ajax 통신실패!!");	

@@ -210,9 +210,7 @@
                         <div class="modal-body">
                             <span>기존 구독권</span>
                             <select class="form-control sub1" id="sel1" style="margin:15px 0px;">
-                            	<%for (Subscription s : sList){ %>
-                                <option class="haveSub" value="<%=s.getSbNo()%>"><%=s.getSbName()%></option>
-                                <% } %>
+                                <option class="haveSub" value="none">구매한 쿠폰이 없습니다.</option>
                             </select>
                             
                             <span>수정할 구독권</span>

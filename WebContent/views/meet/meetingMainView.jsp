@@ -43,7 +43,7 @@
 <!--merge 되었나요? 마지좀되자 새꺄 -->
 <!--오카이??????????  -->
 <!--가즈아!!!!!!!!!!!!!!!!!!  -->
-<!--ㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱ  -->
+<!--ㄱㄱㄱㄱㄱㅗㅛㅗㅛㅗㅛㅗㅛㅗㅛㅗㅛㅗㅛㅗㄱㄱㄱㄱㄱ  -->
 	<%@ include file="../common/menubar.jsp"%>
 	<div style="clear:both;"></div>
 	<div class ="main-header">

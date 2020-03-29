@@ -109,7 +109,7 @@ public class ContactDao {
 		
 	}
 	
-	public int adminContactUpdate(Connection conn, int nno, String comment) {
+	public int adminContactUpdate(Connection conn, Contact c) {
 		
 		int result = 0;
 		
@@ -117,12 +117,10 @@ public class ContactDao {
 		
 		String sql = prop.getProperty("adminUpdateComment");
 		
-		System.out.println(comment + 3);
-		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, comment);
-			pstmt.setInt(2, nno);
+			pstmt.setString(1, c.getComment());
+			pstmt.setInt(2, c.getContactNo());
 			
 			result = pstmt.executeUpdate();
 			
@@ -140,6 +138,40 @@ public class ContactDao {
 		return result;
 		
 	}
+	
+	
+	public int adminContactInsert(Connection conn, Contact c) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("adminUpdateInsert");
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, c.getComment());
+			pstmt.setString(2, c.getContactReWriter());
+			pstmt.setInt(3, c.getContactNo());
+			
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			
+			close(pstmt);
+			
+		}
+		
+		
+		return result;
+		
+		
+	}
+	
 	
 	public ArrayList<Contact> contactList(Connection conn, int memberNo){
 		ArrayList<Contact> list = new ArrayList<>();

@@ -54,7 +54,7 @@
                                 </div>
                                 <div id="freList<%=(i+1) %>" class="collapse" data-parent="#accordion-three">
                                     <div class="card-body">
-                                       <%=flist1.get(i).getFaqContent() %>
+                                       <%=flist1.get(i).getFaqContent().replace("\r\n","<br>") %>
                                     </div>
                                 </div>
                             </div>
@@ -77,7 +77,7 @@
                                 </div>
                                 <div id="serList<%=(i+1) %>" class="collapse" data-parent="#accordion-three">
                                     <div class="card-body">
-						               <%=flist2.get(i).getFaqContent() %>
+						               <%=flist2.get(i).getFaqContent().replace("\r\n","<br>") %>
                                     </div>
                                 </div>
                             </div>
@@ -98,7 +98,7 @@
                                 </div>
                                 <div id="meetList<%=(i+1) %>" class="collapse" data-parent="#accordion-three">
                                     <div class="card-body">
-                                        <%=flist3.get(i).getFaqContent() %>
+                                        <%=flist3.get(i).getFaqContent().replace("\r\n","<br>")  %>
                                     </div>
                                 </div>
                             </div>
@@ -120,7 +120,7 @@
                                 </div>
                                 <div id="payList<%=(i+1) %>" class="collapse" data-parent="#accordion-three">
                                     <div class="card-body">
-                                        <%=flist4.get(i).getFaqContent() %>
+                                        <%=flist4.get(i).getFaqContent().replace("\r\n","<br>") %>
                                     </div>
                                 </div>
                             </div>

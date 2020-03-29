@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.kh.member.model.vo.Member" %>    
+ 
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,12 +28,12 @@
                         <div class="card login-form mb-0">
                             <div class="card-body pt-5">
                                 <a class="text-center" href=""> <h4>BOOK E ON & ON</h4></a>
-                                <form class="mt-5 mb-3 login-input">
+                                <form class="mt-5 mb-3 login-input" method="post" action="idSearch.me">
                                     <div class="form-group">
                                         <p class="text-center">ID 찾기</p>
                                     </div>
-                                   <input type="email" class="form-control input-rounded" placeholder="Email을 입력해주세요">
-                                    <button type="submit" id="idsearch" onclick="idSearch();" class="btn login-form__btn submit w-100">찾기</button>                
+                                   <input type="email" name="idSearch" class="form-control input-rounded" placeholder="Email을 입력해주세요">
+                                    <button type="submit" id="idsearch" class="btn login-form__btn submit w-100">찾기</button>                
                                 </form>
                                 </div>
                             </div>
@@ -40,13 +42,7 @@
                 </div>
             </div>
         </div>
-  	<script>
-  		function idSearch(){
-  			location.href="<%=request.getContextPath()%>/idSearch.me";
-  			
-  		}
-  	</script>
-  	
+ 
 
     
 </body>

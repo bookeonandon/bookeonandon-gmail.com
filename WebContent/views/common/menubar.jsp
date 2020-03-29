@@ -1,19 +1,19 @@
-<%@page import="com.kh.member.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.kh.member.model.vo.Member" %>    
 <%
 	Member loginUser = (Member)session.getAttribute("loginUser");
-	String msg = (String) session.getAttribute("msg");
+	String msg = (String)session.getAttribute("msg");
 	String contextPath = request.getContextPath();
-%>
+%>  
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <link rel= "stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/1.css"/>
-    <script src="<%=request.getContextPath()%>/resources/js/1.js" rel="javascript" type="text/javascript"></script>
-
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/1.css">
+    <script src="<%=request.getContextPath() %>/resources/js/1.js" rel="javascript" type="text/javascript"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
     <!-- 헤더 -->
@@ -32,10 +32,17 @@
                     <button type="submit" id="searchBtn" onmouseover="search1();" onmouseout="search2();"><img src="<%=request.getContextPath() %>/resources/images/search.png" id="search-image" width="80%" height="auto"></button></div>
                 </form>
             </div>
-            <div id="joinForm">
-                <div id="joinForm-1"><button type="button" onClick="loginForm();" class="joinBtn">로그인</button></div>
-                <div id="joinForm-2"><button type ="button" onClick="joinForm();" class="joinBtn">회원가입</button></div>
+            <%if(loginUser == null){ %>
+            <div class="joinForm">
+                <div class="joinForm-1"><button type="button" onClick="loginForm();" class="joinBtn">로그인</button></div>
+                <div class="joinForm-2"><button type ="button" onClick="joinForm();" class="joinBtn">회원가입</button></div>
             </div>
+            
+            <%}else {%>
+            <div class="joinForm">
+                <div class="joinForm-1"><button type="button" onClick="logout();" class="joinBtn" >로그아웃</button></div>
+            </div>
+            <%} %>
         </div>
 
         <!-- 네비게이터 -->
@@ -55,7 +62,7 @@
 
                 <li><a href="">MEET & ON</a>
                     <ul id="navi-1" class="group">
-                        <li><a href="<%=request.getContextPath()%>/meetMain.mt" class="menu">전체모임</a></li>
+                        <li><a href="" class="menu">전체모임</a></li>
                         <li><a href="" class="menu">참여중인 모임</a></li>
                         <li><a href="" class="menu">내모임</a></li>
                         <li><a href="" class="menu">스케쥴 캘린더</a></li>
@@ -80,10 +87,13 @@
             </ul>
         </div>
     </div>
-    <hr id="header-hr">
+    <hr>
     <script>
+    function logout(){
+    	location.href="<%=request.getContextPath()%>/logout.me";
+    }
     
-    /* 고객센터  */
+    
     function loginForm(){
 		location.href = "<%=request.getContextPath()%>/loginForm.me";
 	}
@@ -102,14 +112,9 @@
     }
     
     function goContact(){
-    	location.href="<%=request.getContextPath()%>/contactList.cot";
+    	location.href="<%=request.getContextPath()%>/contactView.cot";
     }
-    
-    /* MEET & ON  */
-	function meetandon(){
-		location.href = "<%=request.getContextPath()%>/meetMain.mt";
-		}
-    
     </script>
+    
 </body>
 </html>

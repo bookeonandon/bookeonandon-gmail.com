@@ -1,8 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.ArrayList, com.kh.notice.model.vo.Notice" %>
+<%@ page import="java.util.ArrayList, com.kh.notice.model.vo.*" %>
 <%
 	ArrayList<Notice> list = (ArrayList<Notice>)request.getAttribute("list");
+	NoticePageInfo npi = (NoticePageInfo)request.getAttribute("npi");
+	
+	int NoticeListCount = npi.getNoticeListCount();
+	int noticeCurrentPage = npi.getNoticeCurrentPage();
+	int noticeMaxPage = npi.getNoticeMaxPage();
+	int noticeStartPage = npi.getNoticeStartPage();
+	int noticeEndPage = npi.getNoticeEndPage();
+	
 %>    
     
 <!DOCTYPE html>
@@ -39,28 +47,36 @@
                         </div>
                         <div id="noticeList<%= (i+1) %>" class="collapse" data-parent="#accordion-three">
                         	<h6 class="noticeDate"><%=list.get(i).getNoticeDate() %></h6>
-                            <div class="card-body"><%=list.get(i).getNoticeContent() %></div>
+                            <div class="card-body"><%=list.get(i).getNoticeContent().replace("\r\n","<br>") %></div>
                         </div>
                     </div>
                     <% } %>   
                     
                 </div>
-                <div class="bootstrap-pagination">
-                    <nav>
-                        <ul class="pagination">
-                            <li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span></a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">2</a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">3</a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span></a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
+                 <div class="justify-content-center pagination">
+                 	<!--  <button class="page-item" onclick="location.href='<%=contextPath%>/noticeList.no';">&lt;&lt;</button> -->
+                 	
+                 	<%if(noticeCurrentPage ==1){ %>
+                 	<button class="page-item page-link" disabled>previous</button>
+                 	<%}else{ %>
+                 	<button class="page-item page-link" onclick="location.href='<%=contextPath%>/noticeList.no?noticeCurrentPage=<%=noticeCurrentPage-1%>';">previous</button>
+					<%} %>	                
+					
+					<%for(int p=noticeStartPage; p<=noticeEndPage; p++){ %>
+					
+						<%if(noticeCurrentPage ==p){ %>
+						<button class="page-item page-link" disabled><%=p %></button>
+						<%}else{ %>
+ 						<button class="page-item page-link" onclick="location.href='<%=contextPath%>/noticeList.no?noticeCurrentPage=<%=p%>';"><%=p %></button> 
+ 						<%} %>
+ 					<%} %>	
+ 					
+ 					<%if(noticeCurrentPage == noticeMaxPage){ %>
+ 					<button class="page-item page-link" disabled>next</button>
+ 					<%}else{ %>
+ 					<button onclick="location.href='<%=contextPath %>/noticeList.no?noticeCurrentPage=<%=noticeCurrentPage+1 %>';"></button>
+ 					<%} %>
+                 </div>
             </div>       
                 
           

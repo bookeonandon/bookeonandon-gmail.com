@@ -10,12 +10,27 @@ public class Faq {
 	private String faqContent;	// faq 내용
 	private Date faqDate;		// faq 작성일자
 	private String faqWriter;	// faq 작성자
+	private String faqStatus;	// faq 삭제유무(Y:화면 보이기 N :화면 x)
+	
 	
 	public Faq() {
 		
 	}
 	
 	
+	public Faq(int faqNo, int faqType, String faqTitle, String faqContent, Date faqDate, String faqWriter,
+			String faqStatus) {
+		super();
+		this.faqNo = faqNo;
+		this.faqType = faqType;
+		this.faqTitle = faqTitle;
+		this.faqContent = faqContent;
+		this.faqDate = faqDate;
+		this.faqWriter = faqWriter;
+		this.faqStatus = faqStatus;
+	}
+
+
 	// 타입별 faq 조회용
 	public Faq(String faqTitle, String faqContent) {
 		super();
@@ -46,6 +61,16 @@ public class Faq {
 	}
 	
 	
+
+	public String getFaqStatus() {
+		return faqStatus;
+	}
+
+
+	public void setFaqStatus(String faqStatus) {
+		this.faqStatus = faqStatus;
+	}
+
 
 	public int getFaqNo() {
 		return faqNo;
@@ -95,12 +120,14 @@ public class Faq {
 		this.faqWriter = faqWriter;
 	}
 
+
 	@Override
 	public String toString() {
 		return "Faq [faqNo=" + faqNo + ", faqType=" + faqType + ", faqTitle=" + faqTitle + ", faqContent=" + faqContent
-				+ ", faqDate=" + faqDate + ", faqWriter=" + faqWriter + "]";
+				+ ", faqDate=" + faqDate + ", faqWriter=" + faqWriter + ", faqStatus=" + faqStatus + "]";
 	}
 
+	
 	
 	
 }

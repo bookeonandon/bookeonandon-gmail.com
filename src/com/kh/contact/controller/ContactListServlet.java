@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.kh.contact.model.service.ContactService;
 import com.kh.contact.model.vo.Contact;
 
@@ -33,13 +34,15 @@ public class ContactListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String conWt = request.getParameter("conWt");
+		int memberNo = Integer.parseInt(request.getParameter("memberNo"));
 		
-		ArrayList<Contact> list = new ContactService().contactList(conWt);
+		ArrayList<Contact> list = new ContactService().contactList(memberNo);
 		
+		System.out.println(list);
 		response.setContentType("application/json; charset=utf-8");
 		
-		Gson gson = new Gson();
+		//Gson gson = new Gson();
+		Gson gson = new GsonBuilder().setDateFormat("yyyy년 MM월 dd일").create();
 		
 		gson.toJson(list, response.getWriter());
 	}

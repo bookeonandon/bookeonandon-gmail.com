@@ -30,26 +30,25 @@ public class UpdatePwdServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	/*
-	 * protected void doGet(HttpServletRequest request, HttpServletResponse
-	 * response) throws ServletException, IOException {
-	 * 
-	 * String memberId = request.getParameter("memberId");
-	 * 
-	 * String setPwd = request.getParameter("setPwd");
-	 * 
-	 * HttpSession session = request.getSession(); // memberId =
-	 * ((Member)session.getAttribute("loginUser")).getMemberId();
-	 * 
-	 * Member setPwdMem = new MemberService().setPwdMember(memberId, setPwd);
-	 * 
-	 * if(setPwdMem != null) {
-	 * request.getRequestDispatcher("views/member/updatePwd.jsp").forward(request,
-	 * response); session.setAttribute("loginUser", setPwdMem); }else {
-	 * request.setAttribute("msg", "비밀번호 변경에 실패했습니다."); }
-	 * 
-	 * }
-	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		String memberId = request.getParameter("memberId");
+		
+		String newPwd = request.getParameter("newPwd");
+		
+		HttpSession session = request.getSession();
+
+		
+		Member newPwd = new MemberService().newPwdMember(memberId, newPwd);
+		
+		if(newPwd != null) {
+			request.getRequestDispatcher("views/member/updatePwd.jsp").forward(request, response);
+			session.setAttribute("loginUser", setPwdMem);
+		}else {
+			request.setAttribute("msg", "비밀번호 변경에 실패했습니다.");
+		}
+		
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.contact.model.service.ContactService;
 import com.kh.contact.model.vo.Contact;
+import com.kh.member.model.vo.Member;
 
 /**
  * Servlet implementation class ContactInsertServlet
@@ -35,15 +36,18 @@ public class ContactInsertServlet extends HttpServlet {
 		int contactType = Integer.parseInt(request.getParameter("contactType"));
 		String contactTitle = request.getParameter("contactTitle");
 		String contactContent = request.getParameter("contactContent");
+		int memberNo = ((Member)request.getSession().getAttribute("loginUser")).getMemberNo();
 		
 		
 		Contact c = new Contact();
-		
+		System.out.println(c);
 		c.setContactType(contactType);
 		c.setContactTitle(contactTitle);
 		c.setContactContent(contactContent);
+		c.setContactWriter(String.valueOf(memberNo));
 		
 		int result = new ContactService().insertContact(c);
+
 
 		PrintWriter out = response.getWriter();
 		out.print(result);

@@ -53,7 +53,7 @@
         </div>
 		<script>
 			function loginForm(){
-	    		location.href = "<%=request.getContextPath()%>/login.me";
+				location.href = "<%=request.getContextPath()%>/loginPath.me";
 	    	}
 		
 		</script>

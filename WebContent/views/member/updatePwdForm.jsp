@@ -29,19 +29,22 @@
                                 
                                     <a class="text-center" href=""> <h4>BOOK E ON & ON</h4></a>
                                     <p id="idsearch" class="text-center">비밀번호 재설정</p>
-                                <form class="mt-5 mb-5 login-input">
+                                <form class="mt-5 mb-5 login-input" id="newPwdSet" action="updatePwd.me" method="post">
                                     <div class="form-group">
-                                        <input type="text" class="form-control"  placeholder="아이디" required>
+                                        <input type="text" class="form-control" name="memberId"  placeholder="아이디" required>
+                                    </div>
+                                     <div class="form-group">
+                                        <input type="password" class="form-control" name="ranNum" placeholder="임시 비밀번호" required>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" class="form-control"  placeholder="비밀번호" required>
+                                        <input type="password" class="form-control" name="newPwd" placeholder="비밀번호" required>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" class="form-control" placeholder="비밀번호 확인" required>
+                                        <input type="password" class="form-control" name="newPwd" placeholder="비밀번호 확인" required>
                                     </div>
                                     <div id="loginthreebtn">
                                         <button type="button" id="backbutton" class="btn login-form__btn submit" onclick="history.back();">뒤로</button>
-                                        <button type="submit" class="btn login-form__btn submit" onsubmit="" onclick="updatePwd();">설정</button>
+                                        <button type="submit" class="btn login-form__btn submit" onclick="updatePwd();">설정</button>
                                     </div>
                                 </form>
                                 
@@ -53,8 +56,15 @@
             </div>
         </div>
     	<script>
+    	
+    	
     		function updatePwd(){
-    			location.href="<%=request.getContextPath()%>/updatePwd.me";
+    			if(ranNum == "<%=  %>"){
+    				$("#newPwdSet").submit();
+    			}else{
+    				alert("임시 비밀번호가 잘못 됐습니다. 다시 입력해주세요");
+    			}
+    			
     		}
     	</script>
 

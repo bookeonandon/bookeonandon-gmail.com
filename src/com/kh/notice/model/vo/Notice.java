@@ -9,6 +9,7 @@ public class Notice {
 	private String noticeContent;	// 공지사항 내용
 	private Date noticeDate;		// 공지사항 작성일
 	private String noticeWriter;	// 공지사항 작성자
+	private String noticeStatus; // 공지사항 삭제유무(Y : 화면보이기 ,N: 화면x)
 	
 	
 	public Notice() {
@@ -16,8 +17,20 @@ public class Notice {
 	}
 	
 	
+	public Notice(int noticeNo, String noticeTitle, String noticeContent, Date noticeDate, String noticeWriter,
+			String noticeStatus) {
+		super();
+		this.noticeNo = noticeNo;
+		this.noticeTitle = noticeTitle;
+		this.noticeContent = noticeContent;
+		this.noticeDate = noticeDate;
+		this.noticeWriter = noticeWriter;
+		this.noticeStatus = noticeStatus;
+	}
 
 
+
+	
 	public Notice(int noticeNo, String noticeTitle, String noticeContent) {
 		super();
 		this.noticeNo = noticeNo;
@@ -46,6 +59,22 @@ public class Notice {
 		this.noticeDate = noticeDate;
 		this.noticeWriter = noticeWriter;
 	}
+
+
+
+
+	public String getNoticeStatus() {
+		return noticeStatus;
+	}
+
+
+
+
+	public void setNoticeStatus(String noticeStatus) {
+		this.noticeStatus = noticeStatus;
+	}
+
+
 
 
 	public int getNoticeNo() {
@@ -101,8 +130,11 @@ public class Notice {
 	@Override
 	public String toString() {
 		return "Notice [noticeNo=" + noticeNo + ", noticeTitle=" + noticeTitle + ", noticeContent=" + noticeContent
-				+ ", noticeDate=" + noticeDate + ", noticeWriter=" + noticeWriter + "]";
+				+ ", noticeDate=" + noticeDate + ", noticeWriter=" + noticeWriter + ", noticeStatus=" + noticeStatus
+				+ "]";
 	}
+
+
 	
 	
 	

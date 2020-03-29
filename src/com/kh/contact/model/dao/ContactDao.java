@@ -141,7 +141,7 @@ public class ContactDao {
 		
 	}
 	
-	public ArrayList<Contact> contactList(Connection conn, String conWt){
+	public ArrayList<Contact> contactList(Connection conn, int memberNo){
 		ArrayList<Contact> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -149,19 +149,24 @@ public class ContactDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNo);
 			rset = pstmt.executeQuery();
+			
 			
 			while(rset.next()) {
 				Contact c = new Contact();
+				c.setContactNo(rset.getInt("contact_no"));
 				c.setContactDate(rset.getDate("contact_date"));
-				c.setContactType(rset.getInt("contact-type"));
-				c.setContactTitle(rset.getString("contact-title"));
-				c.setContactStatus(rset.getString("contact-status"));
+				c.setContactType(rset.getInt("contact_type"));
+				c.setContactTitle(rset.getString("contact_title"));
+				c.setContactStatus(rset.getString("contact_status"));
+			
+				
 				
 				list.add(c);
 				
 			}
-			
+		
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -185,7 +190,7 @@ public class ContactDao {
 			pstmt.setInt(1, c.getContactType());
 			pstmt.setString(2, c.getContactTitle());
 			pstmt.setString(3, c.getContactContent());
-			
+			pstmt.setInt(4,Integer.parseInt(c.getContactWriter()));
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -198,4 +203,64 @@ public class ContactDao {
 	}
 	
 
+	public Contact selectContact(Connection conn, int cNo) {
+		Contact c = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		
+		String sql = prop.getProperty("contactDetail");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, cNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				c = new Contact(rset.getInt("contact_no"),
+								rset.getInt("contact_type"),
+								rset.getString("contact_title"),
+								rset.getString("contact_content"),
+								rset.getDate("contact_date"),
+								rset.getString("contact_status"),
+								rset.getDate("contact_redate"),
+								rset.getString("contact_com"),
+								rset.getString("admin_id"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		System.out.println("dao :" + c);
+		return c;
+	}
+	
+	public int deleteContact(Connection conn, int dNo) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deleteContact");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1,dNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+		
+		
+		
+	}
 }

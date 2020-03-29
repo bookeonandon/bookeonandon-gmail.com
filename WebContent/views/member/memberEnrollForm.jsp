@@ -31,7 +31,7 @@
                 <ul class="pagination pagination-sm">
                     <li class="page-item"><a class="joinpagelink joinpage">●</a>
                     </li>
-                    <li class="page-item"><a class="joinpagelink">●</a>
+                    <li class="page-item"><a class="joinpagelink fontcolor">●</a>
                     </li>
                     <li class="page-item"><a class="joinpagelink joinpage">●</a>
                     </li>
@@ -63,7 +63,7 @@
                                             <label class="col-lg-4 col-form-label" for="memberPwd">Password <span class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-6">
-                                                <input type="password" class="form-control" id="memberPwd" name="memberPwd" placeholder="8~16자 영문 소문자, 숫자, 특수문자를 사용">
+                                                <input type="password" class="form-control" id="memberPwd" name="memberPwd" placeholder="8자이상 영문 소문자, 숫자, 특수문자를 사용">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -148,17 +148,19 @@
        <script>
        $(document).ready(function(){
     	 $.validator.methods.pwd = function( value, element ) {
-    		   return this.optional( element ) || /[a-z][0-9][!@#$%^&*]/.test( value );
+    		   return this.optional( element ) || /[a-z0-9][!@#$%^&*]/.test(value);
     		 };
     	   
     	   $.validator.methods.userId = function( value, element ) {
-    		   return this.optional( element ) || /[a-z][0-9]/.test( value );
+    		   return this.optional( element ) || /[a-z][0-9]/.test(value);
     		 };
     		 
     		 $.validator.methods.userBirth = function( value, element ) {
-      		   return this.optional( element ) || /[0-9]/.test( value );
+      		   return this.optional( element ) || /[0-9]/.test(value);
       		 }; 
     	   
+      		 
+      		 
      	  $(".form-valide").validate({
      		 rules: {
      	        "memberId": {
@@ -176,7 +178,7 @@
      	        },
      	        "memberPwd": {
      	            required: !0,
-     	            rangelength: [8, 16],
+     	            minlength: 8,
      	            pwd : true
      	        },
      	        "val-confirm-password": {
@@ -186,7 +188,9 @@
      	        
      	        "val-phone": {
      	            required: !0,
-     	            minlength : 11
+     	            minlength : 11,
+     	            userBirth: true
+     	            
      	            
      	        },
      	        "val-digits": {
@@ -221,7 +225,7 @@
      	        "val-email": "유효한 이메일 주소를 입력해주세요",
      	        "memberPwd": {
      	            required: "패스워드를 입력해주세요",
-     	            rangelength: "패스워드는 최소 8자 이상입니다.",
+     	            minlength: "패스워드는 최소 8자 이상입니다.",
      	            pwd:"유효하지 않는 값입니다. 패스워드 다시 입력해주세요"
      	        },
      	        "val-confirm-password": {
@@ -276,7 +280,7 @@
               type:"post",
               success:function(result){
                  
-                 //console.log(result);
+                 
                  if(result == 1){   // 사용불가능한 아이디
                     alert("사용불가능한 아이디입니다.");
                     memberId.focus();

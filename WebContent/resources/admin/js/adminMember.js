@@ -256,7 +256,7 @@ $(function(){
 		    	 success:function(ms){
 		    		 
 		    		 var value="";
-		    		 if(ms.length == null){
+		    		 if(!ms){
 		    			 value += "<option class='haveSub' value='none'>구매한 쿠폰이 없습니다.</option>";
 		    		 }else{
 		    			 value += "<option class='haveSub' value='"+ ms.sbNo + "'>"+ ms.sbName + "</option>";

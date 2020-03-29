@@ -261,6 +261,7 @@ $(function(){
 		    		 }else{
 		    			 value += "<option class='haveSub' value='"+ ms.sbNo + "'>"+ ms.sbName + "</option>";
 		    		 }
+		    		 console.log(ms.sbNo);
 		    		 console.log(ms);
 		    		 console.log(value);
 		    		 $(".haveSub").html(value);

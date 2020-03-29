@@ -21,9 +21,73 @@ public class Member {
 	private String nickname;		// 닉네임
 	private String gender;			// 성별
 	
+	private int sbNo;			// 구독권 번호
+	
 	public Member() {
 		
 	}
+	
+
+	public Member(int memberNo, String memberId, String email, String memberName, String phone, int reportTime,
+		Date joinDate, Date deleteDate, Date blacklistDate, int sbNo) {
+	super();
+	this.memberNo = memberNo;
+	this.memberId = memberId;
+	this.email = email;
+	this.memberName = memberName;
+	this.phone = phone;
+	this.reportTime = reportTime;
+	this.joinDate = joinDate;
+	this.deleteDate = deleteDate;
+	this.blacklistDate = blacklistDate;
+	this.sbNo = sbNo;
+}
+
+
+	public Member(int memberNo, String memberId, String memberPwd, String email, String memberName, String phone,
+			Date birth, int age, Date joinDate, String deleteStatus, Date deleteDate, String blacklist,
+			Date blacklistDate, String nickname, String gender, int sbNo) {
+		super();
+		this.memberNo = memberNo;
+		this.memberId = memberId;
+		this.memberPwd = memberPwd;
+		this.email = email;
+		this.memberName = memberName;
+		this.phone = phone;
+		this.birth = birth;
+		this.age = age;
+		this.joinDate = joinDate;
+		this.deleteStatus = deleteStatus;
+		this.deleteDate = deleteDate;
+		this.blacklist = blacklist;
+		this.blacklistDate = blacklistDate;
+		this.nickname = nickname;
+		this.gender = gender;
+		this.sbNo = sbNo;
+	}
+
+
+	public Member(int memberNo, String memberId, String memberPwd, String email, String memberName, String phone,
+			Date birth, int age, Date joinDate, String deleteStatus, Date deleteDate, String blacklist,
+			Date blacklistDate, String nickname, String gender) {
+		super();
+		this.memberNo = memberNo;
+		this.memberId = memberId;
+		this.memberPwd = memberPwd;
+		this.email = email;
+		this.memberName = memberName;
+		this.phone = phone;
+		this.birth = birth;
+		this.age = age;
+		this.joinDate = joinDate;
+		this.deleteStatus = deleteStatus;
+		this.deleteDate = deleteDate;
+		this.blacklist = blacklist;
+		this.blacklistDate = blacklistDate;
+		this.nickname = nickname;
+		this.gender = gender;
+	}
+	
 	
 
 	public Member(int memberNo, String memberId, String memberPwd, String email, String memberName, String phone,
@@ -73,6 +137,16 @@ public class Member {
 
 
 	
+
+	public int getSbNo() {
+		return sbNo;
+	}
+
+
+	public void setSbNo(int sbNo) {
+		this.sbNo = sbNo;
+	}
+
 
 	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;

@@ -6,15 +6,72 @@ import static com.kh.common.JDBCTemplate.getConnection;
 import static com.kh.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import com.kh.member.model.dao.MemberDao;
 import com.kh.member.model.vo.Administrator;
 import com.kh.member.model.vo.Member;
 
 public class MemberService {
+	
+	
+	/**
+	 * 관리자페이지 회원관리 리스트 조회
+	 * @return			조회된 멤버 리스트
+	 */
+	public ArrayList<Member> adminSelectListMember(){
+		
+		
+		Connection conn = getConnection();
+		
+		
+		ArrayList<Member> list = new MemberDao().adminSelectListMember(conn);
+		
+		close(conn);
+		
+		return list;
+		
+		
+	}
+	
+	/**
+	 * 관리자페이지 회원 블랙리스트 설정
+	 * @param id		선택된 회원 아이디
+	 * @return			처리된 행의 개수
+	 */
+	public int adminBlackUpdate(String[] id) {
+		
+		Connection conn = getConnection();
+		
+		
+		int result = new MemberDao().adminBlackUpdate(conn, id);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+		
+	}
+	
+	public Member adminSelectDetail(int uNo) {
+		
+		Connection conn = getConnection();
+		
+		Member m = new MemberDao().adminSelectDetail(conn, uNo);
+		
+		close(conn);
+		
+		return m;
+		
+	}
 
 	/**
-	 * 1. 회원가입용 서비스
+	 * 회원가입용 서비스
 	 * @param mem 회원가입 페이지에서 입력받은 정보들이 담겨있는 Member 객체
 	 * @return insert 실행 후 처리된 행의 갯수
 	 */

@@ -48,32 +48,27 @@ public class LoginServlet extends HttpServlet {
 //				// 아이디와 로그인이 다르다 라는 표시
 //			}
 //		}else {	// 회원일 때
-		
-		System.out.println(loginUser);
-		
 //			
-			System.out.println(memberPwd);
 			if(loginUser != null) {
 				HttpSession session = request.getSession();
 				session.setAttribute("loginUser", loginUser);
 			
-				request.getRequestDispatcher("views/common/menubar.jsp").forward(request, response);
+				request.getRequestDispatcher("/views/common/menubar.jsp").forward(request, response);
+				
 			}else {
 				
 				Administrator adminUser = new MemberService().adminLogin(memberId, memberPwd);
 				
 				if(adminUser != null) {
-					// admin 성공했을 때 페이지 (관리자)
-					System.out.println("관리자임");
-				}else {
+					HttpSession session = request.getSession();
+					session.setAttribute("loginUser", loginUser);
+					request.getRequestDispatcher("/views/common/adminMenubar.jsp").forward(request, response);
 					
+				}else {
 					response.sendRedirect("loginForm.me");
 				}
 			}
-					
-		
-		
-		
+
 		
 	}
 

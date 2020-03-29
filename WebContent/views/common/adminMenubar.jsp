@@ -24,9 +24,9 @@
         <div class="nav-header">
             <div class="brand-logo">
                 <a href="index.html">
-                    <b class="logo-abbr"><img src="<%=request.getContextPath()%>/resources/images/logo.png" alt=""> </b>
+                    <b class="logo-abbr"><img src="<%=contextPath%>/resources/images/logo.png" alt=""> </b>
                     <span class="brand-title">
-                        <img src="<%=request.getContextPath()%>/resources/images/bookeon.png" alt="">
+                        <img src="<%=contextPath%>/resources/images/bookeon.png" alt="">
                     </span>
                 </a>
             </div>
@@ -42,7 +42,7 @@
                         <li class="icons dropdown">
                             <div class="user-img c-pointer position-relative" data-toggle="dropdown">
                                 <span class="activity active"></span>
-                                <img src="<%=request.getContextPath()%>/resources/images/user/1.png" height="40" width="40" alt="">
+                                <img src="<%=contextPath%>/resources/images/user/1.png" height="40" width="40" alt="">
                             </div>
                             
                             <!-- 프로필 클릭 시 드롭다운 메뉴 -->
@@ -186,10 +186,6 @@
 		</script>
 			
 
-	
-	
-	
-	
 	
 	<!--**********************************
         Scripts

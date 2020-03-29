@@ -163,7 +163,7 @@
 
                              <div class="modal-footer">
                                  <div class="btn-center">
-                                 <button type="button" class="btn btn-primary close">확인하기</button>
+                                 <button type="button" class="btn btn-primary" data-dismiss="modal">확인하기</button>
                                  </div>
                              </div>
                          </div>
@@ -188,7 +188,7 @@
                         <!-- 만약 블랙리스트에 들어간 회원이라면 블랙리스트를 취소하시겠습니까? 뜨도록 -->
                         <div class="modal-body">[<span id="blackId"></span>]회원을 블랙리스트 처리하시겠습니까?<br>*처리 시 리뷰 작성이 제한됩니다.</div>
                         <div class="modal-footer">
-                            <button type="button" id="blackSubmit" class="btn btn-primary none-center">확인하기</button>
+                            <button type="button" id="blackSubmit" class="btn btn-primary none-center" data-dismiss="modal">확인하기</button>
                         </div>
                     </div>
                 </div>
@@ -225,7 +225,7 @@
                             <span>* 적용 시 기존 구독일에서 기간이 연장됩니다.</span>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary none-center">확인하기</button>
+                            <button type="button" class="btn btn-primary none-center" data-dismiss="modal">확인하기</button>
                         </div>
                     </div>
                 </div>
@@ -256,7 +256,7 @@
                             </select>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary none-center" onclick="couponSubmit()">발급하기</button>
+                            <button type="button" class="btn btn-primary none-center" onclick="couponSubmit()" data-dismiss="modal">발급하기</button>
                         </div>
                     </div>
                 </div>

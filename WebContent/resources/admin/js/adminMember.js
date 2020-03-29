@@ -212,14 +212,14 @@ $(function(){
 			
 			console.log(chkRR);
 			var chkk = chkRR.join();
-			
-			
+
 			$.ajax({
 				url:"insert.amc",
 				data:{"chkk":chkk,"cNo":cNo},
 			    type:"get",
 			    success:function(result){
 			    	
+			    	location.reload(true);
 			    	console.log("ajax 통신성공!!");
 			    },
 			    error:function(){
@@ -237,7 +237,7 @@ $(function(){
         alert("해당 서비스는 한 명만 발급 및 연장이 가능합니다.");
         
      }
-     $("#subManage").attr({
+     $(this).attr({
         'data-toggle' : 'modal',
         'data-target' : '#basicModal2'
      });

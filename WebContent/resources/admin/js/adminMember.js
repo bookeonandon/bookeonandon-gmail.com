@@ -241,48 +241,39 @@ $(function(){
 	        'data-toggle' : 'modal',
 	        'data-target' : '#basicModal2'
 	     });
+	     
+		     var userNo = "";
+		     
+		     // 체크된 멤버 번호 담기
+		     $("input:checkbox[name=chk]:checked").each(function(){
+		    	 userNo = $(this).next().val();
+		     })
+		     
+		     
+		     $.ajax({
+		    	 url:"detail.msb",
+		    	 data:{userNo:userNo},
+		    	 type:"get",
+		    	 success:function(ms){
+		    		 
+		    		 var value="";
+		    		 if(!ms.length){
+		    			 value += "<option class='haveSub' value='none'>구매한 쿠폰이 없습니다.</option>";
+		    		 }else{
+		    			 value += "<option class='haveSub' value='"+ ms.sbNo + "'>"+ ms.sbName + "</option>";
+		    		 }
+		    		 $(".haveSub").html(value);
+		    	 },
+		    	 error:function(){
+		    		 console.log("ajax 통신실패!!");	
+		    	 }
+		     });
+	     
+	     
+	     
 		}
 	    
-	    var userNo = "";
 	    
-	    // 체크된 멤버 번호 담기
-	    $("input:checkbox[name=chk]:checked").each(function(){
-	    	userNo = $(this).next().val();
-	    })
-	    
-	    console.log(userNo);
-	    
-	   $.ajax({
-			url:"detail.msb",
-			data:{userNo:userNo},
-			type:"get",
-			success:function(ms){
-				
-			 var value="";
-				if(!ms.length){
-					value += "<option class='haveSub' value='none'>구매한 쿠폰이 없습니다.</option>";
-				}else{
-					value += "<option class='haveSub' value='"+ ms.sbNo + "'>"+ ms.sbName + "</option>";
-				}
-				$(".sub1").html(value);
-			},
-			error:function(){
-				console.log("ajax 통신실패!!");	
-			}					
-		});
-	    
-		$(function(){
-			
-//			$(".haveSub").each(function(){
-//				if($(this).val() == <%=f.getFaqType()%>){
-//					$(this).prop("selected", true);
-//				}
-//			});
-			
-		});
-	     
-     
-     
      
 })
    

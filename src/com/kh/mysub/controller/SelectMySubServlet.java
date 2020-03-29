@@ -33,7 +33,7 @@ public class SelectMySubServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
-		int uNo = Integer.parseInt(request.getParameter("userId"));
+		int uNo = Integer.parseInt(request.getParameter("userNo"));
 		
 		MySub ms = new MySubService().adminSelectDetail(uNo);
 		

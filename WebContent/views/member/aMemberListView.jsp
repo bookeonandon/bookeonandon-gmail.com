@@ -211,7 +211,7 @@
                             <span>기존 구독권</span>
                             <select class="form-control sub1" id="sel1" style="margin:15px 0px;">
                             	<%for (Subscription s : sList){ %>
-                                <option value="<%=s.getSbNo()%>"><%=s.getSbName()%></option>
+                                <option class="haveSub" value="<%=s.getSbNo()%>"><%=s.getSbName()%></option>
                                 <% } %>
                             </select>
                             
@@ -250,7 +250,7 @@
                             	<option value="none">등록된 쿠폰이 없습니다.</option>
                             	<%}else{ %>
 	                            	<%for (Coupon c :  cList){ %>
-	                                <option id="selectCoupon" value="<%=c.getCouponNo()%>"><%=c.getCouponName() %></option>
+	                                <option class="selectCoupon" value="<%=c.getCouponNo()%>"><%=c.getCouponName() %></option>
 	                            	<% } %>
                             	<%} %>
                             </select>

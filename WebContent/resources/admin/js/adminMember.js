@@ -200,7 +200,7 @@ $(function(){
    		function couponSubmit(){
 			
 			chkRR = new Array();
-			var cNo = "";
+			cNo = "";
 
 			$("input:checkbox[name=chk]:checked").each(function(){
 					chkRR.push($(this).next().val());
@@ -231,15 +231,55 @@ $(function(){
 
 	// 구독권 발급
 
+
 	$("#subManage").click(function(){
-	
-    if($("input:checkbox[name=chk]:checked").length > 1){
-        alert("해당 서비스는 한 명만 발급 및 연장이 가능합니다.");
-        
-     }
-     $(this).attr({
-        'data-toggle' : 'modal',
-        'data-target' : '#basicModal2'
-     });
+		
+		// 2명 이상 체크 시 모달창 열리지 않음
+	    if($("input:checkbox[name=chk]:checked").length > 1){
+	        alert("해당 서비스는 한 명만 발급 및 연장이 가능합니다.");
+		}else{
+		 // 모달창 오픈
+	     $(this).attr({
+	        'data-toggle' : 'modal',
+	        'data-target' : '#basicModal2'
+	     });
+		}
+	    
+	    var userNo = "";
+	    // 체크된 멤버 번호 담기
+	    $("input:checkbox[name=chk]:checked").each(function(){
+	    	userNo = $(this).next().val();
+	    })
+	    
+	    console.log(userNo);
+	    
+	   $.ajax({
+			url:"detail.msb",
+			data:{userNo:userNo},
+			type:"post",
+			success:function(result){
+				//location.reload(true);
+				//$("#test").click();
+				ttt.css("display", 'block');
+				reportList(nno);
+			},
+			error:function(){
+				console.log("ajax 통신실패!!");	
+			}					
+		});
+	    
+		$(function(){
+			
+			$(".haveSub").each(function(){
+				if($(this).val() == <%=f.getFaqType()%>){
+					$(this).prop("selected", true);
+				}
+			});
+			
+		});
+	     
+     
+     
+     
 })
    

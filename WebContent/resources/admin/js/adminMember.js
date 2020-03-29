@@ -259,12 +259,13 @@ $(function(){
 		    		 if(ms === null){
 		    			 value += "<option class='haveSub' value='none'>구매한 쿠폰이 없습니다.</option>";
 		    		 }else{
-		    			 value += "<option class='haveSub' value='"+ ms.sbNo + "'>"+ ms.sbName + "</option>";
-		    			 console.log(ms.sbNo);
-		    			 console.log(ms);
+		    			 console.log("통신성공!");
+		    			 //value += "<option class='haveSub' value='"+ ms.sbNo + "'>"+ ms.sbName + "</option>";
+		    			 //console.log(ms.sbNo);
+		    			 //console.log(ms);
 		    		 }
-		    		 console.log(value);
-		    		 $(".haveSub").html(value);
+		    		 //console.log(value);
+		    		 //$(".haveSub").html(value);
 		    	 },
 		    	 error:function(){
 		    		 console.log("ajax 통신실패!!");	

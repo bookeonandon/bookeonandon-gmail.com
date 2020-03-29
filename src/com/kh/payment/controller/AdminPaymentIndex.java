@@ -35,10 +35,8 @@ public class AdminPaymentIndex extends HttpServlet {
 		
 		// 최근 한 달 구독권 구매수
 		Payment sPC = new PaymentService().countSBPayment();
-		
 		// 가장 많이 구매된 구독권
 		Payment mP	= new PaymentService().manySBPayment();
-		
 		// 최근 구매한 다섯명
 		ArrayList<Payment> rP = new PaymentService().recentSBPayment();
 		
@@ -49,6 +47,11 @@ public class AdminPaymentIndex extends HttpServlet {
 		Payment mBP	= new PaymentService().manyBPayment();
 		// 최근 구매한 다섯명
 		ArrayList<Payment> rBP = new PaymentService().recentBPayment();
+		
+		// 최근 구매한 다섯명
+		Payment mGP = new PaymentService().manyBGPayment();
+		
+		
 
 		
 		if(sPC != null && mP != null && bPC != null) {
@@ -59,6 +62,8 @@ public class AdminPaymentIndex extends HttpServlet {
 			request.setAttribute("bPC", bPC);
 			request.setAttribute("mBP", mBP);
 			request.setAttribute("rBP", rBP);
+			
+			request.setAttribute("mGP", mGP);
 			request.getRequestDispatcher("views/payment/aPaymentIndex.jsp").forward(request, response);
 		}else {
 			request.setAttribute("msg", "통계 조회 실패");

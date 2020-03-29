@@ -343,5 +343,38 @@ private Properties prop = new Properties();
 		return list;
 	}
 	
+	
+	
+	public Payment manyBGPayment(Connection conn) {
+		
+		
+		Payment p = null;
+		
+		Statement stmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("manyBGPayment");
+		
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(sql);
+			
+			while(rset.next()) {
+				p = new Payment(rset.getString("MAIN_CATEGORY"));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(stmt);
+		}
+		
+		return p;
+		
+	}
+	
 
 }

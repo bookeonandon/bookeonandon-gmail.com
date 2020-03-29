@@ -181,6 +181,23 @@ public class PaymentService {
 		return list;
 
 	}
+	
+	/**
+	 * 9. 가장 많이 구매된 도서 메인 카테고리정보
+	 * @return		조회된 결제 내용
+	 */
+	
+	public Payment manyBGPayment() {
+		
+		Connection conn = getConnection();
+		
+		Payment result = new PaymentDao().manyBGPayment(conn);
+		
+		close(conn);
+		
+		return result;
+		
+	}
 
 
 }

@@ -36,7 +36,7 @@ public class SelectMySubServlet extends HttpServlet {
 		int uNo = Integer.parseInt(request.getParameter("userNo"));
 		
 		MySub ms = new MySubService().adminSelectDetail(uNo);
-		
+		System.out.println(ms);
 		response.setContentType("application/json; charset=utf-8");
 		
 		PrintWriter out = response.getWriter();

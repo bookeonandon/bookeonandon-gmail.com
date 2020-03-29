@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.contact.model.service.ContactService;
+import com.kh.contact.model.vo.Contact;
 
 /**
  * Servlet implementation class AdminContactUpdateServlet
@@ -32,12 +33,21 @@ public class AdminContactUpdateServlet extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 		
+		
 		int nno = Integer.parseInt(request.getParameter("nno"));
 		String comment = request.getParameter("comment");
+		String status = request.getParameter("status");
+		String rewriter = request.getParameter("rewriter");
 		
-		System.out.println(comment + 1);
+		Contact c = new Contact();
 		
-		int result = new ContactService().adminContactUpdate(nno, comment);
+		c.setContactNo(nno);
+		c.setComment(comment);
+		c.setContactStatus(status);
+		c.setContactReWriter(rewriter);
+		
+		
+		int result = new ContactService().adminContactUpdate(c);
 		
 		if(result > 0) {
 			response.sendRedirect("list.act");
@@ -45,6 +55,7 @@ public class AdminContactUpdateServlet extends HttpServlet {
 			request.setAttribute("msg", "1:1 문의 답변 수정 실패");
 			request.getRequestDispatcher("views/common/adminErrorPage.jsp").forward(request, response);
 		}
+		
 		
 		
 		

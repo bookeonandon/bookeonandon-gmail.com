@@ -10,6 +10,8 @@
 	Payment bCount = (Payment)request.getAttribute("bPC");
 	Payment manyBP = (Payment)request.getAttribute("mBP");
 	ArrayList<Payment> recentBP = (ArrayList<Payment>)request.getAttribute("rBP");
+	
+	Payment manyGP = (Payment)request.getAttribute("mGP");
 %>
 
 <!DOCTYPE html>
@@ -40,10 +42,10 @@
                     <div class="col-lg-3 col-sm-6">
                         <div class="card gradient-1">
                             <div class="card-body">
-                                <h3 class="card-title text-white">검색어</h3>
+                                <h3 class="card-title text-white">최다 구매자</h3>
                                 <div class="d-inline-block">
                                     <h2 class="text-white">검색어 컬럼에서 불러오기</h2>
-                                    <p class="text-white mb-0">Jan - March 2019</p>
+                                    <p class="text-white mb-0">한 달 기준</p>
                                 </div>
                                 <span class="float-right display-5 opacity-5"><i class="fa fa-shopping-cart"></i></span>
                             </div>
@@ -52,10 +54,10 @@
                     <div class="col-lg-3 col-sm-6">
                         <div class="card gradient-2">
                             <div class="card-body">
-                                <h3 class="card-title text-white">구독권</h3>
+                                <h3 class="card-title text-white">최다 판매 구독권</h3>
                                 <div class="d-inline-block">
                                     <h2 class="text-white"><%=manySP.getSbName() %></h2>
-                                    <p class="text-white mb-0">Jan - March 2019</p>
+                                    <p class="text-white mb-0">한 달 기준</p>
                                 </div>
                                 <span class="float-right display-5 opacity-5"><i class="fa fa-money"></i></span>
                             </div>
@@ -64,10 +66,10 @@
                     <div class="col-lg-3 col-sm-6">
                         <div class="card gradient-3">
                             <div class="card-body">
-                                <h3 class="card-title text-white">소장하기</h3>
+                                <h3 class="card-title text-white">최다 판매 도서</h3>
                                 <div class="d-inline-block">
                                     <h2 class="text-white"><%=manyBP.getSbName() %></h2>
-                                    <p class="text-white mb-0">Jan - March 2019</p>
+                                    <p class="text-white mb-0">한 달 기준</p>
                                 </div>
                                 <span class="float-right display-5 opacity-5"><i class="fa fa-users"></i></span>
                             </div>
@@ -76,10 +78,10 @@
                     <div class="col-lg-3 col-sm-6">
                         <div class="card gradient-4">
                             <div class="card-body">
-                                <h3 class="card-title text-white">장르</h3>
+                                <h3 class="card-title text-white">최다 판매 장르</h3>
                                 <div class="d-inline-block">
-                                    <h2 class="text-white">내서재에 많이 담긴 책 장르</h2>
-                                    <p class="text-white mb-0">Jan - March 2019</p>
+                                    <h2 class="text-white"><%=manyGP.getSbName() %></h2>
+                                    <p class="text-white mb-0">한 달 기준</p>
                                 </div>
                                 <span class="float-right display-5 opacity-5"><i class="fa fa-heart"></i></span>
                             </div>

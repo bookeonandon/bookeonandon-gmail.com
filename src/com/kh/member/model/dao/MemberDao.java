@@ -369,9 +369,11 @@ public class MemberDao {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
 		}
 		
-		
-		
+		return mem;
 	}
 }

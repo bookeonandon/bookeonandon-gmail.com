@@ -48,10 +48,11 @@ public class NoticeDao {
 			rset = stmt.executeQuery(sql);
 			
 			while(rset.next()) {
-				list.add(new Notice(
-									rset.getString("NOTICE_TITLE"),
-									rset.getDate("NOTICE_DATE"),
-									rset.getString("NOTICE_CONTENT")));
+				list.add(new Notice(rset.getInt("notice_no"),
+									rset.getString("notice_title"),
+									rset.getString("notice_content"),
+									rset.getDate("notice_date"),
+									rset.getString("admin_id")));
 			}
 			
 		} catch (SQLException e) {

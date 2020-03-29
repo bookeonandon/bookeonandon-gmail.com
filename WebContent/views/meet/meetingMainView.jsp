@@ -40,7 +40,7 @@
 
 </head>
 <body>
-<!--mergy 되었나요? 마지좀되자 새꺄 -->
+<!--merge 되었나요? 마지좀되자 새꺄 -->
 <!--오카이??????????  -->
 	<%@ include file="../common/menubar.jsp"%>
 	<div style="clear:both;"></div>

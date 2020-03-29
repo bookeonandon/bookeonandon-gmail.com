@@ -14,6 +14,7 @@ public class Contact {
 	private String Comment;			// 1:1 문의 답변 내용
 	private String ContactWriter;	// 1:1 문의 작성자
 	private String ContactReWriter; // 1:1 문의 답변자
+	private String ContactDelete;	// 1:1 삭제유무 (Y: 화면 보이기 N: 화면 x)
 	
 	
 	public Contact() {
@@ -21,10 +22,22 @@ public class Contact {
 	}
 	
 	
-	
-
-
-
+	public Contact(int contactNo, int contactType, String contactTitle, String contactContent, Date contactDate,
+			String contactStatus, Date contactReDate, String comment, String contactWriter, String contactReWriter,
+			String contactDelete) {
+		super();
+		ContactNo = contactNo;
+		ContactType = contactType;
+		ContactTitle = contactTitle;
+		ContactContent = contactContent;
+		ContactDate = contactDate;
+		ContactStatus = contactStatus;
+		ContactReDate = contactReDate;
+		Comment = comment;
+		ContactWriter = contactWriter;
+		ContactReWriter = contactReWriter;
+		ContactDelete = contactDelete;
+	}
 
 	public Contact(int contactNo, int contactType, String contactTitle, String contactContent, Date contactDate,
 			String contactStatus, String comment, String contactWriter) {
@@ -37,6 +50,26 @@ public class Contact {
 		ContactStatus = contactStatus;
 		Comment = comment;
 		ContactWriter = contactWriter;
+	}
+
+
+
+
+
+
+	// 1:1 문의 상세보기용 메소드
+	public Contact(int contactNo, int contactType, String contactTitle, String contactContent, Date contactDate,
+			String contactStatus, Date contactReDate, String comment, String contactReWriter) {
+		super();
+		ContactNo = contactNo;
+		ContactType = contactType;
+		ContactTitle = contactTitle;
+		ContactContent = contactContent;
+		ContactDate = contactDate;
+		ContactStatus = contactStatus;
+		ContactReDate = contactReDate;
+		Comment = comment;
+		ContactReWriter = contactReWriter;
 	}
 
 
@@ -58,6 +91,15 @@ public class Contact {
 		Comment = comment;
 		ContactWriter = contactWriter;
 		ContactReWriter = contactReWriter;
+	}
+
+	public String getContactDelete() {
+		return ContactDelete;
+	}
+
+
+	public void setContactDelete(String contactDelete) {
+		ContactDelete = contactDelete;
 	}
 
 
@@ -166,11 +208,9 @@ public class Contact {
 		return "Contact [ContactNo=" + ContactNo + ", ContactType=" + ContactType + ", ContactTitle=" + ContactTitle
 				+ ", ContactContent=" + ContactContent + ", ContactDate=" + ContactDate + ", ContactStatus="
 				+ ContactStatus + ", ContactReDate=" + ContactReDate + ", Comment=" + Comment + ", ContactWriter="
-				+ ContactWriter + ", ContactReWriter=" + ContactReWriter + "]";
+				+ ContactWriter + ", ContactReWriter=" + ContactReWriter + ", ContactDelete=" + ContactDelete + "]";
 	}
-	
-	
-	
+
 	
 	
 	

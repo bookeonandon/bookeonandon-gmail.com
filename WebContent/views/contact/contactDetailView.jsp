@@ -26,110 +26,84 @@
 	 <div class="contact-body">
 
         
-            <div class="contactul">
-                <ul class="nav testnav text-center">
-                    <li class="nav-item contactnav"><a href="#question" class="nav-link fontcolor" data-toggle="tab" aria-expanded="false">문의하기</a>
-                    </li>
-                    <li class="nav-item contactnav"><a href="#questionlist" class="nav-link fontcolor" data-toggle="tab" aria-expanded="false">문의내역</a>
-                    </li>
-                    
-                </ul>
-                <div>
-
-                        <div class="tab-content">
-                            <div id="question" class="tab-pane">
-                                
-                                <div class="col-md-12">
-                                    <form action="">
-                                        <div class="form-group">
-                                            <span class="text-danger">*</span><label for="sel1" >&nbsp; 질문유형</label>
-                                            <select class="form-control" id="sel1" value="contacttype">
-                                                <option>----------------------------------------------------------------------------------</option>
-                                                <option value="1">구독/서비스 이용문의</option>
-                                                <option value="2">결제/취소/환불 문의</option>
-                                                <option value="3">오류 문의</option>
-                                                <option value="4">기타 문의</option>
-                                                <option value="5">기타문의</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <span class="text-danger">*</span><label>&nbsp; 제목</label>
-                                            <input type="text" class="form-control bg-transparent" placeholder="제목을 입력해주세요">
-                                        </div>
-                                        <div class="form-group">
-                                            <span class="text-danger">*</span><label>&nbsp; 내용</label>
-                                            <textarea class="textarea_editor form-control bg-light" rows="15" placeholder="내용을 입력해주세요"></textarea>
-                                        </div>
-                                    </form>
-                                </div>
-                                
-                                <div class="btncenter">
-                                <button type="submit" class="btn-primary btn contactbtn">문의하기</button>
-                                </div>
-                            </div>
-                            <div id="questionlist" class="tab-pane">
-                                <div class="col-md-12">
-                                    <div class="table-responsive">
-                                        <table class="table header-border table-hover text-center">
-                                            <thead>
-                                                <tr>
-                                                    <th>No</th>
-                                                    <th>날짜</th>
-                                                    <th>질문유형</th>
-                                                    <th>제목</th>
-                                                    <th>처리상태</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td><input type="checkbox" name="contactcheck" value="1" class="css-control-input"></td>
-                                                    <td>2020.02.01</td>
-                                                    <td>기타문의</td>
-                                                    <td>얄라리얄리얄라셩</td>
-                                                    <td>답변완료</td>
-                                                    
-                                                </tr>
-                                            </tbody>
-                                        </table>   
-                                        <div class="con">
-                                            <strong>
-                                                <span class="ico_a">Q.</span>문의합니다.
-                                            </strong>
-                                            <div>
-                                              		  얄라리얄리얄라셩 책은 들어오지 않나요?
-                                            </div>
-                                        </div>
-                                        <hr> 
-                                        <div class="con">
-                                            <strong>
-                                                <span class="ico_a">A.</span>BOOK E ON & ON 입니다. 
-                                            </strong>    
-                                            <div>
-                                            
-							                                                문의내용에 대한 답변은 다음과 같습니다.
-							                                                <br><br>
-							                                                문의주신 얄라리얄리얄라셩 책은 들어올 계획이 없습니다.
-							                                                <br><br>
-							                                                빠른 시일내에 구독서비스를 이용하실수 있도록 노력하겠습니다.
-							                                                <br><br>
-							                                                감사합니다.<br><br>
-                                                <span class="date">2020.02.18</span>
-                                            </div>               
-                    
-                                        </div>
-                                
-                                                
-                                    </div>
-                                    <div class="btncenter">
-                                        <input type="button" value="수정하기" class="btn btn-primary" onclick="" >
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                        </div>       
-                    </div>
-                </div>
-
+             <div class="col-md-12">
+                  <div class="table-responsive">
+                      <table class="table header-border text-center">
+                          <thead>
+                              <tr>
+                                  <th>No</th>
+                                  <th>날짜</th>
+                                  <th>질문유형</th>
+                                  <th>제목</th>
+                                  <th>처리상태</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr>
+                                  <td><input type="checkbox" name="contactcheck" value="1" class="css-control-input"></td>
+                                  <td><%=c.getContactDate() %></td>
+                                  <td>
+                                  	<% 
+                                  	switch(c.getContactType()){
+                                  	case 1: out.println("구독/서비스 이용 문의"); break;
+         							case 2:	out.println("결제/취소/환불 문의"); break;
+         							case 3: out.println("오류 문의"); break;
+         							case 4: out.println("밋앤온 문의"); break;
+         							case 5: out.println("기타문의"); break;
+                                  	
+                                  	}
+                                  	%>
+                                  	
+                                  
+                                  </td>
+                                  <td><%=c.getContactTitle() %></td>
+                                  <td>
+                                  	<%
+                                  	switch(c.getContactStatus().toUpperCase()){
+                                  	case "Y" : out.println("답변완료"); break;
+                                  	case "N" : out.println("처리중"); break;
+                                  	}
+                                  	%>
+                                  
+                                  
+                                  </td>
+                                  
+                              </tr>
+                          </tbody>
+                      </table>   
+                      <div class="con">
+                          <strong>
+                              <span class="ico_a">Q.</span>문의합니다.
+                          </strong>
+                          <div>
+                            		<%=c.getContactContent().replace("\r\n","<br>")  %>
+                          </div>
+                      </div>
+                      <hr> 
+                      <div class="con">
+                          
+                          <%if(c.getComment() == null) {%>
+                         	<!-- 	<p>답변 작성 중입니다. 기다려주세요</p>  -->
+                          
+                          <%}else{ %>
+                          <strong>
+                              <span class="ico_a">A.</span>BOOK E ON & ON 입니다. 
+                          </strong>    
+                          <div>
+				                          
+				              <%=c.getComment().replace("\r\n","<br>")  %>          
+                              <span class="date"><%=c.getContactReDate() %></span>
+                          </div>               
+  						 <%} %>	
+                      </div>
+              
+                              
+                  </div>
+                  <div class="btncenter">
+                      <input type="button" value="이전" class="btn btn-primary" onclick=history.back(); >
+                  </div>
+                  
+              </div>
         </div>
      
 </body>

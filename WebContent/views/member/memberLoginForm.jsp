@@ -4,7 +4,7 @@
 <%
 	Member loginUser = (Member)session.getAttribute("loginUser");
 	String msg = (String)session.getAttribute("msg");
-	String contextPath = request.getContextPath();
+
 
 %> 
 <!DOCTYPE html>
@@ -42,27 +42,32 @@
                                     </div>
                                     <div class="form-group">
                                         <input type="password" id="memberPwd" name="memberPwd" class="form-control" placeholder="Password">
+                                        
+                                      
                                     </div>   
-                                    <p id="logincheckbox" class="mt-5 login-form__footer text-primary"><input type="checkbox" value="loginstatus" name="loginstatus"> &nbsp;&nbsp;로그인상태 유지                   
-	                                <a onclick="idSearchForm();" class="text-primary loginlink">아이디찾기/비밀번호 재설정</a></p>
+                                    
+                                    <div id="idsearch" class="mt-5 login-form__footer">
+                                          <a onclick="idSearchForm();" class="text-primary"> &nbsp;아이디 찾기</a>               
+	                               		  <a onclick="updatePwdForm();" class="text-primary loginlink">비밀번호 재설정</a>
+            
+                                    </div>
+                                    
+                                    
+                                  
 	                                    
+	                                 
 	                                 
                                     
                                     <div id="loginthreebtn">
                                         <button type="button" class="btn mb-1 btn-light loginbtn" onclick="memberJoin();">회원가입</button>
                                         <button type="submit" class="btn mb-1 btn-primary loginbtn">로그인</button>
-                                        <button type="button" class="btn mb-1 btn-light loginbtn" onclick="goHome();">홈</button>
+                                        <button type="button" class="btn mb-1 btn-light loginbtn" onclick="">홈</button>
                                     </div>
                                 </form>
                                
-                                <br>
-                                <div id="sidelogin">
-                                    <button type="button" class="btn mb-1 btn-rounded btn-success btnnaver" onclick="">네이버로 <br>로그인</button> 
-                                    <button type="button" class="btn mb-1 btn-rounded btn-warning btnkakao" onclick="">카카오로 <br>로그인</button> 
-                                </div>
                                 
                                 <%}  %>
-                                	<!-- 로그인 성공했을 때의 페이지(조건문) -->
+                                	
                                 
                       
                             </div>
@@ -88,10 +93,6 @@
       		
       		return true;
       	}
-      	
-      	function goHome(){
-      		location.href= "<%=request.getContextPath()%>";
-      	}
       
       
       	function idSearchForm(){
@@ -105,6 +106,7 @@
     	function memberJoin(){
     		location.href = "<%=request.getContextPath()%>/memberJoin.me";
     	}
+    	
     	
     	
     	

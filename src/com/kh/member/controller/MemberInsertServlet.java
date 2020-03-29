@@ -1,8 +1,9 @@
 package com.kh.member.controller;
 
 import java.io.IOException;
-import java.sql.Date;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -35,6 +36,7 @@ public class MemberInsertServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setCharacterEncoding("utf-8");
+		
 	
 		
 		String memberId = request.getParameter("memberId");
@@ -42,12 +44,10 @@ public class MemberInsertServlet extends HttpServlet {
 		String memberName = request.getParameter("memberName");
 		String phone = request.getParameter("val-phone");
 		String email = request.getParameter("val-email");
-		Date birth = Date.valueOf(request.getParameter("birth"));
+		String birth = request.getParameter("birth");
 		String nickname = request.getParameter("nickname");
 		String gender = request.getParameter("val-gender");
 		
-	
-	
 		
 		
 		
@@ -57,14 +57,13 @@ public class MemberInsertServlet extends HttpServlet {
 		mem.setMemberName(memberName);
 		mem.setPhone(phone);
 		mem.setEmail(email);
-		mem.setBirth(birth);
 		mem.setNickname(nickname);
 		mem.setGender(gender);
 		
 		System.out.println(email);
 		System.out.println(mem);
-		int result = new MemberService().insertMember(mem);
-		
+		int result = new MemberService().insertMember(mem, birth);
+	
 		
 		if(result > 0) {	// 회원가입 성공시
 			RequestDispatcher view = request.getRequestDispatcher("views/member/memberEnrollComplete.jsp");

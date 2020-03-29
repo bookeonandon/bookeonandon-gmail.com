@@ -76,10 +76,10 @@ public class ContactService {
 	 * @param conWt 회원 아이디
 	 * @return
 	 */
-	public ArrayList<Contact> contactList(String conWt){
+	public ArrayList<Contact> contactList(int memberNo){
 		Connection conn = getConnection();
 		
-		ArrayList<Contact> list = new ContactDao().contactList(conn, conWt);
+		ArrayList<Contact> list = new ContactDao().contactList(conn, memberNo);
 		
 		close(conn);
 		
@@ -97,6 +97,7 @@ public class ContactService {
 		
 		int result = new ContactDao().insertContact(conn, c);
 			
+		System.out.println(result);
 		if(result >0) {
 			commit(conn);
 			
@@ -104,6 +105,43 @@ public class ContactService {
 			rollback(conn);
 		}
 		
+		close(conn);
+		
+		return result;
+	}
+	
+	/**
+	 * 1:1 문의 상세보기 조회용 메서드
+	 * @param cNo
+	 * @return
+	 */
+	public Contact selectContact(int cNo) {
+		Connection conn = getConnection();
+		
+		Contact c = null;
+			c = new ContactDao().selectContact(conn, cNo);
+		System.out.println("service :" + c);
+		close(conn);
+		
+		return c;
+	}
+	
+	/**
+	 * 1:1 문의 삭제용 서비스
+	 * @param cNo
+	 * @return
+	 */
+	public int deleteContact(int dNo) {
+	
+		Connection conn = getConnection();
+		
+		int result = new ContactDao().deleteContact(conn, dNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
 		close(conn);
 		
 		return result;

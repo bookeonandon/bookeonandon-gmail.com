@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.member.model.service.MemberService;
+import com.kh.member.model.vo.Member;
+
 /**
  * Servlet implementation class IdSearchEmail
  */
@@ -26,8 +29,9 @@ public class IdSearchEmail extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		request.getRequestDispatcher("views/member/memberSearchEmail.jsp").forward(request, response);
+		String idSearch = request.getParameter("idSearch");
+		request.setAttribute("idSearch", idSearch);
+		request.getRequestDispatcher("views/member/sendPwdMail.jsp").forward(request, response);
 	}
 
 	/**

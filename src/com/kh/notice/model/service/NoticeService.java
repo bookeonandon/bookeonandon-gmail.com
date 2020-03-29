@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import com.kh.notice.model.dao.NoticeDao;
 import com.kh.notice.model.vo.Notice;
+import com.kh.notice.model.vo.NoticePageInfo;
 
 public class NoticeService {
 	
@@ -139,14 +140,27 @@ public class NoticeService {
 	 * 공지사항 리스트 조회용 서비스 (사용자)
 	 * @return 조회된 공지사항 리스트 담긴 ArrayList 객체
 	 */
-	public ArrayList<Notice> selectList(){
+	public ArrayList<Notice> selectList(NoticePageInfo npi){
 		Connection conn = getConnection();
 		
-		ArrayList<Notice> list = new NoticeDao().adminSelectListNotice(conn);
+		ArrayList<Notice> list = new NoticeDao().selectList(conn, npi);
 		
 		close(conn);
 		
-		System.out.println("service"+  list);
 		return list;
+	}
+	
+	/**
+	 * 공지사항 리스트 총갯수 조회용 서비스
+	 * @return
+	 */
+	public int getNoticeListCount() {
+		Connection conn = getConnection();
+		
+		int noticeListCount = new NoticeDao().getNoticeListCount(conn);
+		
+		close(conn);
+		
+		return noticeListCount;
 	}
 }

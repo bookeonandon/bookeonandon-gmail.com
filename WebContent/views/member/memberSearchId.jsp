@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ page import="com.kh.member.model.vo.Member"%>
+<%
+	Member mem = (Member)request.getAttribute("mem");
+%>    
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,20 +31,20 @@
                         <div class="card login-form mb-0">
                             <div class="card-body pt-5">
                                 <a class="text-center" href=""> <h4>BOOK E ON & ON</h4></a>
-                                <form class="mt-5 mb-3 login-input">
+                                <form class="mt-5 mb-3 login-input" method="post" action="idSearchEmail.me">
                                     <div class="form-group">
                                         <div>
                 
-                                            <blockquote class="text-center">개인정보 보호를 위해 2글자만 보내드립니다.<br>
-                                                <span>da*******</span>
+                                            <blockquote class="text-center">개인정보 보호를 위해 2글자만 보여드립니다.<br>
+                                                <span><%=mem.getMemberId() %></span>
                                             </blockquote>
-                                            
+                                            <input type="hidden" name="idSearch" value="<%= mem.getEmail()%>">
                                             
                                         </div>
                                     </div>
                                     <div>
                                         <h6 class="card-subtitle text-center">전체 아이디</h6>
-                                        <button type="button" onclick="idSearchEmail();" class="btn login-form__btn submit w-100">Email 발송</button>
+                                        <button type="submit" class="btn login-form__btn submit w-100">Email 발송</button>
                                     </div>
                                     <div id="idsearch">
                                         <a onclick="loginForm();" class="text-primary">로그인</a>
@@ -56,13 +62,14 @@
         </div>
 
 	<script>
+		
 		function idSearchEmail(){
 			location.href= "<%=request.getContextPath()%>/idSearchEmail.me";
 		}
 		
 	
 		function loginForm(){
-			location.href = "<%=request.getContextPath()%>/login.me";
+			location.href = "<%=request.getContextPath()%>/loginPath.me";
 		}
 		
 		function updatePwdForm(){

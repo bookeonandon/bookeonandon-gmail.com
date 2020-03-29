@@ -24,8 +24,8 @@ public class Member {
 	public Member() {
 		
 	}
+	
 
-	// 조회용 매개변수 생성자
 	public Member(int memberNo, String memberId, String memberPwd, String email, String memberName, String phone,
 			Date birth, int age, Date joinDate, String deleteStatus, Date deleteDate, String blacklist,
 			Date blacklistDate, String nickname, String gender) {
@@ -46,6 +46,9 @@ public class Member {
 		this.nickname = nickname;
 		this.gender = gender;
 	}
+
+
+	
 	
 	// 회원가입용 매개변수 생성자
 	public Member(String memberId, String memberPwd, String email, String memberName, String phone, Date birth,
@@ -199,7 +202,7 @@ public class Member {
 	public String toString() {
 		return "Member [memberNo=" + memberNo + ", memberId=" + memberId + ", memberPwd=" + memberPwd + ", email="
 				+ email + ", memberName=" + memberName + ", phone=" + phone + ", birth=" + birth + ", age=" + age
-				+ ", joinDate=" + joinDate + ", deleteStatus=" + deleteStatus
+				+ ", reportTime=" + reportTime + ", joinDate=" + joinDate + ", deleteStatus=" + deleteStatus
 				+ ", deleteDate=" + deleteDate + ", blacklist=" + blacklist + ", blacklistDate=" + blacklistDate
 				+ ", nickname=" + nickname + ", gender=" + gender + "]";
 	}

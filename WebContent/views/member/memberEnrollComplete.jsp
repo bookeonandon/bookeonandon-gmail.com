@@ -27,7 +27,7 @@
             </li>
             <li class="page-item"><a class="joinpagelink joinpage">●</a>
             </li>
-            <li class="page-item"><a class="joinpagelink">●</a>
+            <li class="page-item"><a class="joinpagelink fontcolor">●</a>
             </li>
         </ul>
     </div>
@@ -53,7 +53,7 @@
     </div>
     <script>
     	function loginForm(){
-    		location.href = "<%=request.getContextPath()%>/login.me";
+    		location.href = "<%=request.getContextPath()%>/loginPath.me";
     	}
     	
     </script>

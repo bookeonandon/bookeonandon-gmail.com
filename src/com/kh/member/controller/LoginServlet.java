@@ -1,7 +1,6 @@
 package com.kh.member.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.kh.member.model.service.MemberService;
+import com.kh.member.model.vo.Administrator;
 import com.kh.member.model.vo.Member;
 
 /**
@@ -35,18 +35,43 @@ public class LoginServlet extends HttpServlet {
 		
 		String memberId = request.getParameter("memberId");
 		String memberPwd = request.getParameter("memberPwd");
+	
 		Member loginUser = new MemberService().loginMember(memberId, memberPwd);
-		if(loginUser != null) { // 로그인 성공시
-			
-			HttpSession session = request.getSession();
-			session.setAttribute("loginUser", loginUser);
-			request.getRequestDispatcher("index.jsp").forward(request, response);
 		
-		}else {
+//		if(loginUser.getMemberId().equals("admin1")|| loginUser.getMemberId().equals("admin2")){ // --> 회원 x 관리자  (일반 회원이거나 아니거나)
+//
+//			if(loginUser.getMemberId().equals("admin1")&&(loginUser.getMemberPwd().equals("1234")) || loginUser.getMemberId().equals("admin2") && loginUser.getMemberPwd().equals("5678")) {
+//			 new MemberService().adminLogin(memberId, memberPwd);
+//			 response.sendRedirect("request.getContext()");
+//			}else {	// 로그인 실패했을 때
+//				
+//				// 아이디와 로그인이 다르다 라는 표시
+//			}
+//		}else {	// 회원일 때
+		
+		System.out.println(loginUser);
+		
+//			
+			System.out.println(memberPwd);
+			if(loginUser != null) {
+				HttpSession session = request.getSession();
+				session.setAttribute("loginUser", loginUser);
 			
-			// 로그인 실패했을 때 
-			request.getRequestDispatcher("views/member/memberLoginForm.jsp").forward(request, response);
-		}
+				request.getRequestDispatcher("views/common/menubar.jsp").forward(request, response);
+			}else {
+				
+				Administrator adminUser = new MemberService().adminLogin(memberId, memberPwd);
+				
+				if(adminUser != null) {
+					// admin 성공했을 때 페이지 (관리자)
+					System.out.println("관리자임");
+				}else {
+					
+					response.sendRedirect("loginForm.me");
+				}
+			}
+					
+		
 		
 		
 		

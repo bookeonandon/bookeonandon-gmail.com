@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.kh.member.model.vo.Member" %>    
+<%
+	Member mem = (Member)request.getAttribute("mem");
+%>    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,7 +35,7 @@
                                         <div>
                 
                                             <blockquote class="text-center">
-                                                <span>dahuin4566@hanmail.net</span>
+                                                <span><%=mem.getEmail() %></span>
                                                 <p>발송완료</p>
                                             </blockquote>
                                             
@@ -52,7 +57,7 @@
         </div>
 	<script>
 		function loginForm(){
-			location.href = "<%=request.getContextPath()%>/login.me";
+			location.href = "<%=request.getContextPath()%>/loginForm.me";
 		}
 	</script>
     

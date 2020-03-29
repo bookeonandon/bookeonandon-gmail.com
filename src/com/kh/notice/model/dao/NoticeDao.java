@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.kh.notice.model.vo.Notice;
+import com.kh.notice.model.vo.NoticePageInfo;
 
 public class NoticeDao {
 	
@@ -213,17 +214,24 @@ public class NoticeDao {
 		
 	}
 	
-	public ArrayList<Notice> selectList(Connection conn){
+	public ArrayList<Notice> selectList(Connection conn, NoticePageInfo npi){
 		ArrayList<Notice> list = new ArrayList<>();
 		
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
 		String sql = prop.getProperty("selectList");
-		System.out.println(sql);
+		
 		try {
-			stmt = conn.createStatement();
-			rset = stmt.executeQuery(sql);
+			pstmt = conn.prepareStatement(sql);
+			
+			int noticeStartRow = (npi.getNoticeCurrentPage() -1) * npi.getNoticeLimit() + 1;
+			int noticeEndRow = noticeStartRow + npi.getNoticeLimit() -1;
+			
+			pstmt.setInt(1, noticeStartRow);
+			pstmt.setInt(2, noticeEndRow);
+			
+			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
 				list.add(new Notice(rset.getString("notice_title"),
@@ -234,12 +242,40 @@ public class NoticeDao {
 			e.printStackTrace();
 		}finally {
 			close(rset);
-			close(stmt);
+			close(pstmt);
 		}
 		
-		System.out.println(list);
+	
 		return list;
 	}
 
+	
+	public int getNoticeListCount(Connection conn) {
+		
+		int noticeListCount = 0;
+		
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("getNoticeListCount");
+		
+		try {
+			stmt = conn.createStatement();
+			
+			rset = stmt.executeQuery(sql);
+			
+			if(rset.next()) {
+				noticeListCount = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(stmt);
+			
+		}
+		return noticeListCount;
+		
+	}
 
 }

@@ -35,6 +35,9 @@
 <link id="themecss" rel="stylesheet" type="text/css" href="//www.shieldui.com/shared/components/latest/css/light/all.min.css" />
 <script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
+<!--bootstrap datetimepicker  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 <!-- sweetalert  -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
@@ -163,23 +166,52 @@
 				<!--fixmeet  -->
 				<div class="fixmeet" id="fixmeet" style="display: none;">
 					<div class="fixmeet-left">
-						<div class="showFixmeet1" style="text-align: center; margin-left: 30px;">
-						<input class="inputAddress" id="inputAddress" type="text" onclick="goAddressApi('0')" placeholder="주소를 검색하시려면 여기를 눌러봐요!" readonly="readonly">
-						<input type="text" id="picker" class="inputdate" />
+						<div class="showFixmeet1"
+							style="text-align: center; margin-left: 30px;">
+							<input class="inputAddress" id="inputAddress" type="text"
+								onclick="goAddressApi('0')" placeholder="주소를 검색하시려면 여기를 눌러봐요!"
+								readonly="readonly">
+							<input type="text" id="picker" class="inputdate" />
+							<!-- <div class="container">
+								<div class="row">
+									<div class='col-sm-6'>
+										<div class="form-group">
+											<div class='input-group date' id='datetimepicker1'>
+												<input type='text' class="form-control" /> <span
+													class="input-group-addon"> <span
+													class="glyphicon glyphicon-calendar"></span>
+												</span>
+											</div>
+										</div>
+									</div>
+								<script type="text/javascript">
+						            $(function () {
+						                $('#datetimepicker1').datetimepicker();
+						            });
+						        </script>
+								</div>
+							</div> -->
 						</div>
-						<div class="showFixmeet2" style="text-align: center; margin-left: 30px;">
-						<p class="showAddress"></p>
-						<p class="showDateTime"></p>
+						<div class="showFixmeet2"
+							style="text-align: center; margin-left: 30px;">
+							<p class="showAddress"></p>
+							<p class="showDateTime"></p>
 						</div>
-						<div id="map" style="width: 100%; height: 500px; border-radius: 20px; margin-left: 20px;"></div>
+						<div id="map"
+							style="width: 100%; height: 500px; border-radius: 20px; margin-left: 20px;"></div>
 					</div>
 					<div class="fixmeet-right1">
-					<div><button class='btnFixmeetSave' id='btnFixmeetSave' onclick='fixmeetSave();'>저장하기</button></div> 
-					<textarea class='fixmeet-right-text' id='fixmeet-right-text;'></textarea>
+						<div>
+							<button class='btnFixmeetSave' id='btnFixmeetSave'
+								onclick='fixmeetSave();'>저장하기</button>
+						</div>
+						<textarea class='fixmeet-right-text' id='fixmeet-right-text;'></textarea>
 					</div>
 					<div class="fixmeet-right2">
-					<div><button class='btnFixmeetSave2'>메롱메롱</button></div>
-					<textarea class='fixmeet-right-text2' id='fixmeet-right-text2;'></textarea>
+						<div>
+							<button class='btnFixmeetSave2'>메롱메롱</button>
+						</div>
+						<textarea class='fixmeet-right-text2' id='fixmeet-right-text2;'></textarea>
 					</div>
 				</div>
 
@@ -879,19 +911,19 @@
 		})
 		
 		$(function () {
-	        $("#picker").shieldDateTimePicker({
-	            openOnFocus: false,
-	            showButton: true,
-	            editable: true,
-	            messages: { calendarIconTooltip: "open" },
-	            value: new Date(2020, 02, 26, 12, 0),
-	            format: "{0:yyyy.MM.dd hh:mm:ss TT}",
-	            textTemplate: "{0:yyyy-MM-dd hh:mm:ss}",
-	            parseFormats: ["dd/MM/yyyy"]
-	        });
-	    });
+        $("#picker").shieldDateTimePicker({
+            openOnFocus: false,
+            showButton: true,
+            editable: true,
+            messages: { calendarIconTooltip: "open" },
+            value: new Date(1900, 1, 1, 12, 0),
+            format: "{0:yyyy.MM.dd hh:mm:ss TT}",
+            textTemplate: "{0:yyyy-MM-dd hh:mm:ss}",
+            parseFormats: ["dd/MM/yyyy"]
+        });
+    });
 		
-		function initfixmeet(){
+    function initfixmeet(){
 			memberNo = memberNo;
 			userNo = <%=userNo%>;
 			roomNo1 = roomNo;

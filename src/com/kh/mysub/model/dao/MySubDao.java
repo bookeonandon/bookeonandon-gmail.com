@@ -62,7 +62,7 @@ public class MySubDao {
 			close(rset);
 			close(pstmt);
 		}
-		
+		System.out.println(ms);
 		return ms;
 		
 	}

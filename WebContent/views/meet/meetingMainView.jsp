@@ -40,10 +40,7 @@
 
 </head>
 <body>
-<!--merge 되었나요? 마지좀되자 새꺄 -->
-<!--오카이??????????  -->
-<!--가즈아!!!!!!!!!!!!!!!!!!  -->
-<!--ㄱㄱㄱㄱㄱㅗㅛㅗㅛㅗㅛㅗㅛㅗㅛㅗㅛㅗㅛㅗㄱㄱㄱㄱㄱ  -->
+<!--모든것은 여기서 시작된다.-->
 	<%@ include file="../common/menubar.jsp"%>
 	<div style="clear:both;"></div>
 	<div class ="main-header">

@@ -218,7 +218,7 @@ $(function(){
 				data:{"chkk":chkk,"cNo":cNo},
 			    type:"get",
 			    success:function(result){
-			    	
+			    	alert("쿠폰이 발급되었습니다.");
 			    	location.reload(true);
 			    	console.log("ajax 통신성공!!");
 			    },

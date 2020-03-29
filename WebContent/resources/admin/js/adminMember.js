@@ -249,7 +249,6 @@ $(function(){
 		    	 userNo = $(this).next().val();
 		     })
 		     
-		     
 		     $.ajax({
 		    	 url:"detail.msb",
 		    	 data:{userNo:userNo},
@@ -257,11 +256,13 @@ $(function(){
 		    	 success:function(ms){
 		    		 
 		    		 var value="";
-		    		 if(!ms.length){
+		    		 if(ms.length == null){
 		    			 value += "<option class='haveSub' value='none'>구매한 쿠폰이 없습니다.</option>";
 		    		 }else{
 		    			 value += "<option class='haveSub' value='"+ ms.sbNo + "'>"+ ms.sbName + "</option>";
 		    		 }
+		    		 console.log(ms);
+		    		 console.log(value);
 		    		 $(".haveSub").html(value);
 		    	 },
 		    	 error:function(){

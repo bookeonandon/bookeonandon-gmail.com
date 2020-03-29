@@ -38,7 +38,7 @@ public class ContactListServlet extends HttpServlet {
 		
 		ArrayList<Contact> list = new ContactService().contactList(memberNo);
 		
-		System.out.println(list);
+		
 		response.setContentType("application/json; charset=utf-8");
 		
 		//Gson gson = new Gson();

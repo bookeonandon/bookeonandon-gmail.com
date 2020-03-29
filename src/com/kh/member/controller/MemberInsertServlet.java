@@ -60,8 +60,7 @@ public class MemberInsertServlet extends HttpServlet {
 		mem.setNickname(nickname);
 		mem.setGender(gender);
 		
-		System.out.println(email);
-		System.out.println(mem);
+	
 		int result = new MemberService().insertMember(mem, birth);
 	
 		

@@ -36,16 +36,16 @@ public class UpdatePwdServlet extends HttpServlet {
 		
 		String newPwd = request.getParameter("newPwd");
 		
-		HttpSession session = request.getSession();
+		//HttpSession session = request.getSession();
 
 		
-		Member newPwd = new MemberService().newPwdMember(memberId, newPwd);
+		Member newPwdMem = new MemberService().newPwdMember(memberId, newPwd);
 		
-		if(newPwd != null) {
+		if(newPwdMem != null) {
 			request.getRequestDispatcher("views/member/updatePwd.jsp").forward(request, response);
-			session.setAttribute("loginUser", setPwdMem);
+			
 		}else {
-			request.setAttribute("msg", "비밀번호 변경에 실패했습니다.");
+			
 		}
 		
 	}

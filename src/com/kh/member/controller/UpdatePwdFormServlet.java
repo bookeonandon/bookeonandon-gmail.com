@@ -28,7 +28,7 @@ public class UpdatePwdFormServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String ranNum = request.getParameter("ranNum");
 		request.setAttribute("ranNum", ranNum);
-		System.out.println(ranNum);
+	
 		request.getRequestDispatcher("views/member/updatePwdForm.jsp").forward(request, response);
 	}
 

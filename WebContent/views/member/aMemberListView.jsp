@@ -163,7 +163,7 @@
 
                              <div class="modal-footer">
                                  <div class="btn-center">
-                                 <button type="button" class="btn btn-primary">확인하기</button>
+                                 <button type="button" class="btn btn-primary close">확인하기</button>
                                  </div>
                              </div>
                          </div>

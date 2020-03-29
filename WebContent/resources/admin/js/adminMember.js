@@ -219,7 +219,7 @@ $(function(){
 			    type:"get",
 			    success:function(result){
 			    	alert("쿠폰이 발급되었습니다.");
-			    	$('#basicModal3').modal("hide");
+			    	location.reload();
 			    	console.log("ajax 통신성공!!");
 			    },
 			    error:function(){

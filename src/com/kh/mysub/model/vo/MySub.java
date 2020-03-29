@@ -79,8 +79,10 @@ public class MySub {
 	@Override
 	public String toString() {
 		return "MySub [userNo=" + userNo + ", sbStart=" + sbStart + ", sbEnd=" + sbEnd + ", sbNo=" + sbNo
-				+ ", sbStatus=" + sbStatus + "]";
+				+ ", sbStatus=" + sbStatus + ", sbName=" + sbName + "]";
 	}
+
+	
 	
 	
 	

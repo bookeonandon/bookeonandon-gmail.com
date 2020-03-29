@@ -252,11 +252,11 @@ $(function(){
 		     $.ajax({
 		    	 url:"detail.msb",
 		    	 data:{userNo:userNo},
-		    	 type:"get",
+		    	 type:"post",
 		    	 success:function(ms){
 		    		 
 		    		 var value="";
-		    		 if(!ms){
+		    		 if(ms === null){
 		    			 value += "<option class='haveSub' value='none'>구매한 쿠폰이 없습니다.</option>";
 		    		 }else{
 		    			 value += "<option class='haveSub' value='"+ ms.sbNo + "'>"+ ms.sbName + "</option>";

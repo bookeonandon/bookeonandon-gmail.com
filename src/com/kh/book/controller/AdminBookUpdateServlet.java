@@ -49,7 +49,7 @@ public class AdminBookUpdateServlet extends HttpServlet {
 					new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
 			
 			
-			int bNo = Integer.parseInt(multiRequest.getParameter("name"));
+			int bNo = Integer.parseInt(multiRequest.getParameter("bNo"));
 			String title = multiRequest.getParameter("name");
 			String subName = multiRequest.getParameter("subName");
 			String author = multiRequest.getParameter("author");

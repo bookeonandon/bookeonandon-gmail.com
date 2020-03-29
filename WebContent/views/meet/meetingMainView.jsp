@@ -40,6 +40,7 @@
 
 </head>
 <body>
+<!--mergy 되었나요?  -->
 	<%@ include file="../common/menubar.jsp"%>
 	<div style="clear:both;"></div>
 	<div class ="main-header">

@@ -270,11 +270,11 @@ $(function(){
 	    
 		$(function(){
 			
-			$(".haveSub").each(function(){
-				if($(this).val() == <%=f.getFaqType()%>){
-					$(this).prop("selected", true);
-				}
-			});
+//			$(".haveSub").each(function(){
+//				if($(this).val() == <%=f.getFaqType()%>){
+//					$(this).prop("selected", true);
+//				}
+//			});
 			
 		});
 	     

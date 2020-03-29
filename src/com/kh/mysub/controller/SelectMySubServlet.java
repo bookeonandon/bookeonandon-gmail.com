@@ -39,7 +39,6 @@ public class SelectMySubServlet extends HttpServlet {
 		
 		response.setContentType("application/json; charset=utf-8");
 		
-		
 		PrintWriter out = response.getWriter();
 		out.print(ms);
 		

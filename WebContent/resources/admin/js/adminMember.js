@@ -255,11 +255,11 @@ $(function(){
 		    	 type:"post",
 		    	 success:function(ms){
 		    		 
+		    		 console.log("통신성공!");
 		    		 var value="";
-		    		 if(ms === null){
+		    		 if(!ms === null){
 		    			 value += "<option class='haveSub' value='none'>구매한 쿠폰이 없습니다.</option>";
 		    		 }else{
-		    			 console.log("통신성공!");
 		    			 //value += "<option class='haveSub' value='"+ ms.sbNo + "'>"+ ms.sbName + "</option>";
 		    			 //console.log(ms.sbNo);
 		    			 //console.log(ms);

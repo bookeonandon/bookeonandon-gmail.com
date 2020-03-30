@@ -218,9 +218,6 @@
                             <select class="form-control sub1" id="sel1" style="margin:15px 0px;">
                             	<%if(ms != null){ %>
                                 <option value="<%= msNum %>">성공시 나옴</option>
-                                <% }else{ %>
-                                <option value="none">등록된 구독권이 없습니다.</option>
-                                <%} %>
                             </select>
                             
                             <span>수정할 구독권</span>

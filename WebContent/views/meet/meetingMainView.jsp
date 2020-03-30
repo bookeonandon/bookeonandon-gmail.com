@@ -314,7 +314,6 @@
 				<div class="room_content"><p class="p_room_content">모임 설명  </p><textarea class="txt_room_content"></textarea></div>
 				<button class="btn-next2" onclick="makeRoom();">만들기!</button>
 			  </div>
-			  
 			</div>
 		</div>
 	</div>
@@ -333,23 +332,26 @@
 			$.ajax({
 	 			url:"doleaderSetting.mt",
 				data : {
+					/* userNo : userNo, */
 					roomNo : roomNo
 				},
 				type : "POST",
 				success : function(list) {
-					/* console.log(list); */
+					console.log(list);
 					if(list != null){
 						var value="";
-						var contextPath = "<%=request.getContextPath()%>";
+						var contextPath = "<%=request.getContextPath()%>/resources/meetMemImg";
 						for(var i=0;i<list.length;i++){
 							value += 
-							"<tr>" +
-							"<td style='font-weight : 600; width: 60px;'><p>" + list[i].memberName + "</p></td>" +
-							"<td style='width: 450px;'><p>" + list[i].cmmmtCntnt + "</p></td>" +
-							"<td style='width: 140px;'><p>" + list[i].createDate + "</p></td>" +
-							"<td style='width: 50px;'><img class='deleteCmmmt' value='"+list[i].cmmmtNo+"' style='width:15px; height:15px;' src='resources/images/meetImage/close.png'></td>" +
-							"</tr>"
+								"<tr>" +
+								"<td>" +
+								"<img style='width:40px; height:40px; border-radius:20px; margin: 10px; margin-left:30px;' src='"+ contextPath + "/" + list[i].memberPic +"'>" + 
+								"<p class='modal2-nav-lt-p'>" + list[i].memName + "</p>" +
+								"</td>" +
+								"<td style='width: 50px;'><img class='approveMember' value='"+list[i].memberNo+"/"+list[i].roomNo+"' style='width:15px; height:15px;' src='resources/images/meetImage/approve.png'></td>" +
+								"</tr>"
 						}
+						
 						$(".leaderSetting-table").empty();
 						$(".leaderSetting-table").append(value);
 					}
@@ -395,9 +397,11 @@
 		}
 		
 		function makeRoom(){
+			roomNo = roomNo;
 			$.ajax({
 	 			url:"makeRoom.mt",
 				data : {
+					roomNo : roomNo,
 					roomtitle : $(".txt_room_name").val(), 
 					roomcontent :$(".txt_room_content").val(), 
 					memberno : <%=userNo%>,
@@ -406,7 +410,6 @@
 				},
 				type : "POST",
 				success : function(result) {
-					console.log(result);
 					location.reload();
 				},
 				error:function(request,status,error){
@@ -781,14 +784,14 @@
 				var roomContent = $(this).children().eq(5).text();
 				$("#modalBookImg").attr('src', $(this).find('img').attr('src'));
 				<%-- <img id="bookImg" style="width: 90px; height: 139px;" src="<%=request.getContextPath()+"/resources/images/meetImage/"+m.getBookImg() %>"> --%>
-				console.log(roomNo);
+				/* console.log(roomNo);
 				console.log(memberNo);
 				console.log(roomTitle);
 				console.log(ctgy0);
 				console.log(ctgy1);
 				console.log(ctgy2);
 				console.log(roomMembers);
-				console.log(roomContent);
+				console.log(roomContent); */
 				/* console.log(src); */
 				
 				document.getElementById("modal-title").innerHTML=roomTitle;
@@ -905,7 +908,7 @@
  				$('#fixmeet').css("display", "none");
  				$('#setting').css("display", "none`");
  				$('#leaderSetting').css("display", "block");
- 				showImg();
+ 				leaderSettingtable();
 			}
 		    /* case "fixmeet" : break;
 		    case "setting" : break; */
@@ -923,7 +926,7 @@
 				},
 				type : "POST",
 				success : function(list) {
-					console.log(list);
+					/* console.log(list); */
 					if(list != null){
 						var value="";
 						var contextPath = "<%=request.getContextPath()%>/resources/meetMemImg";
@@ -962,7 +965,7 @@
 			roomNo = roomNo;
 			memberNo = memberNo;
 			userNo = <%=userNo%>;
-			console.log(memberNo);
+			/* console.log(memberNo); */
 			$.ajax({
 	 			url:"dochatt.mt",
 				data : {
@@ -1134,7 +1137,7 @@
 				},
 				type : "POST",
 				success : function(mt) {
-					console.log(mt);
+					/* console.log(mt); */
 					if(mt != null){
 						if(memberNo == userNo){
 							// 방장일때
@@ -1201,7 +1204,7 @@
 			var meetContents = $(".fixmeet-right-text").val();
 			var meetLocation = $(".inputAddress").val();
 			var meetTime =  $(".sui-picker-input").val();
-			console.log(meetTime);
+			/* console.log(meetTime); */
 			roomNo = roomNo;
 			var userNo = <%=userNo%>;
 			

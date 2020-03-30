@@ -856,6 +856,7 @@ hr {
 }
 
 .leaderSetting-table>tbody>tr>td{
+	vertical-align: middle;
 	overflow:auto;
 }
 

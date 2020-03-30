@@ -30,8 +30,7 @@ public class MakeRoomServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-
-		
+		int roomNo = Integer.parseInt(request.getParameter("roomNo"));
 		int memberNo = Integer.parseInt(request.getParameter("memberno"));
 		String roomtitle = request.getParameter("roomtitle");
 		String roomcontent = request.getParameter("roomcontent");
@@ -40,7 +39,7 @@ public class MakeRoomServlet extends HttpServlet {
 		
 		
 		int result = new MeetService().insertRoom(memberNo, roomtitle, roomcontent, roomtotalpp, genre);
-		
+		new MeetService().joinYapplyY(roomNo, memberNo);
 		response.setContentType("applocation/json; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		//out.print(m/* .toString() */);

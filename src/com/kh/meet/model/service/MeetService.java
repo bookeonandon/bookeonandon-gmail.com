@@ -97,6 +97,16 @@ public class MeetService {
 		return list;
 	}
 	
+	public ArrayList<MemMeet> selectRoomMemListN(int roomNo) {
+		Connection conn = getConnection();
+
+		ArrayList<MemMeet> list = new MeetDao().selectRoomMemList(conn, roomNo);
+
+		close(conn);
+
+		return list;
+	}
+	
 	public ArrayList<RoomCommunity> selectRoomChattList(int roomNo) {
 		Connection conn = getConnection();
 
@@ -263,6 +273,24 @@ public class MeetService {
 		return result;
 	}
 	
+	public RoomMemSet joinYapplyY(int userNo, int roomNo) {
+
+		Connection conn = getConnection();
+		RoomMemSet rms = null;
+		int result = new MeetDao().joinYapplyY(conn, userNo, roomNo);
+
+		if (result > 0) {
+			commit(conn);
+			rms = RoomMemSetSelect(userNo, roomNo);
+		} else {
+			rollback(conn);
+		}
+
+		close(conn);
+
+		return rms;
+
+	}
 }
 
 

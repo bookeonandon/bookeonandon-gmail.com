@@ -240,6 +240,37 @@ public Meet MeetSelect(Connection conn, int roomNo) {
 		return list;
 	}
 	
+	public ArrayList<MemMeet> selectRoomMemListN(Connection conn,int roomNo){
+		ArrayList<MemMeet> list = new ArrayList<MemMeet>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectRoomMemListN");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, roomNo);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				list.add(new MemMeet(
+							rset.getString("MEMBER_NAME"),
+							rset.getInt("ROOM_NO"),
+							rset.getInt("MEMBER_NO"),
+							rset.getString("MEM_PIC"),
+							rset.getString("MEM_CONTENT"),
+							rset.getString("JOIN_YN"),
+							rset.getString("APPLY_YN")
+						));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
 	public ArrayList<RoomCommunity> selectRoomChattList(Connection conn,int roomNo){
 		ArrayList<RoomCommunity> list = new ArrayList<RoomCommunity>();
 		
@@ -500,7 +531,26 @@ public Meet MeetSelect(Connection conn, int roomNo) {
 		return result;
 	}
 	
-	
+	public int  joinYapplyY(Connection conn, int userNo, int roomNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("joinYapplyY");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, roomNo);
+
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
 	
 	

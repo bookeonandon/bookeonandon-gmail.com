@@ -398,12 +398,8 @@ public class MemberDao {
 			close(pstmt);
 		}
 		
-<<<<<<< HEAD
-		return sem;
-=======
-		
 		return mem;
->>>>>>> refs/heads/master
+
 	}
 
 	    

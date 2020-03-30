@@ -11,9 +11,6 @@
 	ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
 	ArrayList<Coupon> cList = (ArrayList<Coupon>)request.getAttribute("cList");
 	ArrayList<Subscription> sList = (ArrayList<Subscription>)request.getAttribute("sList");
-	
-	MySub ms = (MySub)request.getAttribute("ms");
-	
 
 %>
 <!DOCTYPE html>
@@ -254,14 +251,14 @@
                             <span>수정할 구독권</span>
                             <select class="form-control sub2" id="selModify" style="margin:15px 0px;">
                                 <%for (Subscription s : sList){ %>
-                                <option class="selectNewSub" value="<%=s.getSbNo()%>"><%=s.getSbName()%></option>
+                                <option id="selectNewSubId" class="selectNewSub" value="<%=s.getSbNo()%>"><%=s.getSbName()%></option>
                                 <% } %>
                             </select>
                             <br>
                             <span>* 적용 시 기존 구독일에서 기간이 연장됩니다.</span>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary none-center" onclick="subSubmit();" data-dismiss="modal">확인하기</button>
+                            <button type="button" class="btn btn-primary none-center" onclick="subSubmit();">확인하기</button>
                         </div>
                     </div>
                 </div>
@@ -270,11 +267,17 @@
             <script>
             
             	function subSubmit(){
-
-           			subNewNo = $(".selectNewSub option:selected").val();
-           			console.log(subNewNo);
-           		
-            	}}
+					console.log(userNo);
+            		subNewNo = $(".sub2").find("option:selected").val();
+           			
+           			$.ajax({
+           				url:"insert.ams",
+           				data:{userNo:userNo, subNewNo:subNewNo},
+           				success:function(){
+           					location.reload();
+           				}
+           			})
+            	}
             </script>
 
 

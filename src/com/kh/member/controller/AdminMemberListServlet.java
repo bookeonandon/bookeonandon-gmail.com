@@ -48,6 +48,9 @@ public class AdminMemberListServlet extends HttpServlet {
 		
 		MySub ms = new MySubService().adminSelectDetail(uNo);
 		
+		System.out.println(uNo);
+		System.out.println(ms);
+		
 		
 		if(list != null && cList != null && sList != null) {
 			request.setAttribute("cList", cList);

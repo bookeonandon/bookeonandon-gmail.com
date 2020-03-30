@@ -1,3 +1,4 @@
+<%@page import="com.kh.mysub.model.vo.MySub"%>
 <%@page import="com.kh.product.model.vo.Subscription"%>
 <%@page import="com.kh.coupon.model.vo.Coupon"%>
 <%@page import="com.kh.member.model.vo.Member"%>
@@ -10,6 +11,9 @@
 	ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
 	ArrayList<Coupon> cList = (ArrayList<Coupon>)request.getAttribute("cList");
 	ArrayList<Subscription> sList = (ArrayList<Subscription>)request.getAttribute("sList");
+	
+	MySub ms = (MySub)request.getAttribute("ms");
+	
 
 %>
 <!DOCTYPE html>
@@ -210,7 +214,7 @@
                         <div class="modal-body">
                             <span>기존 구독권</span>
                             <select class="form-control sub1" id="sel1" style="margin:15px 0px;">
-                                <option class="haveSub" value="none">구매한 쿠폰이 없습니다.</option>
+                                <option value="<%=ms.getSbNo()%>"><%=ms.getSbName()%></option>
                             </select>
                             
                             <span>수정할 구독권</span>

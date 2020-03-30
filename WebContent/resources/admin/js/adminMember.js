@@ -258,7 +258,7 @@ $(function(){
 
 	function goMySub(userNo){
 		
-		location.href="<%=contextPath%>/detail.msb?userNo="+userNo;
+		location.href="<%=contextPath%>/list.ame?userNo="+userNo;
 		
 	}
    

@@ -247,6 +247,22 @@ public class MeetService {
 		return result;
 	}
 	
+	public int insertRoom(int memberNo,String roomtitle,String roomcontent,String roomtotalpp,String genre) {
+		Connection conn = getConnection();
+		
+		int result = new MeetDao().insertRoom(conn, memberNo, roomtitle, roomcontent, roomtotalpp, genre);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+	
 }
 
 

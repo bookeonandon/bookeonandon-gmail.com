@@ -7606,7 +7606,7 @@ sub {
   .nav-header .brand-logo {
     z-index: 999; }
     .nav-header .brand-logo a {
-      padding: 1.607rem 1.8125rem;
+      /*padding: 1.607rem 1.8125rem;*/
       display: block; }
       .nav-header .brand-logo a i {
         font-size: 1.375rem; }
@@ -8455,7 +8455,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
     [data-sidebar-style="mini"] .nav-header .brand-logo {
       z-index: 999; }
       [data-sidebar-style="mini"] .nav-header .brand-logo a {
-        padding: 1.607rem 1.0625rem; }
+        /* padding: 1.607rem 1.0625rem; */ }
         [data-sidebar-style="mini"] .nav-header .brand-logo a b img {
           margin-top: 0.4375rem; }
     [data-sidebar-style="mini"] .nav-header .nav-control {

@@ -148,6 +148,9 @@ public class Meet {
 	}
 
 
+	public Meet() {
+		
+	}
 
 	public Meet(int roomNo, String roomTitle, String roomContent, int roomTotalPP, int roomNowPP, String genre,
 			int bookNo, int memberNo, Date createDate, String status, String bookImg) {

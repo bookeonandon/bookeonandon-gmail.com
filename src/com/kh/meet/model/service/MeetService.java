@@ -100,7 +100,7 @@ public class MeetService {
 	public ArrayList<MemMeet> selectRoomMemListN(int roomNo) {
 		Connection conn = getConnection();
 
-		ArrayList<MemMeet> list = new MeetDao().selectRoomMemList(conn, roomNo);
+		ArrayList<MemMeet> list = new MeetDao().selectRoomMemListN(conn, roomNo);
 
 		close(conn);
 
@@ -153,6 +153,22 @@ public class MeetService {
 		Connection conn = getConnection();
 		
 		int result = new MeetDao().deleteMember(conn, memberNo, roomNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+	
+	public int approveMember(int memberNo,int roomNo) {
+		Connection conn = getConnection();
+		
+		int result = new MeetDao().approveMember(conn, memberNo, roomNo);
 		
 		if(result > 0) {
 			commit(conn);
@@ -273,23 +289,39 @@ public class MeetService {
 		return result;
 	}
 	
-	public RoomMemSet joinYapplyY(int userNo, int roomNo) {
+	public int joinYapplyY(int roomNo, int memberNo) {
 
 		Connection conn = getConnection();
-		RoomMemSet rms = null;
-		int result = new MeetDao().joinYapplyY(conn, userNo, roomNo);
+		int result = new MeetDao().joinYapplyY(conn, roomNo, memberNo);
 
 		if (result > 0) {
 			commit(conn);
-			rms = RoomMemSetSelect(userNo, roomNo);
 		} else {
 			rollback(conn);
 		}
 
 		close(conn);
 
-		return rms;
+		return result;
 
+	}
+	
+	public int selectNewRoomNum(int memberNo) {
+		Connection conn = getConnection();
+		int roomNo = new MeetDao().selectNewRoomNum(conn, memberNo);
+		
+		close(conn);
+
+		return roomNo;
+	}
+	
+	public int insertLocation(int roomNo, String location) {
+		Connection conn = getConnection();
+		int result = new MeetDao().insertLocation(conn, roomNo, location);
+		
+		close(conn);
+
+		return result;
 	}
 }
 

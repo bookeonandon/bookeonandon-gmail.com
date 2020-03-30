@@ -365,6 +365,27 @@ public Meet MeetSelect(Connection conn, int roomNo) {
 		return result;
 	}
 	
+	public int approveMember(Connection conn,int memberNo,int roomNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("approveMember");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, roomNo);
+			pstmt.setInt(2, memberNo);
+
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
 	public int fixmeetSave(Connection conn, int roomNo,String meetLocation,String meetContents, Timestamp sqlDate) {
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -444,7 +465,10 @@ public Meet MeetSelect(Connection conn, int roomNo) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("uploadMemFile");
-		
+		System.out.println(changeName);
+		System.out.println(roomNo);
+		System.out.println(userNo);
+		System.out.println(memContent);
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, changeName);
@@ -531,15 +555,14 @@ public Meet MeetSelect(Connection conn, int roomNo) {
 		return result;
 	}
 	
-	public int  joinYapplyY(Connection conn, int userNo, int roomNo) {
+	public int  joinYapplyY(Connection conn, int roomNo, int memberNo) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("joinYapplyY");
-		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, userNo);
-			pstmt.setInt(2, roomNo);
+			pstmt.setInt(1, roomNo);
+			pstmt.setInt(2, memberNo);
 
 			result = pstmt.executeUpdate();
 			
@@ -552,7 +575,50 @@ public Meet MeetSelect(Connection conn, int roomNo) {
 		return result;
 	}
 	
+	public int selectNewRoomNum(Connection conn,int memberNo) {
+		Meet mt = null;
+		int roomNo = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectNewRoomNum");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNo);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				mt = new Meet();
+				roomNo = rset.getInt("ROOM_NO");	
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return roomNo;
+	}
 	
-	
-	
+	public int insertLocation(Connection conn, int roomNo, String location) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertLocation");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, roomNo);
+			pstmt.setString(2, location);
+
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 }

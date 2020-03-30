@@ -114,6 +114,7 @@
 						<a class="a-leaderrSetting" href="javascript:ModalDropdownSel('leaderSetting');">회원관리</a>
 					</div>
 				</div>
+				<div class="modal1-title-div"><p class="modal1-title-p"></p></div>
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
 					<span aria-hidden="true" class="closeX">&times;</span>
@@ -224,7 +225,7 @@
 							<p class="showDateTime"></p>
 						</div>
 						<div id="map"
-							style="width: 100%; height: 500px; border-radius: 20px; margin-left: 20px;"></div>
+							style="width: 100%; height: 455px; border-radius: 20px; margin-left: 20px;"></div>
 					</div>
 					<div class="fixmeet-right1">
 						<div>
@@ -345,10 +346,12 @@
 							value += 
 								"<tr>" +
 								"<td>" +
-								"<img style='width:40px; height:40px; border-radius:20px; margin: 10px; margin-left:30px;' src='"+ contextPath + "/" + list[i].memberPic +"'>" + 
-								"<p class='modal2-nav-lt-p'>" + list[i].memName + "</p>" +
+								"<img style='width:50px; height:50px; border-radius:30px; margin: 10px;' src='"+ contextPath + "/" + list[i].memberPic +"'>" +
 								"</td>" +
-								"<td style='width: 50px;'><img class='approveMember' value='"+list[i].memberNo+"/"+list[i].roomNo+"' style='width:15px; height:15px;' src='resources/images/meetImage/approve.png'></td>" +
+								"<td>" +
+								"<p class='leaderSetting-p'>" + list[i].memName + "</p>" +
+								"</td>" +
+								"<td style='width: 50px;'><img class='approveMember' value='"+list[i].memberNo+"/"+list[i].roomNo+"' style='width:30px; height:30px; cursor: pointer;' src='resources/images/meetImage/approve.png'></td>" +
 								"</tr>"
 						}
 						
@@ -397,15 +400,14 @@
 		}
 		
 		function makeRoom(){
-			roomNo = roomNo;
 			$.ajax({
 	 			url:"makeRoom.mt",
 				data : {
-					roomNo : roomNo,
 					roomtitle : $(".txt_room_name").val(), 
 					roomcontent :$(".txt_room_content").val(), 
 					memberno : <%=userNo%>,
 					roomtotalpp : $(".txt_room_totalpp").val(),
+					location : $(".txt_room_location").val(),
 					genre : category
 				},
 				type : "POST",
@@ -655,6 +657,7 @@
                         data: formData,
                         type: 'POST',
                         success: function(result){
+                        	console.log("result : "+result);
                             if(result > 0){
                             	Swal.fire({
                   				  position: 'center',
@@ -837,6 +840,12 @@
 								$('#btn_apply').css("display", "none");
 								$('#btn_applyDone').css("display", "none");
 							}
+							
+							if(<%=userNo%> == memberNo){
+								$('#modalDropdown').css("visibility", "visible");
+								$('#btn_apply').css("display", "none");
+								$('#btn_applyDone').css("display", "none");
+							}
 						},
 						error : function() {
 							console.log("ajax 통신 실패!!");
@@ -873,6 +882,7 @@
  				$('#fixmeet').css("display", "none");
  				$('#setting').css("display", "none");
  				$('#leaderSetting').css("display", "none");
+ 				$('.modal1-title-p').text("메인화면");
  				initModalMain();
  				showImg2();
 			}
@@ -882,6 +892,7 @@
  				$('#fixmeet').css("display", "none");
  				$('#setting').css("display", "none");
  				$('#leaderSetting').css("display", "none");
+ 				$('.modal1-title-p').text("커뮤니티");
  				setCommunication();
  				setchatting();
 			}
@@ -891,6 +902,7 @@
  				$('#fixmeet').css("display", "block");
  				$('#setting').css("display", "none");
  				$('#leaderSetting').css("display", "none");
+ 				$('.modal1-title-p').text("정기모임");
  				initfixmeet();
 			}
 			if(val == "setting"){
@@ -899,6 +911,7 @@
  				$('#fixmeet').css("display", "none");
  				$('#setting').css("display", "block");
  				$('#leaderSetting').css("display", "none");
+ 				$('.modal1-title-p').text("회원설정");
  				showImg();
 			}
 			
@@ -906,8 +919,9 @@
 				$('#modalMain').css("display", "none");
  				$('#modalCommunity').css("display", "none");
  				$('#fixmeet').css("display", "none");
- 				$('#setting').css("display", "none`");
+ 				$('#setting').css("display", "none");
  				$('#leaderSetting').css("display", "block");
+ 				$('.modal1-title-p').text("회원관리");
  				leaderSettingtable();
 			}
 		    /* case "fixmeet" : break;
@@ -937,9 +951,12 @@
 									"<td>" +
 									"<img style='width:40px; height:40px; border-radius:20px; margin: 10px; margin-left:30px;' src='"+ contextPath + "/" + list[i].memberPic +"'>" + 
 									"<p class='modal2-nav-lt-p'>" + list[i].memName + "</p>" +
-									"</td>" +
-									"<td style='width: 50px;'><img class='deleteMember' value='"+list[i].memberNo+"/"+list[i].roomNo+"' style='width:15px; height:15px;' src='resources/images/meetImage/close.png'></td>" +
-									"</tr>"
+									"</td>"
+									if(userNo != list[i].memberNo){
+										value += 
+										"<td style='width: 50px;'><img class='deleteMember' value='"+list[i].memberNo+"/"+list[i].roomNo+"' style='width:15px; height:15px;' src='resources/images/meetImage/close.png'></td>"
+									}
+									value += "</tr>"
 							}else{
 								 value += 
 									"<tr>" +
@@ -1058,6 +1075,50 @@
 							type : "POST",
 							success : function(result) {
 								setchatting();
+							},
+							error : function() {
+								console.log("ajax 통신 실패!!");
+							}
+						});
+				   }
+				  }
+				})
+		})
+		
+		$('body').on('click','.approveMember',function(){
+			var value = $(this).attr("value");
+			var valSplit = value.split('/');
+			var memberNo = valSplit[0];
+			var roomNo = valSplit[1];
+			
+			Swal.fire({
+				  title: '정말 승인 하시겠습니까?',
+				  text: "",
+				  icon: 'info',
+				  showCancelButton: true,
+				  confirmButtonColor: '#3085d6',
+				  cancelButtonColor: '#d33',
+				  cancelButtonText: '취소',
+				  confirmButtonText: '승인'
+				}).then((result) => {
+				  if (result.value) {
+					  Swal.fire({
+						  position: 'center',
+						  icon: 'success',
+						  title: '승인성공!',
+						  showConfirmButton: false,
+						  timer: 1000 
+						})
+				   if(result.value){
+					   $.ajax({
+				 			url:"approveMember.mt",
+							data : {
+								memberNo : memberNo,
+								roomNo : roomNo
+							},
+							type : "POST",
+							success : function(result) {
+								leaderSettingtable();
 							},
 							error : function() {
 								console.log("ajax 통신 실패!!");

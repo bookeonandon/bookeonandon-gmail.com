@@ -261,12 +261,35 @@ public class MemberService {
 	public ArrayList<Payments> paymentInfo(PageInfo pi, int memberNo) {
 	      Connection conn = getConnection();
 	      
-	      ArrayList<Payments> list = new MemberDao().paymentInfo(conn, pi, memberNo);
+	      Member sem = new MemberDao().selectMember(conn, memberId);
 	      
 	      close(conn);
 	      
-	      return list;
+	      return sem;
+	   }
+	   
+	/**
+	    * 임시비밀번호 받은후 비밀번호 변경 서비스
+	    * @param memberId
+	    * @param newPwd
+	    * @return
+	    */
+	   public Member newPwdMember(String memberId, String newPwd) {
+	      Connection conn = getConnection();
 	      
-	 }
+	      int result = new MemberDao().newPwdMember(conn, memberId, newPwd);
+	      
+	      Member newPwdMember = null;
+	      if(result > 0) {
+	         commit(conn);
+	         newPwdMember = new MemberDao().selectMember(conn, memberId);
+	         
+	      }else {
+	         rollback(conn);
+	      }
+	      close(conn);
+	      
+	      return newPwdMember;
+	   }
 
 }

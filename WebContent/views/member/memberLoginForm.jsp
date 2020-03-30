@@ -47,8 +47,8 @@
                                     </div>   
                                     
                                     <div id="idsearch" class="mt-5 login-form__footer">
-                                          <a onclick="idSearchForm();" class="text-primary"> &nbsp;아이디 찾기</a>               
-	                               		  <a onclick="updatePwdForm();" class="text-primary loginlink">비밀번호 재설정</a>
+                                          <a onclick="idSearchForm();" class="text-primary lobinlink"> &nbsp;아이디 찾기</a>               
+	                               		  
             
                                     </div>
                                     
@@ -99,10 +99,7 @@
       		location.href= "<%=request.getContextPath()%>/idSearchForm.me";
       	}
       	
-      	function updatePwdForm(){
-      		location.href="<%=request.getContextPath()%>/updatePwdForm.me";
-      	}
-      
+      	
     	function memberJoin(){
     		location.href = "<%=request.getContextPath()%>/memberJoin.me";
     	}

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <% 
-	String ranNum = (String)session.getAttribute("ranNum");
+	String ranNum = (String)request.getAttribute("ranNum");
 %>    
 
 
@@ -50,7 +50,7 @@
                                     </div>
                                     <div id="loginthreebtn">
                                         <button type="button" id="backbutton" class="btn login-form__btn submit" onclick="history.back();">뒤로</button>
-                                      	<button type="button" onclick="updatePwd();"class="btn login-form__btn submit" >설정</button>
+                                      	<button type="submit" onclick="return updatePwd();"class="btn login-form__btn submit" >설정</button>
                                        <!--  <button type="submit" class="btn login-form__btn submit" >설정</button> -->
                                     </div>
                                     <div class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</div> 
@@ -67,7 +67,9 @@
         </div>
     	<script>
     	$(function(){
-    		$("#alert-success").hide(); $("#alert-danger").hide(); 
+    		$("#alert-success").hide(); 
+    		$("#alert-danger").hide(); 
+    		
     		$("input").keyup(function(){
 	    		var pwd1=$('input[name=newPwd]').val(); 
 	    		var pwd2=$('input[name=newPwdConfirm]').val(); 
@@ -84,25 +86,27 @@
 	    			} 
 	    		} 
     		}); 
+    	});
     		
- 	function updatePwd(){
+ 		function updatePwd(){
     		
-    //			var value="<%=ranNum%>";
-    //			if($('input[name=ranNumConfirm]').val().equals(value)){
-    //				//$("#newPwdSet").submit();
-    //				console.log(value);
-    //			
-    //				return true;
-    //			}else{
-    //				alert("임시 비밀번호가 잘못 됐습니다. 다시 입력해주세요");
-    //				$('input[name=ranNumConfirm]').focus();
-    //				return false;
-    //			}
+    			var value="<%=ranNum%>";
     			
-    //		}
+    				
+    			if($('input[name=ranNumConfirm]').val() == value){
+    				//$("#newPwdSet").submit();
+    			
+    				return true;
+    			}else{
+    				alert("임시 비밀번호가 잘못 됐습니다. 다시 입력해주세요");
+    				$('input[name=ranNumConfirm]').focus();
+    				return false;
+    			} 
+    			
+    		}
     	
     		
-    	});
+    	
 
     
 

@@ -34,8 +34,26 @@ public class IdSearchServlet extends HttpServlet {
 		
 		Member mem = new MemberService().idSearch(memberEmail);
 		
+		String result = null;
+		String getId = null;
+		String maskId = null;
+		
+		getId = mem.getMemberId();
+		result = getId;
+		
+		int length = result.length();
+		length = length -4;
+		maskId = getId.substring(0, length);
+		
+		maskId = maskId + "****";
+		result = maskId;
+		
+		
+		
+		
 		if(mem != null) {
 			request.setAttribute("mem", mem);
+			request.setAttribute("result", result);
 			request.getRequestDispatcher("views/member/memberSearchId.jsp").forward(request,response);
 			
 		}else {

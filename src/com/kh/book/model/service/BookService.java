@@ -136,6 +136,31 @@ public class BookService {
 		
 	}
 
+	public Book selectBookInfo(int bookNo){
+		
+		Connection conn = getConnection();
+		
+		Book b = new BookDao().selectBookInfo(conn, bookNo);
+		
+		close(conn);
+		
+		return b;
+		
+	}
+	
+	public int increaseHits(int bookNo) {
+		Connection conn = getConnection();
+		
+		int result = new BookDao().increaseHits(conn,bookNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 	
 	
 

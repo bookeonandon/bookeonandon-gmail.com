@@ -4,6 +4,7 @@
 <%@ page import="com.kh.member.model.vo.Member"%>
 <%
 	Member mem = (Member)request.getAttribute("mem");
+	String result = (String)request.getAttribute("result");
 %>    
 
 <!DOCTYPE html>
@@ -35,21 +36,19 @@
                                     <div class="form-group">
                                         <div>
                 
-                                            <blockquote class="text-center">개인정보 보호를 위해 2글자만 보여드립니다.<br>
-                                                <span><%=mem.getMemberId() %></span>
+                                            <blockquote class="text-center">개인정보 보호를 위해 뒤 4글자는 보이지 않습니다.<br>
+                                                <span> <%=result %> </span>
                                             </blockquote>
                                             <input type="hidden" name="idSearch" value="<%= mem.getEmail()%>">
-                                            
+                                            <input type="hidden" name="idSearchId" value="<%= mem.getMemberId()%>">
                                         </div>
                                     </div>
                                     <div>
-                                        <h6 class="card-subtitle text-center">전체 아이디</h6>
+                                        <h6 class="card-subtitle text-center">전체 아이디 + 임시 비밀번호</h6>
                                         <button type="submit" class="btn login-form__btn submit w-100">Email 발송</button>
                                     </div>
                                     <div id="idsearch">
-                                        <a onclick="loginForm();" class="text-primary">로그인</a>
-                                        <a onclick="updatePwdForm();" class="text-primary loginlink">비밀번호 재설정</a>
-            
+                                        <a onclick="loginForm();" style="cursor:pointer;" class="text-primary">로그인</a>
                                     </div>
                                         
                                 </form>
@@ -62,6 +61,8 @@
         </div>
 
 	<script>
+	
+		
 		
 		function idSearchEmail(){
 			location.href= "<%=request.getContextPath()%>/idSearchEmail.me";
@@ -72,9 +73,7 @@
 			location.href = "<%=request.getContextPath()%>/loginPath.me";
 		}
 		
-		function updatePwdForm(){
-			location.href="<%=request.getContextPath()%>/updatePwdForm.me";
-		}
+		
 	</script>
 	
     

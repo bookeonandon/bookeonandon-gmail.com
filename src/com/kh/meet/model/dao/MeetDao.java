@@ -476,7 +476,29 @@ public Meet MeetSelect(Connection conn, int roomNo) {
 		return result;
 	}
 	
-	
+	public int insertRoom(Connection conn, int memberNo,String roomtitle,String roomcontent,String roomtotalpp,String genre) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertRoom");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, roomtitle);
+			pstmt.setString(2, roomcontent);
+			pstmt.setString(3, roomtotalpp);
+			pstmt.setString(4, genre);
+			pstmt.setInt(5, memberNo);
+
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
 	
 	

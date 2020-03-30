@@ -242,22 +242,22 @@
 				<div class="make-step1" id="make-step1" style="display: block;">
 				<table class="table-category">
 				<tr class="tr-category1">
-				<td><button id="btnCategory1" class="btnCategory" onclick="btnCategoryClick(1);"><img alt="" class="step1-img" src="<%=request.getContextPath()%>/resources/images/meetImage/book.png">소설</button></td>
-				<td><button id="btnCategory2" class="btnCategory" onclick="btnCategoryClick(2);"><img alt="" class="step1-img" src="<%=request.getContextPath()%>/resources/images/meetImage/money.png">경제/경영</button></td>
-				<td><button id="btnCategory3" class="btnCategory" onclick="btnCategoryClick(3);"><img alt="" class="step1-img" src="<%=request.getContextPath()%>/resources/images/meetImage/gym.png">자기계발</button></td>
-				<td><button id="btnCategory4" class="btnCategory" onclick="btnCategoryClick(4);"><img alt="" class="step1-img" src="<%=request.getContextPath()%>/resources/images/meetImage/book1.png">문학</button></td>
+				<td><button id="btnCategory1" class="btnCategory" onclick="btnCategoryClick(1);" value="소설";><img alt="" class="step1-img" src="<%=request.getContextPath()%>/resources/images/meetImage/book.png">소설</button></td>
+				<td><button id="btnCategory2" class="btnCategory" onclick="btnCategoryClick(2);" value="경제/경영"><img alt="" class="step1-img" src="<%=request.getContextPath()%>/resources/images/meetImage/money.png">경제/경영</button></td>
+				<td><button id="btnCategory3" class="btnCategory" onclick="btnCategoryClick(3);" value="자기계발"><img alt="" class="step1-img" src="<%=request.getContextPath()%>/resources/images/meetImage/gym.png">자기계발</button></td>
+				<td><button id="btnCategory4" class="btnCategory" onclick="btnCategoryClick(4);" value="문학"><img alt="" class="step1-img" src="<%=request.getContextPath()%>/resources/images/meetImage/book1.png">문학</button></td>
 				</tr>
 				<tr class="tr-category2">
-				<td><button id="btnCategory5" class="btnCategory" onclick="btnCategoryClick(5);"><img alt="" class="step1-img" src="<%=request.getContextPath()%>/resources/images/meetImage/monitor.png">컴퓨터/IT</button></td>
-				<td><button id="btnCategory6" class="btnCategory" onclick="btnCategoryClick(6);"><img alt="" class="step1-img" src="<%=request.getContextPath()%>/resources/images/meetImage/work.png">사회</button></td>
-				<td><button id="btnCategory7" class="btnCategory" onclick="btnCategoryClick(7);"><img alt="" class="step1-img" src="<%=request.getContextPath()%>/resources/images/meetImage/science.png">과학</button></td>
-				<td><button id="btnCategory8" class="btnCategory" onclick="btnCategoryClick(8);"><img alt="" class="step1-img" src="<%=request.getContextPath()%>/resources/images/meetImage/scroll.png">역사</button></td>
+				<td><button id="btnCategory5" class="btnCategory" onclick="btnCategoryClick(5);" value="컴퓨터/IT"><img alt="" class="step1-img" src="<%=request.getContextPath()%>/resources/images/meetImage/monitor.png">컴퓨터/IT</button></td>
+				<td><button id="btnCategory6" class="btnCategory" onclick="btnCategoryClick(6);" value="사회"><img alt="" class="step1-img" src="<%=request.getContextPath()%>/resources/images/meetImage/work.png">사회</button></td>
+				<td><button id="btnCategory7" class="btnCategory" onclick="btnCategoryClick(7);" value="과학"><img alt="" class="step1-img" src="<%=request.getContextPath()%>/resources/images/meetImage/science.png">과학</button></td>
+				<td><button id="btnCategory8" class="btnCategory" onclick="btnCategoryClick(8);" value="역사"><img alt="" class="step1-img" src="<%=request.getContextPath()%>/resources/images/meetImage/scroll.png">역사</button></td>
 				</tr>
 				<tr class="tr-category3">
-				<td><button id="btnCategory9" class="btnCategory" onclick="btnCategoryClick(9);"><img alt="" class="step1-img" src="<%=request.getContextPath()%>/resources/images/meetImage/idea.png">예술/스포츠</button></td>
-				<td><button id="btnCategory10" class="btnCategory" onclick="btnCategoryClick(10);"><img alt="" class="step1-img" src="<%=request.getContextPath()%>/resources/images/meetImage/bible.png">종교</button></td>
-				<td><button id="btnCategory11" class="btnCategory" onclick="btnCategoryClick(11);"><img alt="" class="step1-img" src="<%=request.getContextPath()%>/resources/images/meetImage/game-boy-advance.png">취미/생활</button></td>
-				<td><button id="btnCategory12" class="btnCategory" onclick="btnCategoryClick(12);"><img alt="" class="step1-img" src="<%=request.getContextPath()%>/resources/images/meetImage/child.png">어학</button></td>
+				<td><button id="btnCategory9" class="btnCategory" onclick="btnCategoryClick(9);" value="예술/스포츠"><img alt="" class="step1-img" src="<%=request.getContextPath()%>/resources/images/meetImage/idea.png">예술/스포츠</button></td>
+				<td><button id="btnCategory10" class="btnCategory" onclick="btnCategoryClick(10);" value="종교"><img alt="" class="step1-img" src="<%=request.getContextPath()%>/resources/images/meetImage/bible.png">종교</button></td>
+				<td><button id="btnCategory11" class="btnCategory" onclick="btnCategoryClick(11);" value="취미/생활"><img alt="" class="step1-img" src="<%=request.getContextPath()%>/resources/images/meetImage/game-boy-advance.png">취미/생활</button></td>
+				<td><button id="btnCategory12" class="btnCategory" onclick="btnCategoryClick(12);" value="어학"><img alt="" class="step1-img" src="<%=request.getContextPath()%>/resources/images/meetImage/child.png">어학</button></td>
 				</tr>
 				</table>
 				</div>
@@ -272,13 +272,25 @@
 		var imgPath;
 		
 		var count=0;
+		var pickCategory ="";
+		function btnNext1Click(){
+			
+			for (var i = 1; i < 13; i++) {
+				if($("#btnCategory"+i).css("background-color") == "rgb(242, 219, 255)"){
+					pickCategory += $("#btnCategory"+i).attr("value");
+					pickCategory += ",";
+				}
+			}
+				alert(pickCategory);
+				pickCategory="";
+		}		
 		
 		function btnCategoryClick(num){
 			
 			switch(num){
 			case 1 : if($("#btnCategory1").css("background-color") != "rgb(242, 219, 255)"){
 							$("#btnCategory1").css("background-color","#f2dbff");
-							count+=1;
+							count+=1; 
 							if(count == 4){
 								valiCount(1);
 							}

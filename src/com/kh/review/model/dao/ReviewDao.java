@@ -1,6 +1,6 @@
 package com.kh.review.model.dao;
 
-import static com.kh.common.JDBCTemplate.*;
+import static com.kh.common.JDBCTemplate.close;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -107,5 +107,66 @@ public class ReviewDao {
 		
 		
 	}
+	
+	public ArrayList<Review> selectReviewList(Connection conn, int bookNo){
+		
+		ArrayList<Review> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectReviewList");
+		try {
+			pstmt = conn.prepareStatement(sql);
 
+			pstmt.setInt(1, bookNo);
+			
+			while(rset.next()) {
+				Review r = new Review();
+				r.setReviewNo(rset.getInt("REVIEW_NO"));
+				r.setStarRating(rset.getInt("BOOK_RATING"));
+				r.setReviewContent(rset.getString("REVIEW_CONTENT"));
+				r.setReviewDate(rset.getDate("REVIEW_DATE"));
+				r.setRecommend(rset.getInt("RECOMMEND"));
+				r.setReportTime(rset.getInt("REPORT_TIMES"));
+				r.setHits(rset.getInt("REVIEW_HITS"));
+				r.setBookNo(rset.getInt("BOOK_NO"));
+				r.setMemberNo(rset.getInt("MEMBER_NO"));
+				r.setReviewStatus(rset.getString("REVIEW_STATUS"));
+				r.setMemberId(rset.getString("SUBSTR(MEMBER_ID,1,LENGTH(MEMBER_ID)-3)||LPAD('*',3,'*')"));
+				
+				list.add(r);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+		
+	}
+
+	public int insertReview(Connection conn, Review r) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertReview");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, r.getStarRating());
+			pstmt.setString(2, r.getReviewContent());
+			pstmt.setInt(3, r.getBookNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+		
+	}
+	
 }

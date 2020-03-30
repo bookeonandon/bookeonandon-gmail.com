@@ -17,7 +17,8 @@ import com.kh.member.model.vo.Member;
 public class MemberDao {
 
 	
-
+// dao 마지막
+	
 	private Properties prop = new Properties();
 	
 	public MemberDao() {
@@ -355,8 +356,9 @@ public class MemberDao {
 	
 	public Member selectMember(Connection conn, String memberId) {
 
+
 		Member mem = null;
-		
+
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		

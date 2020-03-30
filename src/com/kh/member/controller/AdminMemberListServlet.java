@@ -13,6 +13,8 @@ import com.kh.coupon.model.service.CouponService;
 import com.kh.coupon.model.vo.Coupon;
 import com.kh.member.model.service.MemberService;
 import com.kh.member.model.vo.Member;
+import com.kh.mysub.model.service.MySubService;
+import com.kh.mysub.model.vo.MySub;
 import com.kh.product.model.service.SubscriptionService;
 import com.kh.product.model.vo.Subscription;
 
@@ -47,7 +49,6 @@ public class AdminMemberListServlet extends HttpServlet {
 			request.setAttribute("cList", cList);
 			request.setAttribute("sList", sList);
 			request.setAttribute("list", list);
-			
 			request.getRequestDispatcher("/views/member/aMemberListView.jsp").forward(request, response);
 		}else {
 			request.setAttribute("msg", "회원정보 조회 실패");

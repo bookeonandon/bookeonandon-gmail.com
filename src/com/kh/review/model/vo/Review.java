@@ -18,6 +18,12 @@ public class Review {
 	private String nickName;		// 리뷰 작성자 닉네임
 	
 	
+	private int starRating;
+	private int hits;
+	private int bookNo;
+	private int memberNo;
+	private String memberId;
+	
 	
 	public Review() {
 	
@@ -63,6 +69,23 @@ public class Review {
 		this.writer = writer;
 		this.reviewStatus = reviewStatus;
 		this.nickName = nickName;
+	}
+	
+	
+	public Review(int reviewNo, int starRating, String reviewContent, Date reviewDate, int recommend, int reportTime,
+			int hits, int bookNo, int memberNo, String reviewStatus, String memberId) {
+		super();
+		this.reviewNo = reviewNo;
+		this.starRating = starRating;
+		this.reviewContent = reviewContent;
+		this.reviewDate = reviewDate;
+		this.recommend = recommend;
+		this.reportTime = reportTime;
+		this.hits = hits;
+		this.bookNo = bookNo;
+		this.memberNo = memberNo;
+		this.reviewStatus = reviewStatus;
+		this.memberId = memberId;
 	}
 
 
@@ -133,6 +156,76 @@ public class Review {
 
 	public void setRecommend(int recommend) {
 		this.recommend = recommend;
+	}
+
+
+
+
+	public int getStarRating() {
+		return starRating;
+	}
+
+
+
+
+	public void setStarRating(int starRating) {
+		this.starRating = starRating;
+	}
+
+
+
+
+	public int getHits() {
+		return hits;
+	}
+
+
+
+
+	public void setHits(int hits) {
+		this.hits = hits;
+	}
+
+
+
+
+	public int getBookNo() {
+		return bookNo;
+	}
+
+
+
+
+	public void setBookNo(int bookNo) {
+		this.bookNo = bookNo;
+	}
+
+
+
+
+	public int getMemberNo() {
+		return memberNo;
+	}
+
+
+
+
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
+	}
+
+
+
+
+	public String getMemberId() {
+		return memberId;
+	}
+
+
+
+
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 
 
@@ -227,8 +320,14 @@ public class Review {
 		return "Review [reviewNo=" + reviewNo + ", bookRating=" + bookRating + ", reviewContent=" + reviewContent
 				+ ", reviewDate=" + reviewDate + ", recommend=" + recommend + ", reportTime=" + reportTime
 				+ ", reviewHit=" + reviewHit + ", bookTitle=" + bookTitle + ", writer=" + writer + ", reviewStatus="
-				+ reviewStatus + ", nickName=" + nickName + "]";
+				+ reviewStatus + ", nickName=" + nickName + ", starRating=" + starRating + ", hits=" + hits
+				+ ", bookNo=" + bookNo + ", memberNo=" + memberNo + ", memberId=" + memberId + "]";
 	}
+
+
+
+
+
 
 
 	

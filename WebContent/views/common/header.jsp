@@ -15,37 +15,29 @@
 
 </head>
 <body>
-	<!-- 헤더 테스트 -->
+	<!-- 헤더 -->
 
 	<div id="header">
 		<div id="header-1">
 			<div id="logoForm">
 				<a href="<%=request.getContextPath() %>"
 					style="text-decoration: none; color: black; font-weight: 300;">
-					<img src="<%=request.getContextPath() %>/resources/images/logo1.png"
-					width="30px" height="30px" style="float: left; margin-top: 10px">
-					<p style="float: left; vertical-align: middle; margin-left: 15px; font-size: 25px; margin-top: 7px;">BOOK E ON&ON</p> </a>
+					<img src="<%=request.getContextPath() %>/resources/images/logo1.png" width="30px" height="30px" style="float: left; margin-top: 10px">
+					<p style="float: left; vertical-align: middle; margin-left: 15px; font-size: 25px; margin-top: 7px;">BOOK E ON&ON</p>
+				</a>
 			</div>
-			<div id="searchForm">
-				<form action="<%=request.getContextPath()%>/searchList.sc">
-					<div id="search">
-						<input type="text" id="search-1" name="search" value="" placeholder="도서,작가 검색">
-						</div>
+		<div id="searchForm">
+			<form action="<%=request.getContextPath()%>/searchList.sc">
+				<div id="search">
+				<input type="text" id="search-1" name="search" value="" placeholder="도서,작가 검색"></div>
 					<div id="searchBtnForm">
-						<button type="submit" id="searchBtn" onmouseover="search1();" onmouseout="search2();">
-							<img src="<%=request.getContextPath() %>/resources/images/search.png" id="search-image" width="80%" height="auto">
-						</button>
-					</div>
+						<button type="submit" id="searchBtn" onmouseover="search1();" onmouseout="search2();"><img src="<%=request.getContextPath() %>/resources/images/search.png" id="search-image" width="80%" height="auto"></button></div>
 				</form>
 			</div>
 			<%if(loginUser == null){ %>
 			<div id="joinForm">
-				<div id="joinForm-1">
-					<button type="button" onclick="loginForm();" class="joinBtn">로그인</button>
-				</div>
-				<div id="joinForm-2">
-					<button type="button" onclick="joinForm();" class="joinBtn">회원가입</button>
-				</div>
+				<div id="joinForm-1"><button type="button" onclick="loginForm();" class="joinBtn">로그인</button></div>
+				<div id="joinForm-2"><button type="button" onclick="joinForm();" class="joinBtn">회원가입</button></div>
 			</div>
 			<%}else{ %>
 				<div id="joinForm-1">
@@ -79,15 +71,15 @@
 			<ul id="navi">
 				<li><a href="<%=request.getContextPath()%>">홈</a>
 					<ul id="navi-1" class="home">
-						<li><a href="" class="menu">베스트셀러</a></li>
-						<li><a href="" class="menu">인기도서</a></li>
-						<li><a href="" class="menu">신간도서</a></li>
-						<li><a href="" class="menu">ON&ON 추천</a></li>
+						<li><a href="<%=request.getContextPath()%>" class="menu">베스트셀러</a></li>
+						<li><a href="<%=request.getContextPath()%>" class="menu">인기도서</a></li>
+						<li><a href="<%=request.getContextPath()%>" class="menu">신간도서</a></li>
+						<li><a href="<%=request.getContextPath()%>" class="menu">ON&ON 추천</a></li>
 					</ul></li>
 
 				<li><a href="<%=request.getContextPath()%>/categoty.ct">카테고리</a></li>
 
-				<li><a href="">MEET & ON</a>
+				<li><a href="<%=request.getContextPath()%>">MEET & ON</a>
 					<ul id="navi-1" class="group">
 						<li><a href="<%=request.getContextPath()%>/meetMain.mt"
 							class="menu">전체모임</a></li>
@@ -104,7 +96,7 @@
 						<li><a href="" class="menu">My 결제내역</a></li>
 					</ul></li>
 				<li><a href="">고객센터</a>
-					<ul id="navi-1" class="service">
+					<ul id="navi-1" class="service1">
 						<li><a onclick="goNotice();" class="menu">공지사항</a></li>
 						<li><a onClick="goContact();" class="menu">1:1문의</a></li>
 						<li><a onClick="goFaq();" class="menu">FAQ</a></li>

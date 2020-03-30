@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.kh.mysub.model.service.MySubService;
 import com.kh.mysub.model.vo.MySub;
 
@@ -36,11 +37,10 @@ public class SelectMySubServlet extends HttpServlet {
 		int uNo = Integer.parseInt(request.getParameter("userNo"));
 		
 		MySub ms = new MySubService().adminSelectDetail(uNo);
-		System.out.println(ms);
-		response.setContentType("application/json; charset=utf-8");
 		
-		PrintWriter out = response.getWriter();
-		out.print(ms);
+		response.setContentType("application/json; charset=utf-8");
+		Gson gson = new Gson();
+		gson.toJson(ms, response.getWriter());
 		
 	}
 

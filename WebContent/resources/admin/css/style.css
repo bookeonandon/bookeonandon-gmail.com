@@ -8297,7 +8297,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   [data-sidebar-style="full"][data-layout="vertical"] .menu-toggle .nav-header .brand-logo {
     z-index: 999; }
     [data-sidebar-style="full"][data-layout="vertical"] .menu-toggle .nav-header .brand-logo a {
-      padding: 1.607rem 1.0625rem;
+     /* padding: 1.607rem 1.0625rem;*/
       text-align: center; }
       [data-sidebar-style="full"][data-layout="vertical"] .menu-toggle .nav-header .brand-logo a b img {
         margin-top: 0.4375rem; }

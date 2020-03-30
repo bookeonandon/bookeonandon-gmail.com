@@ -199,5 +199,14 @@ public class PaymentService {
 		
 	}
 
+	
+	// 효우
+	public int getListCount(int memberNo) {
+		Connection conn = getConnection();
+		int listCount = new PaymentDao().getListCount(conn, memberNo);
+		close(conn);
+		return listCount;
+	}
+
 
 }

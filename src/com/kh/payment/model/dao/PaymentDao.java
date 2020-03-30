@@ -376,5 +376,27 @@ private Properties prop = new Properties();
 		
 	}
 	
+	
+	public int getListCount(Connection conn, int memberNo) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("paymentListCount");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNo);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				listCount = rset.getInt("member_No");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return listCount;
+	}
+	
 
 }

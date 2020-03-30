@@ -15,7 +15,7 @@ import java.util.Properties;
 import com.kh.meet.model.vo.PageInfo;
 import com.kh.member.model.vo.Administrator;
 import com.kh.member.model.vo.Member;
-import com.kh.payment.model.vo.Payment;
+import com.kh.payment.model.vo.Payments;
 public class MemberDao {
 
 	
@@ -462,38 +462,38 @@ public class MemberDao {
 		return result;
 	}
 
-	public ArrayList<Payment> paymentInfo(Connection conn, PageInfo pi, int memberNo) {
-		ArrayList<Payment> list = new ArrayList<>();
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		String sql = prop.getProperty("selectPaymentList");
-		try {
-			pstmt = conn.prepareStatement(sql);
-			int startRow = (pi.getCurrentPage() -1) * pi.getBoardLimit() + 1;
-			int endRow = startRow + pi.getBoardLimit() - 1;
-			pstmt.setInt(1, memberNo);
-			pstmt.setInt(2,  startRow);
-			pstmt.setInt(3, endRow);
-			rset = pstmt.executeQuery();
-			while(rset.next()) {
-				list.add(new Payment(rset.getInt("RNUM"),
-									rset.getInt("book_payno"),
-									rset.getDate("book_paydate"),
-								   rset.getString("book_title"),
-								   rset.getInt("book_payprice"),
-								   rset.getString("book_paytype"),
-								   rset.getInt("member_no"),
-								   rset.getInt("book_no")));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(rset);
-			close(pstmt);
-		}
-		System.out.println(list);
-		return list;
-	}     
+	public ArrayList<Payments> paymentInfo(Connection conn, PageInfo pi, int memberNo) {
+	      ArrayList<Payments> list = new ArrayList<>();
+	      PreparedStatement pstmt = null;
+	      ResultSet rset = null;
+	      String sql = prop.getProperty("selectPaymentList");
+	      try {
+	         pstmt = conn.prepareStatement(sql);
+	         int startRow = (pi.getCurrentPage() -1) * pi.getBoardLimit() + 1;
+	         int endRow = startRow + pi.getBoardLimit() - 1;
+	         pstmt.setInt(1, memberNo);
+	         pstmt.setInt(2,  startRow);
+	         pstmt.setInt(3, endRow);
+	         rset = pstmt.executeQuery();
+	         while(rset.next()) {
+	            list.add(new Payments(rset.getInt("ROWNUM"),
+	                           rset.getInt("book_payno"),
+	                           rset.getString("book_title"),
+	                           rset.getDate("book_paydate"),
+	                           rset.getInt("book_payprice"),
+	                           rset.getString("book_paytype"),
+	                           rset.getInt("member_no"),
+	                           rset.getInt("book_no")));
+	         }
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      }finally {
+	         close(rset);
+	         close(pstmt);
+	      }
+	      System.out.println(list);
+	      return list;
+	   }
 	 
 	      
 	      

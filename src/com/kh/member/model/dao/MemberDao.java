@@ -33,7 +33,7 @@ public class MemberDao {
 	
 	}
 	
-
+	//admin push 테스트
 	public ArrayList<Member> adminSelectListMember(Connection conn){
 		
 		ArrayList<Member> list = new ArrayList<>();

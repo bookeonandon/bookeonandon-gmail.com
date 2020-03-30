@@ -62,5 +62,23 @@ public class MyCouponService {
 		
 		
 	}
+	
+	
+	/**
+	 * 3. 관리자 회원 상세 보유 쿠폰 보기
+	 * @param nId		회원번호
+	 * @return			조회환 쿠폰 리스트
+	 */
+	public ArrayList<MyCoupon> adminSelectMyCoupon(String nId){
+		
+		Connection conn = getConnection();
+		
+		ArrayList<MyCoupon> list = new MyCouponDao().adminSelectMyCoupon(conn, nId);
+		
+		close(conn);
+		
+		return list;
+		
+	}
 
 }

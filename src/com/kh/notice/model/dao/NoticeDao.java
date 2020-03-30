@@ -41,7 +41,6 @@ public class NoticeDao {
 		
 		
 		String sql = prop.getProperty("selectListNotice");
-		System.out.println(sql);
 		
 		try {
 			stmt = conn.createStatement();

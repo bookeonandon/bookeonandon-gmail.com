@@ -116,7 +116,7 @@ public class MemberDao {
 		  Member mem = null;
 	      PreparedStatement pstmt = null;
 	      ResultSet rset = null;
-	      String sql = prop.getProperty("selectMember");
+	      String sql = prop.getProperty("adminSelectMember");
 	      try {
 	         pstmt = conn.prepareStatement(sql);
 	         pstmt.setInt(1, uNo);
@@ -146,9 +146,8 @@ public class MemberDao {
 	      }
 	      
 	      return mem;
-
-		
 	}
+	
 	
 
 	public int insertMember(Connection conn, Member m , String birth) {

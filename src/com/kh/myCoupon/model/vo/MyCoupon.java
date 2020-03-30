@@ -19,6 +19,18 @@ public class MyCoupon {
 		
 	}
 	
+	
+
+	
+
+
+	public MyCoupon(String userId, String cName, Date cLast) {
+		super();
+		this.userId = userId;
+		this.cName = cName;
+		this.cLast = cLast;
+	}
+
 
 
 	public MyCoupon(String userId, String cName, Date cStart, Date cLast, int cNo) {

@@ -215,7 +215,8 @@
                             <span>기존 구독권</span>
                             <select class="form-control sub1" id="sel1" style="margin:15px 0px;">
                             	<%if(ms != null){ %>
-                                <option value="<%= msNum %>">성공시 나옴</option>
+                                <option value="<%= ms.getSbNo() %>">성공시 나옴</option>
+                                <%} %>
                             </select>
                             
                             <span>수정할 구독권</span>

@@ -3,7 +3,6 @@
 <%@page import="com.kh.meet.model.vo.PageInfo"%>
 <%@page import="com.kh.meet.model.vo.Meet"%>
 <%@page import="java.util.ArrayList"%>
-<!--ㅇㅇㅇ  -->
 <%
 	ArrayList<Meet> list = (ArrayList<Meet>)request.getAttribute("list");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");

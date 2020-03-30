@@ -330,6 +330,7 @@ hr {
 }
 
 .dropbtn {
+	margin-top: 3px;
     background-color: white;
     color: white;
     padding-left: 20px;
@@ -837,6 +838,26 @@ hr {
     margin-right: 15px;
 }
 
+.leaderSetting-div{
+	width: 900px;
+	height: 500px;
+	margin-left: 10px;
+	margin-top: 30px;
+}
+
+.leaderSetting-table{
+	width: 670px;
+    /* height: 100%; */
+    font-size: 15px;
+}
+
+.leaderSetting-table>tbody>tr{
+	vertical-align: top;
+}
+
+.leaderSetting-table>tbody>tr>td{
+	overflow:auto;
+}
 
 ::-webkit-scrollbar{width: 12px;}
 

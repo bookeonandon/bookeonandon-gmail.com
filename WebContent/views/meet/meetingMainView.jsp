@@ -96,52 +96,64 @@
 	
 	<!-- Modal -->
 		<div class="ThisRoomNo" style="display:none"></div>
-		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		  <div class="modal-dialog" role="document">
-		    <div class="modal-content">
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
 				<div class="dropdown" id="modalDropdown" style="visibility: hidden;">
-					<button class="dropbtn"><img src="<%=request.getContextPath()%>/resources/images/meetImage/modalList.png" id="search-image" width="30px" height="30px"></button>
+					<button class="dropbtn">
+						<img
+							src="<%=request.getContextPath()%>/resources/images/meetImage/modalList.png"
+							id="search-image" width="30px" height="30px">
+					</button>
 					<div class="dropdown-content">
 						<a href="javascript:ModalDropdownSel('main');">메인화면</a> 
 						<a href="javascript:ModalDropdownSel('commu');">커뮤니티</a> 
-						<a href="javascript:ModalDropdownSel('fixmeet');">정기모임</a>
-						<a href="javascript:ModalDropdownSel('setting');">설정</a>
-						<a href="javascript:ModalDropdownSel('leaderSetting');">회원관리</a>
+						<a href="javascript:ModalDropdownSel('fixmeet');">정기모임</a> 
+						<a href="javascript:ModalDropdownSel('setting');">설정</a> 
+						<a class="a-leaderrSetting" href="javascript:ModalDropdownSel('leaderSetting');">회원관리</a>
 					</div>
 				</div>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		          <span aria-hidden="true" class="closeX">&times;</span>
-		        </button>
-		        <p id="header-name"></p>
-		        <hr class="modal-hr">
-		        
-		  <!--modalMain  -->
-		  <div id= "modalMain">
-		      <div class="modal-header">
-		       <h3 class="modal-title" id="modal-title"></h3>
-		       <div class="modal-Members" id="modal-Members"></div>
-		      </div>
-		    
-		      <div class="modal-category" id="modal-category">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true" class="closeX">&times;</span>
+				</button>
+				<p id="header-name"></p>
+				<hr class="modal-hr">
 
-		      </div>
-		      <div class="modal-body">
-				<div class="modal-DivCon"><p id="modal-Pcon"></p></div>
-				<div class="modal-DivImg">
-				<p style="text-align: center;">현재 구독중인 책</p>
-				<div class="modal-DivImg2"><img id="modalBookImg" style="width: 285px; height: 378px;" src=""></div>
-				<div class="modalBookImgChange">
-				<form id="FILE_FORM2" method="post" enctype="multipart/form-data" action="">
-		            <input type="file" id="FILE_TAG2" name="FILE_TAG2" onchange="loadImg2(this);">
-       			 </form>
-       			 <button class="btnUploadFile2" onclick="uploadFile2();">저장</button>
-       			 </div>
+				<!--modalMain  -->
+				<div id="modalMain">
+					<div class="modal-header">
+						<h3 class="modal-title" id="modal-title"></h3>
+						<div class="modal-Members" id="modal-Members"></div>
+					</div>
+
+					<div class="modal-category" id="modal-category"></div>
+					<div class="modal-body">
+						<div class="modal-DivCon">
+							<p id="modal-Pcon"></p>
+						</div>
+						<div class="modal-DivImg">
+							<p style="text-align: center;">현재 구독중인 책</p>
+							<div class="modal-DivImg2">
+								<img id="modalBookImg" style="width: 285px; height: 378px;"
+									src="">
+							</div>
+							<div class="modalBookImgChange">
+								<form id="FILE_FORM2" method="post"
+									enctype="multipart/form-data" action="">
+									<input type="file" id="FILE_TAG2" name="FILE_TAG2"
+										onchange="loadImg2(this);">
+								</form>
+								<button class="btnUploadFile2" onclick="uploadFile2();">저장</button>
+							</div>
+						</div>
+					</div>
+					<div id="div_apply">
+						<button id="btn_apply" onclick="goApply();">신청하기</button>
+						<button id="btn_applyDone" disabled="disabled">신청완료!</button>
+					</div>
 				</div>
-		      </div>   
-				 <div id="div_apply">
-				 <button id="btn_apply" onclick="goApply();">신청하기</button>
-				 <button id="btn_applyDone" disabled="disabled">신청완료!</button></div>
-		      </div>
 
 				<!--modalCommunity  -->
 				<div id="modalCommunity" style="display: none;">
@@ -150,18 +162,29 @@
 							<table class="modal2-nav-lt">
 							</table>
 						</div>
-						
+
 						<div class="modal2-nav-right">
-						<div style=" margin-top: 6px;"><p style="font-size: 17px; margin: 7px; width: 400px; display: inline-block; float: left;">한줄글</p></div>
-						<div><span style="color:#aaa; float: right; margin-right: 119px; margin-top: 12px;" id="counter">(0 / 최대 30자)</span></div>
-						<div><textarea class="modal2-nav-textarea" cols="50" rows="10"></textarea></div>
-						<div><button id="btn_comment" onclick="insertComment();">등록</button></div>
-						<br both="clear">
-						<div class="modal2-nav-div-history">
-						<table class="modal2-nav-right-history">
-						
-						</table>
-						</div>
+							<div style="margin-top: 6px;">
+								<p
+									style="font-size: 17px; margin: 7px; width: 400px; display: inline-block; float: left;">한줄글</p>
+							</div>
+							<div>
+								<span
+									style="color: #aaa; float: right; margin-right: 119px; margin-top: 12px;"
+									id="counter">(0 / 최대 30자)</span>
+							</div>
+							<div>
+								<textarea class="modal2-nav-textarea" cols="50" rows="10"></textarea>
+							</div>
+							<div>
+								<button id="btn_comment" onclick="insertComment();">등록</button>
+							</div>
+							<br both="clear">
+							<div class="modal2-nav-div-history">
+								<table class="modal2-nav-right-history">
+
+								</table>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -173,8 +196,8 @@
 							style="text-align: center; margin-left: 30px;">
 							<input class="inputAddress" id="inputAddress" type="text"
 								onclick="goAddressApi('0')" placeholder="주소를 검색하시려면 여기를 눌러봐요!"
-								readonly="readonly">
-							<input type="text" id="picker" class="inputdate" />
+								readonly="readonly"> <input type="text" id="picker"
+								class="inputdate" />
 							<!-- <div class="container">
 								<div class="row">
 									<div class='col-sm-6'>
@@ -219,23 +242,32 @@
 				</div>
 
 				<!--setting  -->
-		    <div id="setting" class="setting" style="display:none;">
-       			 <div class="settingMem-Div"><img class="settingMemImg" src=""></div>
-       			 <div class="settingMem-Img">
-				<form id="FILE_FORM" method="post" enctype="multipart/form-data" action="">
-		            <input type="file" id="FILE_TAG" name="FILE_TAG" onchange="loadImg(this);">
-       			 <textarea class="settingMem-Textarea" cols="50" rows="10"></textarea>
-       			 </form>
-		            <button class="btnUploadFile" onclick="uploadFile();">저장</button>
-       			 </div>
-		    </div>
-		    <div id="leaderSetting" class="leaderSetting" style="display:none;">
-		    
-		    </div>
-		   </div>
-		  </div>
+				<div id="setting" class="setting" style="display: none;">
+					<div class="settingMem-Div">
+						<img class="settingMemImg" src="">
+					</div>
+					<div class="settingMem-Img">
+						<form id="FILE_FORM" method="post" enctype="multipart/form-data"
+							action="">
+							<input type="file" id="FILE_TAG" name="FILE_TAG"
+								onchange="loadImg(this);">
+							<textarea class="settingMem-Textarea" cols="50" rows="10"></textarea>
+						</form>
+						<button class="btnUploadFile" onclick="uploadFile();">저장</button>
+					</div>
+				</div>
+				<div id="leaderSetting" class="leaderSetting" style="display: none;">
+
+					<div class="leaderSetting-div">
+						<table class="leaderSetting-table">
+							
+						</table>
+					</div>
+				</div>
+			</div>
 		</div>
-		
+	</div>
+
 	<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -295,6 +327,51 @@
 		var count=0;
 		var pickCategory ="";
 		var count1=0;
+		
+		function leaderSettingtable(){
+			roomNo = roomNo;
+			$.ajax({
+	 			url:"doleaderSetting.mt",
+				data : {
+					roomNo : roomNo
+				},
+				type : "POST",
+				success : function(list) {
+					/* console.log(list); */
+					if(list != null){
+						var value="";
+						var contextPath = "<%=request.getContextPath()%>";
+						for(var i=0;i<list.length;i++){
+							value += 
+							"<tr>" +
+							"<td style='font-weight : 600; width: 60px;'><p>" + list[i].memberName + "</p></td>" +
+							"<td style='width: 450px;'><p>" + list[i].cmmmtCntnt + "</p></td>" +
+							"<td style='width: 140px;'><p>" + list[i].createDate + "</p></td>" +
+							"<td style='width: 50px;'><img class='deleteCmmmt' value='"+list[i].cmmmtNo+"' style='width:15px; height:15px;' src='resources/images/meetImage/close.png'></td>" +
+							"</tr>"
+						}
+						$(".leaderSetting-table").empty();
+						$(".leaderSetting-table").append(value);
+					}
+				},
+				error : function() {
+					console.log("ajax 통신 실패!!");
+				}
+			});
+		}
+		
+		function initModal1(){
+			userNo = <%=userNo%>;
+			memberNo = memberNo;
+			
+			if(userNo != memberNo){
+				$(".a-leaderrSetting").css("display","none");
+			}
+			if(userNo == memberNo){
+				$(".a-leaderrSetting").css("display","block");
+			}
+		}
+		
 		function startmakeroom(){
 			$(".step1").css("display","block");
 			$(".step2").css("display","none");
@@ -718,6 +795,7 @@
 				document.getElementById("modal-Pcon").innerHTML=roomContent;
 				document.getElementById("modal-Members").innerHTML=roomMembers; 
 				<%-- location.href="<%=contextPath%>/modal.me?mId=" + mId; --%>
+				initModal1();
 				goModal(roomNo);
 			});
 		});
@@ -791,6 +869,7 @@
  				$('#modalCommunity').css("display", "none");
  				$('#fixmeet').css("display", "none");
  				$('#setting').css("display", "none");
+ 				$('#leaderSetting').css("display", "none");
  				initModalMain();
  				showImg2();
 			}
@@ -799,6 +878,7 @@
  				$('#modalCommunity').css("display", "block");
  				$('#fixmeet').css("display", "none");
  				$('#setting').css("display", "none");
+ 				$('#leaderSetting').css("display", "none");
  				setCommunication();
  				setchatting();
 			}
@@ -807,6 +887,7 @@
  				$('#modalCommunity').css("display", "none");
  				$('#fixmeet').css("display", "block");
  				$('#setting').css("display", "none");
+ 				$('#leaderSetting').css("display", "none");
  				initfixmeet();
 			}
 			if(val == "setting"){
@@ -814,6 +895,16 @@
  				$('#modalCommunity').css("display", "none");
  				$('#fixmeet').css("display", "none");
  				$('#setting').css("display", "block");
+ 				$('#leaderSetting').css("display", "none");
+ 				showImg();
+			}
+			
+			if(val == "leaderSetting"){
+				$('#modalMain').css("display", "none");
+ 				$('#modalCommunity').css("display", "none");
+ 				$('#fixmeet').css("display", "none");
+ 				$('#setting').css("display", "none`");
+ 				$('#leaderSetting').css("display", "block");
  				showImg();
 			}
 		    /* case "fixmeet" : break;

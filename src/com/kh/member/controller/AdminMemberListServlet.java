@@ -46,9 +46,9 @@ public class AdminMemberListServlet extends HttpServlet {
 		
 		
 		if(list != null && cList != null && sList != null) {
-			request.setAttribute("cList", cList);
-			request.setAttribute("sList", sList);
-			request.setAttribute("list", list);
+			request.setAttribute("cList", cList);	// 쿠폰 리스트
+			request.setAttribute("sList", sList);	// 구독권 리스트
+			request.setAttribute("list", list);		// 회원 리스트
 			request.getRequestDispatcher("/views/member/aMemberListView.jsp").forward(request, response);
 		}else {
 			request.setAttribute("msg", "회원정보 조회 실패");

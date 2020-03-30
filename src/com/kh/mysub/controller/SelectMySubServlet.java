@@ -39,7 +39,6 @@ public class SelectMySubServlet extends HttpServlet {
 		System.out.println(ms);
 		
 		request.setAttribute("ms", ms);
-		
 		request.getRequestDispatcher("/views/member/aMemberListView.jsp").forward(request, response);
 		
 	}

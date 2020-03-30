@@ -28,6 +28,8 @@ public class Member {
 	}
 	
 
+	
+
 	public Member(int memberNo, String memberId, String email, String memberName, String phone, int reportTime,
 		Date joinDate, Date deleteDate, Date blacklistDate, int sbNo) {
 	super();

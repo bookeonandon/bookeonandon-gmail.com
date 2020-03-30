@@ -12,8 +12,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.kh.meet.model.vo.PageInfo;
 import com.kh.member.model.vo.Administrator;
 import com.kh.member.model.vo.Member;
+import com.kh.payment.model.vo.Payment;
 public class MemberDao {
 
 	
@@ -400,7 +402,98 @@ public class MemberDao {
 	}
 
 	    
-	         
+
+	public int updateMember(Connection conn, Member m) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("myUpdateMember");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, m.getPhone());
+			pstmt.setString(2, m.getNickname());
+			pstmt.setString(3, m.getEmail());
+			pstmt.setString(4, m.getMemberId());
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int updatePwdMember(Connection conn, String memberId, String memberPwd, String newPwd) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("myUpdatePwdMember");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, newPwd);
+			pstmt.setString(2, memberId);
+			pstmt.setString(3, memberPwd);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int deleteMember(Connection conn, String memberId) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteMember");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberId);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public ArrayList<Payment> paymentInfo(Connection conn, PageInfo pi, int memberNo) {
+		ArrayList<Payment> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectPaymentList");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			int startRow = (pi.getCurrentPage() -1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() - 1;
+			pstmt.setInt(1, memberNo);
+			pstmt.setInt(2,  startRow);
+			pstmt.setInt(3, endRow);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				list.add(new Payment(rset.getInt("RNUM"),
+									rset.getInt("book_payno"),
+									rset.getDate("book_paydate"),
+								   rset.getString("book_title"),
+								   rset.getInt("book_payprice"),
+								   rset.getString("book_paytype"),
+								   rset.getInt("member_no"),
+								   rset.getInt("book_no")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		System.out.println(list);
+		return list;
+	}     
 	 
 	      
 	      

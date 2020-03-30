@@ -8,9 +8,11 @@ import static com.kh.common.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import com.kh.meet.model.vo.PageInfo;
 import com.kh.member.model.dao.MemberDao;
 import com.kh.member.model.vo.Administrator;
 import com.kh.member.model.vo.Member;
+import com.kh.payment.model.vo.Payment;
 
 public class MemberService {
 	
@@ -158,6 +160,7 @@ public class MemberService {
 	      
 	      return mem;
 	   }
+	   
 
 	   /** 비밀번호 재설정후  조회용
 	    * @param memberId
@@ -172,6 +175,7 @@ public class MemberService {
 	      
 	      return sem;
 	   }
+	   
 	   
 	   /**
 	    * 임시비밀번호 받은후 비밀번호 변경 서비스
@@ -196,5 +200,70 @@ public class MemberService {
 	      
 	      return newPwdMember;
 	   }
+	   
+
+		/** 효우
+		 * @param m
+		 * @return
+		 */
+		public Member updateMember(Member m) {
+			Connection conn = getConnection();
+			
+			int result = new MemberDao().updateMember(conn, m);
+			
+			Member updateMem = null;
+			
+			if(result > 0) {
+				commit(conn);
+				updateMem = new MemberDao().selectMember(conn, m.getMemberId());
+			}else {
+				rollback(conn);
+			}
+			close(conn);
+			return updateMem;
+		}
+		
+		
+		public Member updatePwdMember(String memberId, String memberPwd, String newPwd) {
+			Connection conn = getConnection();
+			
+			int result = new MemberDao().updatePwdMember(conn, memberId, memberPwd, newPwd);
+
+			Member updateMem = null;
+			if(result > 0) {
+				commit(conn);
+				updateMem = new MemberDao().selectMember(conn, memberId);
+			}else {
+				rollback(conn);
+			}
+			close(conn);
+			
+			return updateMem;
+		}
+		
+		
+		public int deleteMember(String memberId) {
+			Connection conn = getConnection();
+			
+			int result = new MemberDao().deleteMember(conn, memberId);
+			
+			if(result > 0) {
+				commit(conn);
+			}else {
+				rollback(conn);
+			}
+			close(conn);
+			
+			return result;
+		}
+		
+		
+		public ArrayList<Payment> paymentInfo(PageInfo pi, int memberNo) {
+			Connection conn = getConnection();
+			
+			ArrayList<Payment> list = new MemberDao().paymentInfo(conn, pi, memberNo);
+			close(conn);
+			return list;
+		}
 
 }

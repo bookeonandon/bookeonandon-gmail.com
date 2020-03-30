@@ -72,7 +72,6 @@
                         <td><input type="checkbox" name="chk"></td>
                         <td><%mc.getcName(); %></td>
                         <td><%=mc.getcLast() %>까지</td>
-                        <td><%=mc.get %>20%</td>
                     </tr>
                     <%} %>
                     </tbody>

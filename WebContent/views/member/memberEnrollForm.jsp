@@ -91,7 +91,7 @@
                                             <label class="col-lg-4 col-form-label" for="birth">Birth <span class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-6">
-                                                <input type="text" class="form-control" id="birth" name="birth" placeholder="생년월일을 입력해주세요 ex) YYYY-MM-DD">
+                                                <input type="text" class="form-control" id="birth" name="birth" placeholder="생년월일을 입력해주세요 ex) YYYYMMDD">
                                             </div>
                                         </div>
 										<div class="form-group row">
@@ -118,16 +118,16 @@
                                             <div class="col-lg-6">
                                                 <input type="email" class="form-control" id="val-email" name="val-email" placeholder="이메일을 입력해주세요">
                                             </div>
-                                            <button type="button" class="btn btn-primary joinmail" onclick="">메일발송</button>
+                                           <!--  <button type="button" class="btn btn-primary joinmail" onclick="">메일발송</button>-->
                                         </div>
-                                        <div class="form-group row">
+                                           <!--   <div class="form-group row">
                                             <label class="col-lg-4 col-form-label" for="val-digits">Verification Number <span class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-6">
                                                 <input type="text" class="form-control" id="val-digits" name="val-digits" placeholder="인증번호">
                                             </div>
-                                            <button type="button" class="btn btn-primary joinmail" onclick="">인증확인</button>
-                                        </div>
+                                           <button type="button" class="btn btn-primary joinmail" onclick="">인증확인</button>
+                                        </div> -->
                                         
                                    
                                         <div class="form-group row">
@@ -193,10 +193,11 @@
      	            
      	            
      	        },
+     	        /*
      	        "val-digits": {
      	            required: !0,
      	            digits: !0
-     	        },
+     	        },*/
      	        "nickname": {
      	            required: !0,
      	            rangelength: [3, 8]
@@ -246,7 +247,7 @@
      	         required : "핸드폰 번호를 입력해주세요",
      	         minlength: "핸드폰 번호를 정확히 입력해주세요 ex)01011112222"
      	       }, 	
-     	        "val-digits": "인증번호를 입력해주세요",
+     	       /* "val-digits": "인증번호를 입력해주세요",*/
      	       "val-gender": {
    	            required: "한가지는 선택해주세요"
    	          
@@ -293,9 +294,6 @@
                        memberId.focus();
                     }
                  }
-              },
-              error:function(){
-              	console.log("아이디 중복체크 안돼");
               }
            });
         }

@@ -294,16 +294,33 @@
                      <input type="checkbox" class="css-control-input" id="checkall" name="checkall" value="all">&nbsp&nbsp전체동의하기</label>
              </div>
 			
+			<form action = "enrollForm.me" method="post">
              <div class="joinbtn">
                  <button type="button" onclick="history.back();" class="btn btn-light">이전</button>
-                 <button type="submit" onclick="enroll();" id="nextBtn" class="btn btn-primary">다음</button>
+                 <button type="submit" onclick="return enroll();" id="nextBtn" class="btn btn-primary">다음</button>
              </div>
+             </form>
          </div>
       
         </div>
         <script>
 		  function enroll(){
-		   	location.href="<%=request.getContextPath()%>/enrollForm.me";
+			  var checktf = false;
+			   if($("#join-terms1").is(":checked") ==false){
+                 
+               }else if($("#join-terms2").is(":checked") ==false){
+            	  
+                  
+               }else if($("#join-terms3").is(":checked") ==false){
+                   
+               }else{
+            	   
+					return true;
+				   	//location.href="<%=request.getContextPath()%>/enrollForm.me";
+               }
+			  
+			  
+			  
 		   }
 		        
         function allCheckFunc( obj ) {
@@ -343,25 +360,9 @@
 	    		});
 	    	});
 	    });
-/*
-	    $(document).ready(function(){
-                if($("#join-terms1").is(":checked") ==false){
-                    alert("필수 약관에 동의 하지 않으셨습니다. 이용약관에 동의해주세요.");
-                    $("#join-terms1").focus();
-                   
-                }else if($("#join-terms2").is(":checked") ==false){
-                    alert("필수 약관에 동의 하지 않으셨습니다. 이용약관에 동의해주세요.");
-                    $("#join-terms2").focus();
-                   
-                }else if($("#join-terms3").is(":checked") ==false){
-                    alert("필수 약관에 동의 하지 않으셨습니다. 이용약관에 동의해주세요.");
-                    
-                }else{
-					return true;
-                }
-         });    
-     
-*/
+
+	      
+
         </script>
         
 </body>

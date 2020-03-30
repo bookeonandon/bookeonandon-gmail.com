@@ -30,8 +30,7 @@
                                 <form class="mt-5 mb-5">
                                     <div class="joinpagebtn">
                                         <button type="button" onclick="enrollTerms();" class="btn mb-1 btn-rounded btn-primary">일반 회원가입</button>
-                                        <button type="button" class="btn mb-1 btn-rounded btnnaver">네이버로 회원가입</button>
-                                        <button type="button" class="btn mb-1 btn-rounded btnkakao">카카오로 회원가입</button>
+                                  
                                         <button type="button" onclick="loginForm();" class="btn mb-1 btn-rounded btn-light">로그인</button>
                                     </div>
                                 </form>

@@ -230,6 +230,8 @@ $(function(){
 	// 구독권 발급
 
 
+	userNo = "";
+
 	$("#subManage").click(function(){
 		
 		// 2명 이상 체크 시 모달창 열리지 않음
@@ -242,7 +244,6 @@ $(function(){
 	        'data-target' : '#basicModal2'
 	     });
 	     
-		     var userNo = "";
 		     
 		     // 체크된 멤버 번호 담기
 		     $("input:checkbox[name=chk]:checked").each(function(){
@@ -258,6 +259,7 @@ $(function(){
 
 	function goMySub(userNo){
 		
+		console.log(userNo);
 		location.href="<%=contextPath%>/list.ame?userNo="+userNo;
 		
 	}

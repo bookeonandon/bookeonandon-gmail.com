@@ -54,7 +54,7 @@
 	</div>
 	<div class="meetContent">
 		<!-- 미팅방 -->
-		<!-- ㅇㅇㅁㅇㄴㅁㅇafasfsafasdasd -->
+		<!-- ㅇㅇㅁㅇㄴㅁㅇafasfsafasㅁㄴㅇdasd -->
 		<% if(list.isEmpty()){ %>	
 					<p>조회된 리스트가 없습니다.</p>
 				<% }else{ %>

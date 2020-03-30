@@ -14,8 +14,6 @@
 	
 	MySub ms = (MySub)request.getAttribute("ms");
 	
-	int msNum = ms.getSbNo();
-	
 
 %>
 <!DOCTYPE html>

@@ -35,6 +35,8 @@ public class SelectMySubServlet extends HttpServlet {
 
 		int uNo = Integer.parseInt(request.getParameter("userNo"));
 		
+		System.out.println(uNo);
+		
 		MySub ms = new MySubService().adminSelectDetail(uNo);
 		System.out.println(ms);
 		

@@ -15,6 +15,7 @@ import com.kh.member.model.vo.Member;
 public class MemberService {
 	
 	
+//	최근
 	/**
 	 * 관리자페이지 회원관리 리스트 조회
 	 * @return			조회된 멤버 리스트

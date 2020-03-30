@@ -49,5 +49,36 @@ public class MySubService {
 		return result;
 		
 	}
+	
+	
+	public int adminInsertMySubService(int uNo, Subscription s, MySub ms) {
+		
+		Connection conn = getConnection();
+		
+		int result = 0;
+		
+		// 보유구독권 있을 때
+		if(ms != null) {
+			
+			result = new MySubDao().adminUpdateMySub(conn, uNo, s);
+			
+		// 보유구독권 없을 때
+		}else {
+			
+			result = new MySubDao().insertMySub(conn, uNo, s);
+			
+			if(result >0) {
+				commit(conn);
+			}else {
+				rollback(conn);
+			}
+		}
+		
+		
+		close(conn);
+		
+		return result;
+		
+	}
 
 }

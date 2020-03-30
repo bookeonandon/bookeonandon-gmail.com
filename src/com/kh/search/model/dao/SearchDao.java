@@ -284,4 +284,70 @@ public class SearchDao {
 		}
 		return list;
 	}
+	
+	public ArrayList<Search> searchCategory(Connection conn, String keyword, String category){
+		ArrayList<Search> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("searchCateogry");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, "%" + keyword + "%");
+			pstmt.setString(2, category);
+			
+			while(rset.next()) {
+				list.add(new Search(rset.getInt("book_no"),
+						rset.getString("book_title"),
+						rset.getString("book_moimage"),
+						rset.getString("author"),
+						rset.getDouble("book_rating"),
+						rset.getString("book_intro"),
+						rset.getString("publisher"),
+						rset.getInt("review_count")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	public ArrayList<Search> selectSubCategory(Connection conn, String category, String subCategory){
+		ArrayList<Search> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectSubCateogry");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, category);
+			pstmt.setString(2, subCategory);
+			
+			while(rset.next()) {
+				list.add(new Search(rset.getInt("book_no"),
+						rset.getString("book_title"),
+						rset.getString("book_moimage"),
+						rset.getString("author"),
+						rset.getDouble("book_rating"),
+						rset.getString("book_intro"),
+						rset.getString("publisher"),
+						rset.getInt("review_count")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
 }

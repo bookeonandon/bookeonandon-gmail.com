@@ -18,5 +18,14 @@
 .on{background:rgb(112 48 160);color:white}
 
 /* 서브카테고리 버튼 */
-#subCategoryBtn>button{width:72px; height:30px; margin-right:10px; color:rgb(112 48 160); background-color: white; border:1px solid rgb(112,48,160,0.2);}
-#subCategoryBtn>:first-child{color:white; background:rgb(112 48 160)}
+.subCategoryBtn>button{width:auto; height:30px; margin-right:8px; color:rgb(112 48 160); background-color: white; border:1px solid rgb(112,48,160,0.2);}
+.subCategoryBtn>:first-child{color:white; background:rgb(112 48 160);}
+
+/* 도서 리스트 영역 */
+.bookListArea{margin-top:50px;margin-left:20px; padding:0 70px 0 70px; height:1000px;}
+.bookArea{float:left; margin:20px; width:140px; height:210px}
+.thumbnail{width:140px;height:160px}
+.title{width:100%; height:10%;}
+.title{width:90%; height:auto; text-align:left; font-size:14px; font-weight:800; margin:auto; overflow:hidden; padding-bottom:5px;}
+.title a{text-decoration:none; color:rgb(112 48 160)}
+.starRating{height:20px;}

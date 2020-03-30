@@ -34,19 +34,15 @@
 						<button type="submit" id="searchBtn" onmouseover="search1();" onmouseout="search2();"><img src="<%=request.getContextPath() %>/resources/images/search.png" id="search-image" width="80%" height="auto"></button></div>
 				</form>
 			</div>
-			<%if(loginUser == null){ %>
 			<div id="joinForm">
+			<%if(loginUser == null){ %>
 				<div id="joinForm-1"><button type="button" onclick="loginForm();" class="joinBtn">로그인</button></div>
 				<div id="joinForm-2"><button type="button" onclick="joinForm();" class="joinBtn">회원가입</button></div>
-			</div>
 			<%}else{ %>
-				<div id="joinForm-1">
-					<button type="button" onclick="library();" class="joinBtn">내서재</button>
-				</div>
-				<div id="joinForm-2">
-					<button type="button" onclick="logout();" class="joinBtn">로그아웃</button>
-				</div>
+				<div id="joinForm-1"><button type="button" onclick="library();" class="joinBtn">내서재</button></div>
+				<div id="joinForm-2"><button type="button" onclick="logout();" class="joinBtn">로그아웃</button></div>
 			<%} %>
+			</div>
 		</div>
 
 		<script>
@@ -77,7 +73,7 @@
 						<li><a href="<%=request.getContextPath()%>" class="menu">ON&ON 추천</a></li>
 					</ul></li>
 
-				<li><a href="<%=request.getContextPath()%>/categoty.ct">카테고리</a></li>
+				<li><a href="<%=request.getContextPath()%>/category.ct">카테고리</a></li>
 
 				<li><a href="<%=request.getContextPath()%>">MEET & ON</a>
 					<ul id="navi-1" class="group">
@@ -87,13 +83,13 @@
 						<li><a href="" class="menu">내모임</a></li>
 						<li><a href="" class="menu">스케쥴 캘린더</a></li>
 					</ul></li>
-				<li><a href="">마이페이지</a>
+				<li><a href="<%=request.getContextPath() %>/myPageMain.my">마이페이지</a>
 					<ul id="navi-1" class="myPage">
-						<li><a href="" class="menu">My 홈</a></li>
-						<li><a href="" class="menu">My 정보</a></li>
-						<li><a href="" class="menu">My 계정</a></li>
-						<li><a href="" class="menu">My 보관함</a></li>
-						<li><a href="" class="menu">My 결제내역</a></li>
+                        <li><a href="<%=request.getContextPath() %>/myPageMain.my" class="menu">My 홈</a></li>
+                        <li><a href="<%=request.getContextPath() %>/myPageInfo.my" class="menu">My 정보</a></li>
+                        <li><a href="<%=request.getContextPath() %>/myPageAccount.my" class="menu">My 계정</a></li>
+                        <li><a href="<%=request.getContextPath() %>/myPageWishlist.my" class="menu">My 관심서적</a></li>
+                        <li><a href="<%=request.getContextPath() %>/myPagePayment.my" class="menu">My 결제내역</a></li>
 					</ul></li>
 				<li><a href="">고객센터</a>
 					<ul id="navi-1" class="service1">
@@ -133,6 +129,9 @@
 	function meetandon(){
 		location.href = "<%=request.getContextPath()%>/meetMain.mt";
 		}
+    function logout(){
+        location.href="<%=request.getContextPath()%>/logout.me";
+     }
     
 
     

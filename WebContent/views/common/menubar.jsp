@@ -34,19 +34,15 @@
                   <button type="submit" id="searchBtn" onmouseover="search1();" onmouseout="search2();"><img src="<%=request.getContextPath() %>/resources/images/search.png" id="search-image" width="80%" height="auto"></button></div>
             </form>
          </div>
-         <%if(loginUser == null){ %>
-         <div id="joinForm">
-            <div id="joinForm-1"><button type="button" onclick="loginForm();" class="joinBtn">로그인</button></div>
-            <div id="joinForm-2"><button type="button" onclick="joinForm();" class="joinBtn">회원가입</button></div>
-         </div>
-         <%}else{ %>
-            <div id="joinForm-1">
-               <button type="button" onclick="library();" class="joinBtn">내서재</button>
-            </div>
-            <div id="joinForm-2">
-               <button type="button" onclick="logout();" class="joinBtn">로그아웃</button>
-            </div>
-         <%} %>
+			<div id="joinForm">
+			<%if(loginUser == null){ %>
+				<div id="joinForm-1"><button type="button" onclick="loginForm();" class="joinBtn">로그인</button></div>
+				<div id="joinForm-2"><button type="button" onclick="joinForm();" class="joinBtn">회원가입</button></div>
+			<%}else{ %>
+				<div id="joinForm-1"><button type="button" onclick="library();" class="joinBtn">내서재</button></div>
+				<div id="joinForm-2"><button type="button" onclick="logout();" class="joinBtn">로그아웃</button></div>
+			<%} %>
+			</div>
       </div>
 
       <script>
@@ -77,7 +73,7 @@
                   <li><a href="<%=request.getContextPath()%>" class="menu">ON&ON 추천</a></li>
                </ul></li>
 
-            <li><a href="<%=request.getContextPath()%>/categoty.ct">카테고리</a></li>
+            <li><a href="<%=request.getContextPath()%>/category.ct">카테고리</a></li>
 
             <li><a href="<%=request.getContextPath()%>">MEET & ON</a>
                <ul id="navi-1" class="group">

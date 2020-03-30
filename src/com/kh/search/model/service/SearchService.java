@@ -140,5 +140,31 @@ public class SearchService {
 	}
 	
 	
+	/**
+	 * 카테고리 검색
+	 * @param keyword
+	 * @param category
+	 * @return
+	 */
+	public ArrayList<Search> categorySearch(String keyword, String category){
+		Connection conn = getConnection();
+		ArrayList<Search> list = new SearchDao().searchCategory(conn, keyword, category);
+		close(conn);
+		return list;
+	}
+	
+	/**
+	 * 서브카테고리
+	 * @param keyword
+	 * @param category
+	 * @return
+	 */
+	public ArrayList<Search> selectSubCategory(String category, String subCategory){
+		Connection conn = getConnection();
+		ArrayList<Search> list = new SearchDao().selectSubCategory(conn, category, subCategory);
+		close(conn);
+		return list;
+	}
+	
 	
 }

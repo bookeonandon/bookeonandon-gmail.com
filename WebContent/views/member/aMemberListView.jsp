@@ -109,6 +109,44 @@
 
             </form>
             
+            <script>
+            $(function(){
+            	userNo = "";
+            	
+	        	$("#subManage").click(function(){
+	        		
+	        		// 2명 이상 체크 시 모달창 열리지 않음
+	        	    if($("input:checkbox[name=chk]:checked").length > 1){
+	        	        alert("해당 서비스는 한 명만 발급 및 연장이 가능합니다.");
+	        	        
+	        		}else{
+		        		 // 모달창 오픈
+		        	     $(this).attr({
+		        	        'data-toggle' : 'modal',
+		        	        'data-target' : '#basicModal2'
+		        	     });
+		        	     
+	        		     $("input:checkbox[name=chk]:checked").each(function(){
+	        		    	 userNo = $(this).next().val();
+	        		     })
+		        		     
+	        		     $.ajax({
+	        		    	 url:"detail.msb",
+	        		    	 data:{userNo:userNo},
+	        		    	 success:function(ms){
+	        		    		 
+	        		    		 $("#sel55").append("<option value='" + ms.sbNo +"'>" + ms.sbName + "</option>");
+	        		    	 }
+	        		     })
+		        	     
+		        	     
+		        	}
+		
+		        })
+            })
+	            
+            </script>
+            
 
 
 
@@ -174,9 +212,6 @@
                             
                         </div>
                     </div>
-
-                                          
-
             </div>
 
             <!-- 블랙리스트 모달 -->
@@ -213,29 +248,34 @@
                         </div>
                         <div class="modal-body">
                             <span>기존 구독권</span>
-                            <select class="form-control sub1" id="sel1" style="margin:15px 0px;">
-                            	<%if(ms != null){ %>
-                                <option value="<%= ms.getSbNo() %>">성공시 나옴</option>
-                                <%}else{ %>
-                                 <option value="none">안 나오죠?</option>
-                                <%} %>
+                            <select class="form-control sub1" id="sel55" style="margin:15px 0px;">
                             </select>
                             
                             <span>수정할 구독권</span>
-                            <select class="form-control sub2" id="sel1" style="margin:15px 0px;">
+                            <select class="form-control sub2" id="selModify" style="margin:15px 0px;">
                                 <%for (Subscription s : sList){ %>
-                                <option value="<%=s.getSbNo()%>"><%=s.getSbName()%></option>
+                                <option class="selectNewSub" value="<%=s.getSbNo()%>"><%=s.getSbName()%></option>
                                 <% } %>
                             </select>
                             <br>
                             <span>* 적용 시 기존 구독일에서 기간이 연장됩니다.</span>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary none-center" data-dismiss="modal">확인하기</button>
+                            <button type="button" class="btn btn-primary none-center" onclick="subSubmit();" data-dismiss="modal">확인하기</button>
                         </div>
                     </div>
                 </div>
             </div>
+            
+            <script>
+            
+            	function subSubmit(){
+
+           			subNewNo = $(".selectNewSub option:selected").val();
+           			console.log(subNewNo);
+           		
+            	}}
+            </script>
 
 
             <!-- 쿠폰 모달 -->

@@ -40,7 +40,7 @@ public class ContactInsertServlet extends HttpServlet {
 		
 		
 		Contact c = new Contact();
-		System.out.println(c);
+		
 		c.setContactType(contactType);
 		c.setContactTitle(contactTitle);
 		c.setContactContent(contactContent);

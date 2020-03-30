@@ -145,7 +145,7 @@ public class FaqDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, f.getFaqType());
 			pstmt.setString(2, f.getFaqTitle());
-			pstmt.setString(3, f.getFaqTitle());
+			pstmt.setString(3, f.getFaqContent());
 			pstmt.setInt(4, f.getFaqNo());
 			
 			result = pstmt.executeUpdate();

@@ -36,7 +36,7 @@ public class FaqUpdateServlet extends HttpServlet {
 		int nno = Integer.parseInt(request.getParameter("nno"));
 		int status = Integer.parseInt(request.getParameter("status"));
 		String title = request.getParameter("title");
-		String content = request.getParameter("content");
+		String content = request.getParameter("comment");
 		
 		Faq f = new Faq();
 		

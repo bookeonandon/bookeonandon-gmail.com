@@ -119,7 +119,6 @@
         </div>
     </div>
     
-    <%@ include file="../common/footer.jsp" %>
     
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
     

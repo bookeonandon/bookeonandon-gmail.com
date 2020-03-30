@@ -13,7 +13,7 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.kh.book.model.service.BookService;
 import com.kh.book.model.vo.Book;
-import com.kh.common.MyFileRenamePolicy;
+import com.kh.meet.policy.MyFileRenamePolicy;
 import com.oreilly.servlet.MultipartRequest;
 
 /**
@@ -49,7 +49,7 @@ public class AdminBookUpdateServlet extends HttpServlet {
 					new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
 			
 			
-			int bNo = Integer.parseInt(multiRequest.getParameter("name"));
+			int bNo = Integer.parseInt(multiRequest.getParameter("bNo"));
 			String title = multiRequest.getParameter("name");
 			String subName = multiRequest.getParameter("subName");
 			String author = multiRequest.getParameter("author");

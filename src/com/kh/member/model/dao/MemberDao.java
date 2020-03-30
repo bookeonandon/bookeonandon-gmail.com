@@ -17,7 +17,8 @@ import com.kh.member.model.vo.Member;
 public class MemberDao {
 
 	
-
+// dao보내요
+	
 	private Properties prop = new Properties();
 	
 	public MemberDao() {

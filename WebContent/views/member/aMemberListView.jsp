@@ -214,7 +214,11 @@
                         <div class="modal-body">
                             <span>기존 구독권</span>
                             <select class="form-control sub1" id="sel1" style="margin:15px 0px;">
+                            	<%if(ms != null){ %>
                                 <option value="<%=ms.getSbNo()%>"><%=ms.getSbName()%></option>
+                                <% }else{ %>
+                                <option value="none">등록된 구독권이 없습니다.</option>
+                                <%} %>
                             </select>
                             
                             <span>수정할 구독권</span>

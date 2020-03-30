@@ -92,5 +92,30 @@ public class MySubDao {
 	}
 	
 	
+	public int adminUpdateMySub(Connection conn, int uNo, Subscription s) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("adminUpdateMySub");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, s.getSbNo());
+			pstmt.setInt(2, s.getSbDate());
+			pstmt.setInt(3, uNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
+	
 
 }

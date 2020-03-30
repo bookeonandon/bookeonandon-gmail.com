@@ -3,7 +3,6 @@
 <%@page import="com.kh.meet.model.vo.PageInfo"%>
 <%@page import="com.kh.meet.model.vo.Meet"%>
 <%@page import="java.util.ArrayList"%>
-
 <%
 	ArrayList<Meet> list = (ArrayList<Meet>)request.getAttribute("list");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
@@ -49,7 +48,9 @@
 	<div class ="main-header">
 	<input type="text" class="txtSearchRoom">
 	<button class="btnSearchRoom">검색</button>
-	<button class="btnMakeRoom" data-toggle="modal" data-target="#exampleModal2">방만들기</button>
+	<%if(userNo != -1){ %>
+	<button class="btnMakeRoom" data-toggle="modal" data-target="#exampleModal2" onclick="startmakeroom();">방만들기</button>
+	<%} %>
 	</div>
 	<div class="meetContent">
 		<!-- 미팅방  -->
@@ -104,6 +105,7 @@
 						<a href="javascript:ModalDropdownSel('commu');">커뮤니티</a> 
 						<a href="javascript:ModalDropdownSel('fixmeet');">정기모임</a>
 						<a href="javascript:ModalDropdownSel('setting');">설정</a>
+						<a href="javascript:ModalDropdownSel('leaderSetting');">회원관리</a>
 					</div>
 				</div>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -226,6 +228,9 @@
 		            <button class="btnUploadFile" onclick="uploadFile();">저장</button>
        			 </div>
 		    </div>
+		    <div id="leaderSetting" class="leaderSetting" style="display:none;">
+		    
+		    </div>
 		   </div>
 		  </div>
 		</div>
@@ -236,6 +241,7 @@
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true" class="closeX">&times;</span>
 				</button>
+			 <div class="step1">
 				<p class="makeRoomtitle">카테고리 선택</p>
 				<p id="header-name2"></p>
 				<hr class="modal-hr">
@@ -261,7 +267,21 @@
 				</tr>
 				</table>
 				</div>
-				<div class="div-next1"><button class="btn-next1" onclick="btnNext1Click();">다음</button></div>
+				<div class="div-next1"><button class="btn-next1" onclick="makeRoomNext1();">다음</button></div>
+			 </div>
+			  <div class="step2"  style="display:none">
+			  <p class="makeRoomtitle">방 설정</p>
+				<p id="header-name2"></p>
+				<hr class="modal-hr">
+				<div class="room_name"><p class="p_room_name">모임 제목  </p><input type="text" class="txt_room_name"></input></div>
+				<div class="room_location"><p class="p_room_location">약속 위치  </p><input id ="txt_room_location" class="txt_room_location" id="inputAddress2" type="text"
+								onclick="goAddressApi2('0')" placeholder="주소를 검색하시려면 여기를 눌러봐요!"
+								readonly="readonly"></input></div>
+				<div class="room_totalpp"><p class="p_room_totalpp">최대 인원 </p><input type="text" class="txt_room_totalpp"></input></div>
+				<div class="room_content"><p class="p_room_content">모임 설명  </p><textarea class="txt_room_content"></textarea></div>
+				<button class="btn-next2" onclick="makeRoom();">만들기!</button>
+			  </div>
+			  
 			</div>
 		</div>
 	</div>
@@ -270,10 +290,74 @@
 		var roomNo;
 		var memberNo;
 		var imgPath;
-		
+		var category;
 		var count=0;
 		var pickCategory ="";
-		function btnNext1Click(){
+		var count1=0;
+		function startmakeroom(){
+			$(".step1").css("display","block");
+			$(".step2").css("display","none");
+		    count=0;
+			pickCategory ="";
+			category="";
+			count1=0;
+			$("#btnCategory1").css("background-color","white");
+			$("#btnCategory2").css("background-color","white");
+			$("#btnCategory3").css("background-color","white");
+			$("#btnCategory4").css("background-color","white");
+			$("#btnCategory5").css("background-color","white");
+			$("#btnCategory6").css("background-color","white");
+			$("#btnCategory7").css("background-color","white");
+			$("#btnCategory8").css("background-color","white");
+			$("#btnCategory9").css("background-color","white");
+			$("#btnCategory10").css("background-color","white");
+			$("#btnCategory11").css("background-color","white");
+			$("#btnCategory12").css("background-color","white");
+			
+		}
+		
+		function makeRoom(){
+			$.ajax({
+	 			url:"makeRoom.mt",
+				data : {
+					roomtitle : $(".txt_room_name").val(), 
+					roomcontent :$(".txt_room_content").val(), 
+					memberno : <%=userNo%>,
+					roomtotalpp : $(".txt_room_totalpp").val(),
+					genre : category
+				},
+				type : "POST",
+				success : function(result) {
+					console.log(result);
+					location.reload();
+				},
+				error:function(request,status,error){
+			        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			       }
+			});
+		}
+		
+		function makeRoomNext1(){
+			
+			for (var i = 1; i < 13; i++) {
+				if($("#btnCategory"+i).css("background-color") == "rgb(242, 219, 255)"){
+					count1++;
+				}
+			}
+			
+			if(count1==0){
+				Swal.fire({
+					  position: 'center',
+					  icon: 'error',
+					  title: '1개 이상 선택해 주세요!',
+					  showConfirmButton: false,
+					  timer: 1000 
+					})
+					makeroom();
+				return;
+			}
+			
+			
 			
 			for (var i = 1; i < 13; i++) {
 				if($("#btnCategory"+i).css("background-color") == "rgb(242, 219, 255)"){
@@ -281,9 +365,20 @@
 					pickCategory += ",";
 				}
 			}
-				alert(pickCategory);
+				makeRoomNext2(pickCategory);
 				pickCategory="";
-		}		
+		}
+		
+		function makeRoomNext2(pickCategory){
+			
+			category = pickCategory .slice(0,-1);
+			
+			$(".step1").css("display","none");
+			$(".step2").css("display","block");
+			
+			
+		}
+		
 		
 		function btnCategoryClick(num){
 			
@@ -928,7 +1023,7 @@
             showButton: true,
             editable: true,
             messages: { calendarIconTooltip: "open" },
-            value: new Date(1900, 1, 1, 12, 0),
+            value: new Date(2020, 04, 1, 12, 0),
             format: "{0:yyyy.MM.dd hh:mm:ss TT}",
             textTemplate: "{0:yyyy-MM-dd hh:mm:ss}",
             parseFormats: ["dd/MM/yyyy"]
@@ -1104,6 +1199,51 @@
 						/* addr = "서울 관악구 신림동 1441-30"; */
 		                // 주소 정보를 해당 필드에 넣는다.
 		                document.getElementById("inputAddress").value = addr;
+		                // 주소로 상세 정보를 검색
+		                geocoder.addressSearch(addr, function(results, status) {
+		                    // 정상적으로 검색이 완료됐으면
+		                    if (status === daum.maps.services.Status.OK) {
+
+		                        var result = results[0]; //첫번째 결과의 값을 활용
+
+		                        // 해당 주소에 대한 좌표를 받아서
+		                        var coords = new daum.maps.LatLng(result.y, result.x);	    			        
+		                        // 지도를 보여준다.
+		                        mapContainer.style.display = "block";
+		                        map.relayout();
+		                        // 지도 중심을 변경한다.
+		                        map.setCenter(coords);
+		                        // 마커를 결과값으로 받은 위치로 옮긴다.
+		                        marker.setPosition(coords);
+		                    }
+		                });
+		            }
+		        }).open();
+		    }
+		    
+function goAddressApi2(aaa) {
+		    	
+		    	var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+		        mapOption = {
+		            center: new daum.maps.LatLng(0, 0), // 지도의 중심좌표
+		            level: 1// 지도의 확대 레벨
+		        };
+			    //지도를 미리 생성
+			    var map = new daum.maps.Map(mapContainer, mapOption);
+			    //주소-좌표 변환 객체를 생성
+			    var geocoder = new daum.maps.services.Geocoder();
+			    //마커를 미리 생성
+			    var marker = new daum.maps.Marker({
+			        position: new daum.maps.LatLng(0, 0),
+			        map: map
+			    });
+		    	
+		        new daum.Postcode({
+		            oncomplete: function(data) {
+		                var addr = data.address; // 최종 주소 변수
+						/* addr = "서울 관악구 신림동 1441-30"; */
+		                // 주소 정보를 해당 필드에 넣는다.
+		                document.getElementById("txt_room_location").value = addr;
 		                // 주소로 상세 정보를 검색
 		                geocoder.addressSearch(addr, function(results, status) {
 		                    // 정상적으로 검색이 완료됐으면

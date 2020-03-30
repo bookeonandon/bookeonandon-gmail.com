@@ -42,7 +42,7 @@
 
 </head>
 <body>
-<!--모든것은 여xx기서 시작된gtytfg다.-->
+<!--모든것은 여xx기서 시작된다.-->
 	<%@ include file="../common/menubar.jsp"%>
 	<div style="clear:both;"></div>
 	<div class ="main-header">

@@ -37,10 +37,10 @@ public class SelectMySubServlet extends HttpServlet {
 		
 		MySub ms = new MySubService().adminSelectDetail(uNo);
 		System.out.println(ms);
-		response.setContentType("application/json; charset=utf-8");
 		
-		PrintWriter out = response.getWriter();
-		out.print(ms);
+		request.setAttribute("ms", ms);
+		
+		request.getRequestDispatcher("/views/member/aMemberListView.jsp").forward(request, response);
 		
 	}
 

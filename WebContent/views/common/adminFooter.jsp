@@ -9,7 +9,6 @@
 </head>
 <body>
 
-
         <div class="footer">
             <div class="copyright">
                 <p>Copyright &copy; Designed & Developed by <a href="https://themeforest.net/user/quixlab">Book e on and on</a> 2020</p>

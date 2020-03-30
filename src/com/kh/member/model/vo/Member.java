@@ -90,28 +90,6 @@ public class Member {
 	
 	
 
-	public Member(int memberNo, String memberId, String memberPwd, String email, String memberName, String phone,
-			Date birth, int age, Date joinDate, String deleteStatus, Date deleteDate, String blacklist,
-			Date blacklistDate, String nickname, String gender) {
-		super();
-		this.memberNo = memberNo;
-		this.memberId = memberId;
-		this.memberPwd = memberPwd;
-		this.email = email;
-		this.memberName = memberName;
-		this.phone = phone;
-		this.birth = birth;
-		this.age = age;
-		this.joinDate = joinDate;
-		this.deleteStatus = deleteStatus;
-		this.deleteDate = deleteDate;
-		this.blacklist = blacklist;
-		this.blacklistDate = blacklistDate;
-		this.nickname = nickname;
-		this.gender = gender;
-	}
-
-
 	
 	
 	// 회원가입용 매개변수 생성자

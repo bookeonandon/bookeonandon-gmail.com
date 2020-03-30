@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
-import com.kh.common.MyFileRenamePolicy;
 import com.kh.event.model.service.EventService;
 import com.kh.event.model.vo.Event;
+import com.kh.meet.policy.MyFileRenamePolicy;
 import com.oreilly.servlet.MultipartRequest;
 
 /**

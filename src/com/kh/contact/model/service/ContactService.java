@@ -48,17 +48,22 @@ public class ContactService {
 	}
 	
 	/**
-	 * 4. 1:1 문의 관리자 답변 수정하기
+	 * 3. 1:1 문의 관리자 답변 수정하기
 	 * @param nno		클릭한 1:1문의 글번호
 	 * @param comment	수정한 1:1문의 답변
 	 * @return			처리된 행의 개수
 	 */
-	public int adminContactUpdate(int nno, String comment) {
+	public int adminContactUpdate(Contact c) {
 		Connection conn = getConnection();
 		
-		System.out.println(comment + 2);
+		int result = 0;
 		
-		int result = new ContactDao().adminContactUpdate(conn, nno, comment);
+		if(c.getContactStatus().equals("y")) {
+			result = new ContactDao().adminContactUpdate(conn, c);
+		}else {
+			result = new ContactDao().adminContactInsert(conn, c);
+		}
+
 		
 		if(result > 0) {
 			commit(conn);
@@ -70,6 +75,7 @@ public class ContactService {
 		
 		return result;
 	}
+	
 
 	/**
 	 * 1:1 문의하기 문의 내역 조회하는 서비스

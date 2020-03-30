@@ -13,7 +13,6 @@
     <title>Document</title>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/1.css">
     <script src="<%=request.getContextPath() %>/resources/js/1.js" rel="javascript" type="text/javascript"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
     <!-- 헤더 -->

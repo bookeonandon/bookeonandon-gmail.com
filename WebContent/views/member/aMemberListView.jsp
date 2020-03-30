@@ -216,6 +216,8 @@
                             <select class="form-control sub1" id="sel1" style="margin:15px 0px;">
                             	<%if(ms != null){ %>
                                 <option value="<%= ms.getSbNo() %>">성공시 나옴</option>
+                                <%}else{ %>
+                                 <option value="none">안 나오죠?</option>
                                 <%} %>
                             </select>
                             

@@ -48,7 +48,7 @@
             <script>
             	
             	$(function(){
-            		var novel = $("#category").val();
+            		var novel = $("#category").attr("value");
             		$.ajax({
             			url:"categorySearch.sc",
             			data:{category:novel},
@@ -56,7 +56,6 @@
             			success:function(list){
             				var value="";
             				for(var i=0; i<list.length; i++){
-            					console.log("안녕");
             					value += '<div class="bookArea">' +
             	                '<div class="thumbnail">' + '<img src="<%=request.getContextPath()%>/resources/images/book-thumbnail.jpg" alt="" style="width: 80%; height: 100%;">' + '</div>' +
             	                '<div class="title">' + list[i].title + '</div>' +
@@ -97,30 +96,7 @@
             	});
             
             
-            	function categorySearch(){
-            	var category = $(".category").val();
-            	var keyword = $("#search-2").val();
-            	$.ajax({
-            		url:"categorySearch.sc",
-            		data:{category:category, keyword:keyword},
-            		type:"get",
-            		success:function(list){
-            			var value = "";
-        				for(var i=0; i<list.length; i++){
-        					value += '<div class="bookArea">' +
-        	                '<div class="thumbnail">' + '<img src="<%=request.getContextPath()%>/resources/images/book-thumbnail.jpg" alt="" style="width: 80%; height: 100%;">' + '</div>' +
-        	                '<div class="title">' + list[i].title + '</div>' +
-        	                '<div class="author">' + list[i].author + '</div>' +
-        	                '<div class="starRating">' + list[i].starRating + '</div>' +
-        	            '</div>';
-        				}
-            			$("#bookListArea").html(value);
-            		},
-            		error:function(){
-            			console.log("ajax통신실패");
-            		}
-            	});
-            </script>
+	</script>
             
             <!-- 서브카테고리 버튼 -->
             <div id="subCategoryBtnForm">

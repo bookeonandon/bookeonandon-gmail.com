@@ -106,8 +106,11 @@
    </div>
    <hr id="header-hr">
    <script>
+    function logout(){
+       location.href="<%=request.getContextPath()%>/logout.me";
+    }
     
-    /* 고객센터  */
+    
     function loginForm(){
       location.href = "<%=request.getContextPath()%>/loginForm.me";
    }
@@ -126,16 +129,9 @@
     }
     
     function goContact(){
-       location.href="<%=request.getContextPath()%>/contactList.cot";
+       location.href="<%=request.getContextPath()%>/contactView.cot";
     }
-    
-    /* MEET & ON  */
-   function meetandon(){
-      location.href = "<%=request.getContextPath()%>/meetMain.mt";
-      }
-    
-
-    
     </script>
+    
 </body>
 </html>

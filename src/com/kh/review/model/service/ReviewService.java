@@ -50,5 +50,27 @@ public class ReviewService {
 		
 		return result;
 	}
+	
+	public ArrayList<Review> selectReviewList(int bookNo){
+		
+		Connection conn = getConnection();
+		
+		ArrayList<Review> list = new ReviewDao().selectReviewList(conn, bookNo);
+		close(conn);
+		
+		return list;
+	}
+	
+	public int insertReview(Review r) {
+		Connection conn = getConnection();
+		int result = new ReviewDao().insertReview(conn, r);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		return result;
+	}
 
 }

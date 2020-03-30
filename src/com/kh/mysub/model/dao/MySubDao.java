@@ -117,5 +117,40 @@ public class MySubDao {
 		
 	}
 	
+	public MySub adminSelectMySub(Connection conn, String nId) {
+		
+		MySub ms = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("adminSelectMySub");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, nId);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				ms = new MySub(rset.getInt("MEMBER_NO"),
+								rset.getDate("SUB_START"),
+								rset.getDate("SUB_END"),
+								rset.getInt("SB_NO"),
+								rset.getString("SUB_STATUS"),
+								rset.getString("SB_NAME"));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return ms;
+		
+	}
+	
 
 }

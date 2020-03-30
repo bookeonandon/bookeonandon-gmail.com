@@ -1,3 +1,4 @@
+<%@page import="com.kh.mysub.model.vo.MySub"%>
 <%@page import="com.kh.myCoupon.model.vo.MyCoupon"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.kh.member.model.vo.Member"%>
@@ -5,6 +6,7 @@
     pageEncoding="UTF-8"%>
 <%
 	Member m = (Member)request.getAttribute("m");
+	MySub ms = (MySub)request.getAttribute("ms");
 	ArrayList<MyCoupon> list = (ArrayList<MyCoupon>)request.getAttribute("list");
 %>
 <!DOCTYPE html>
@@ -99,8 +101,11 @@
                         <label>보유 구독권</label>
                             <div class="product-half" style="width:346px;">
                                 <ul>
-                                    <li class="list-li">소모임소모임소모임</li>
-                                    <li class="list-li">자바의정석소모임소모임소모임</li>
+                                <%if(ms == null){ %>
+                                <li class="list-li">보유구독권이 없습니다.</li>
+                                <%}else{ %>
+                                    <li class="list-li"><%=ms.getSbName() %> I <%= ms.getSbEnd() %>까지</li>
+                                <%} %>
                                 </ul>
                             </div>
                     </div>
@@ -113,7 +118,7 @@
                                 <li class="list-li">보유한 쿠폰이 없습니다.</li>
                                 <%}else{ %>
                                    <%for (MyCoupon mc :  list){ %>
-                                    <li class="list-li"><%=mc.getcName() %> / <%=mc.getcLast() %>까지 </li>
+                                    <li class="list-li"><%=mc.getcName() %> I <%=mc.getcLast() %>까지 </li>
                                     <% } %>
                                 <%} %>
                                 </ul>

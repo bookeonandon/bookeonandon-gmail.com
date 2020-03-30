@@ -30,6 +30,17 @@ public class Member {
 
 	
 
+	public Member(String memberId, String phone, String nickname, String email) {
+		super();
+		this.memberId = memberId;
+		this.email = email;
+		this.phone = phone;
+		this.nickname = nickname;
+	}
+
+
+
+
 	public Member(int memberNo, String memberId, String email, String memberName, String phone, int reportTime,
 		Date joinDate, Date deleteDate, Date blacklistDate, int sbNo) {
 	super();

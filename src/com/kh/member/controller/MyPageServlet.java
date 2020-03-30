@@ -38,13 +38,14 @@ public class MyPageServlet extends HttpServlet {
 		
 		Member mem = new MemberService().selectMember(memberId);
 		
+		System.out.println(mem);
+		
 		if(mem != null) {
 			request.setAttribute("mem", mem);
 			RequestDispatcher view = request.getRequestDispatcher("views/member/myPageMain.jsp");
 			view.forward(request, response);
 		}else {
 			request.setAttribute("msg", "조회실패");
-			
 		}
 	}
 

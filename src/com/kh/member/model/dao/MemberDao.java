@@ -12,7 +12,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import com.kh.meet.model.vo.PageInfo;
+import com.kh.member.model.vo.PageInfo;
 import com.kh.member.model.vo.Administrator;
 import com.kh.member.model.vo.Member;
 import com.kh.payment.model.vo.Payments;
@@ -106,7 +106,6 @@ public class MemberDao {
 			close(pstmt);
 		}
 		
-		System.out.println(result);
 		
 		return result;
 		
@@ -364,6 +363,7 @@ public class MemberDao {
 		ResultSet rset = null;
 		
 		String sql = prop.getProperty("selectMember");
+
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -396,7 +396,6 @@ public class MemberDao {
 			close(rset);
 			close(pstmt);
 		}
-		
 		
 		return sem;
 	}
@@ -491,7 +490,6 @@ public class MemberDao {
 	         close(rset);
 	         close(pstmt);
 	      }
-	      System.out.println(list);
 	      return list;
 	   }
 	 

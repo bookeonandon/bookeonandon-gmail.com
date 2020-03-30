@@ -87,14 +87,15 @@
                   <li><a href="" class="menu">내모임</a></li>
                   <li><a href="" class="menu">스케쥴 캘린더</a></li>
                </ul></li>
-            <li><a href="">마이페이지</a>
-               <ul id="navi-1" class="myPage">
-                  <li><a href="" class="menu">My 홈</a></li>
-                  <li><a href="" class="menu">My 정보</a></li>
-                  <li><a href="" class="menu">My 계정</a></li>
-                  <li><a href="" class="menu">My 보관함</a></li>
-                  <li><a href="" class="menu">My 결제내역</a></li>
-               </ul></li>
+            <li><a href="<%=request.getContextPath() %>/myPageMain.my">마이페이지</a>
+                    <ul id="navi-1" class="myPage">
+                        <li><a href="<%=request.getContextPath() %>/myPageMain.my" class="menu">My 홈</a></li>
+                        <li><a href="<%=request.getContextPath() %>/myPageInfo.my" class="menu">My 정보</a></li>
+                        <li><a href="<%=request.getContextPath() %>/myPageAccount.my" class="menu">My 계정</a></li>
+                        <li><a href="<%=request.getContextPath() %>/myPageWishlist.my" class="menu">My 관심서적</a></li>
+                        <li><a href="<%=request.getContextPath() %>/myPagePayment.my" class="menu">My 결제내역</a></li>
+                    </ul>
+                </li>
             <li><a href="">고객센터</a>
                <ul id="navi-1" class="service1">
                   <li><a onclick="goNotice();" class="menu">공지사항</a></li>

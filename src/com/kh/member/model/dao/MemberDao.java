@@ -355,7 +355,7 @@ public class MemberDao {
 	
 	public Member selectMember(Connection conn, String memberId) {
 
-		Member sem = null;
+		Member mem = null;
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -369,7 +369,7 @@ public class MemberDao {
 			rset = pstmt.executeQuery();
 			if(rset.next()) {
 				
-				sem = new Member(rset.getInt("member_no"),
+				mem = new Member(rset.getInt("member_no"),
 							   rset.getString("member_id"),
 							   rset.getString("member_pwd"),
 							   rset.getString("email"),
@@ -395,7 +395,7 @@ public class MemberDao {
 		}
 		
 		
-		return sem;
+		return mem;
 	}
 
 	    

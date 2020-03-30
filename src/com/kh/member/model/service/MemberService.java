@@ -108,11 +108,11 @@ public class MemberService {
 	public Member selectMember(String memberId) {
 		Connection conn = getConnection();
 		
-		Member sem = new MemberDao().selectMember(conn, memberId);
+		Member mem = new MemberDao().selectMember(conn, memberId);
 		
 		close(conn);
 		
-		return sem;
+		return mem;
 	}
 	
 	/**

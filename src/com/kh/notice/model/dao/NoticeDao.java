@@ -40,7 +40,7 @@ public class NoticeDao {
 		ResultSet rset = null;
 		
 		
-		String sql = prop.getProperty("selectList");
+		String sql = prop.getProperty("selectListNotice");
 		System.out.println(sql);
 		
 		try {
@@ -52,7 +52,8 @@ public class NoticeDao {
 									rset.getString("notice_title"),
 									rset.getString("notice_content"),
 									rset.getDate("notice_date"),
-									rset.getString("admin_id")));
+									rset.getString("admin_id"),
+									rset.getString("notice_status")));
 			}
 			
 		} catch (SQLException e) {

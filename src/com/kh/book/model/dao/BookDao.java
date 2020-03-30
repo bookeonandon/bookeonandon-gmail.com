@@ -175,7 +175,7 @@ public class BookDao {
 	}
 	
 	
-	public int adminUpdateFormBook(Connection conn, Book b) {
+	public int adminUpdateBook(Connection conn, Book b) {
 		
 		
 		int result = 0;

@@ -78,7 +78,7 @@ public class BookService {
 		
 		Connection conn = getConnection();
 		
-		int result = new BookDao().adminInsertBook(conn, b);
+		int result = new BookDao().adminUpdateBook(conn, b);
 		
 		if(result > 0) {
 			commit(conn);

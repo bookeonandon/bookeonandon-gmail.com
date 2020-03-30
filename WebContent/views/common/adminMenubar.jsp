@@ -27,7 +27,7 @@
                 <a href="index.html">
                     <b class="logo-abbr"><img src="<%=request.getContextPath()%>/resources/admin/images/logo.png" alt=""> </b>
                     <span class="brand-title">
-                        <img src="<%=request.getContextPath()%>/resources/admin/images/bookeon.png" alt="">
+                        <img src="<%=request.getContextPath()%>/resources/admin/images/adminLogo.png" alt="">
                     </span>
                 </a>
             </div>

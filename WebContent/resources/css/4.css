@@ -1,0 +1,63 @@
+/* div{border:1px solid black} */
+
+/* 검색 전체영역 */
+#search-wrap{margin:auto; margin-top:100px; width:1100px; height:auto;}
+
+/* 검색페이지 검색폼 */
+#search2-form{width:100%; height:100px; box-sizing: border-box;}
+#search2-form>form{width:100%; height:100%; margin-left:200px;}
+#search2{display:inline-block; width:30%;height:40px; padding-top:30px;}
+#search2-btnForm{display:inline-block; width:60px; height:50px; margin-top:10px;}
+#search-2{float:right; height:35px; width:300px; margin-top:5px; padding:1px 0 0 10px; border-radius: 4px; border:1px solid gray; opacity:0.8}
+#search-2:focus{border-radius:4px; outline:2px solid rgb(112 48 160);}
+#search2-btn{height:100%; width:100%; border:0; outline:0; background-color:white;}
+
+/* 검색결과 영역 */
+#search-content{float:left; width:78%; height:auto; box-sizing:border-box; margin-bottom:200px;}
+#sortBtnForm{margin-top:100px; padding-left:80px;} /* 정렬 버튼 */
+.sortBtn{margin-right:10px; color:rgb(112,48,160); background-color:white; border-radius:4px; font-size:15px; border:none; outline:none; padding-top:3px; padding-bottom:3px;}
+#popSort{background:rgb(112,48,160,0.9); color:white;}
+.search-category *{float:left; margin-right:20px; margin-top:20px;}
+#search-title{margin-left:70px;}
+#search-contentArea, #search-contentArea2{float:left; width:100%; height:auto; margin-top:40px;}
+.search-title-area{margin-left:50px; width:750px;height:180px; border:1px solid rgb(112,48,160,0.1); padding:15px 0 15px 15px; margin-bottom:15px;}
+.search-title-area>.thumbnail{float:left;height:100%; width:160px;}
+.search-title-area>.book-info1{float:left; width:500px; margin:10px; font-size:16px;}
+.search-title-area>.book-info2{float:left;}
+.book-info1{padding-left:10px; margin-left:20px;}
+.book-info1>div{color:rgb(92,24,107);}
+.book-info2 *{float:left; margin-right:10px; margin-bottom:10px; font-weight:500; font-size: 14px;}
+.search-title-area>.thumbnail:hover,.book-info3:hover,.book-info2>.author{cursor:pointer;}
+.search-title-area>.book-info3{float: left;width:550px; height:84px; margin-top:10px; margin-left:15px;}
+.star-rating{color:gray; font-weight:900; margin-top:-2px; margin-left:18px;}
+.book-info3{display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; 
+    /* 여러 줄 자르기 스타일 */ white-space: normal; line-height: 1.2; height: 4.8em; text-align: left; word-wrap: break-word; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical;}
+#search-more{float:right; margin:20px 50px 20px 0; outline: none; border:0; background:white; font-size:20px; font-weight:600; color:rgb(112, 48, 160)}
+span.star-prototype, span.star-prototype > * {
+    height: 16px; 
+    background: url(http://i.imgur.com/YsyS5y8.png) 0 -16px repeat-x;
+    width: 80px;
+    display: inline-block;
+}
+ 
+span.star-prototype > * {
+    background-position: 0 0;
+    max-width:80px; 
+}
+
+/* 검색결과 없을시 */
+#search-result-none{width:600px; height:auto; border:1px solid rgb(112,48,160,0.4); margin:50px 0 0 50px; text-align:center; padding:150px 50px 150px 50px; font-size:25px;}
+
+#search-author{margin-left:70px; margin-top:70px; }
+#search-authorArea{float:left; width:90%; margin-top:30px; margin-left:50px; border:1px solid rgb(112, 48, 160,0.1);}
+
+    
+/* 인기검색어 */
+#popular-search{float:left; width:22%; height:440px; box-sizing:border-box; border:1px solid rgb(112, 48, 160,0.2);}
+#list-area{padding-right:20px;}
+#popular-search>ol{margin:auto; width:100%; height:auto; box-sizing: border-box;}
+#popular-search li{line-height: 30px;}
+.popular-search-list{text-decoration: none; font-size: 14px;}
+#list-area a{display:block; padding-left:10px; margin-bottom:5px; color:rgb(112, 48, 160)}
+#list-area a:hover{background:LavenderBlush ; font-weight:bolder;}
+

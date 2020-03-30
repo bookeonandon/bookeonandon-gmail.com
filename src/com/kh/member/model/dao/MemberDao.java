@@ -33,6 +33,122 @@ public class MemberDao {
 	
 	}
 	
+
+
+	//admin push 테스트
+	public ArrayList<Member> adminSelectListMember(Connection conn){
+		
+		ArrayList<Member> list = new ArrayList<>();
+		
+		Statement stmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("adminSelectListMember");
+		
+			try {
+				stmt = conn.createStatement();
+				rset  = stmt.executeQuery(sql);
+				
+				while(rset.next()) {
+					list.add(new Member(rset.getInt("MEMBER_NO"),
+										rset.getString("MEMBER_ID"),
+										rset.getString("EMAIL"),
+										rset.getString("MEMBER_NAME"),
+										rset.getString("PHONE"),
+										rset.getInt("COUNT"),
+										rset.getDate("JOIN_DATE"),
+										rset.getDate("DEL_DATE"),
+										rset.getDate("BLACKLIST_DATE"),
+										rset.getInt("SB_NO")));
+				}
+				
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(stmt);
+			}
+			
+		
+		return list;
+		
+		
+	}
+
+	public int adminBlackUpdate(Connection conn, String[] id) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("adminBlackUpdate");
+		
+		
+		try {
+			
+			for(int i=0; i<id.length; i++) {
+				
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, id[i]);
+				
+				result = pstmt.executeUpdate();
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		System.out.println(result);
+		
+		return result;
+		
+	}
+	
+	public Member adminSelectDetail(Connection conn, int uNo) {
+		
+		  Member mem = null;
+	      PreparedStatement pstmt = null;
+	      ResultSet rset = null;
+	      String sql = prop.getProperty("selectMember");
+	      try {
+	         pstmt = conn.prepareStatement(sql);
+	         pstmt.setInt(1, uNo);
+	         rset = pstmt.executeQuery();
+	         if(rset.next()) {
+	            mem = new Member(rset.getInt("member_no"),
+	                           rset.getString("member_id"),
+	                           rset.getString("member_pwd"),
+	                           rset.getString("email"),
+	                           rset.getString("member_name"),
+	                           rset.getString("phone"),
+	                           rset.getDate("birth"),
+	                           rset.getInt("age"),
+	                           rset.getDate("join_date"),
+	                           rset.getString("del_yn"),
+	                           rset.getDate("del_date"),
+	                           rset.getString("blacklist"),
+	                           rset.getDate("blacklist_date"),
+	                           rset.getString("nickname"),
+	                           rset.getString("gender"));
+	         }
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      }finally {
+	         close(rset);
+	         close(pstmt);
+	      }
+	      
+	      return mem;
+
+		
+	}
+	
+
 	public int insertMember(Connection conn, Member m , String birth) {
 		
 		int result = 0;

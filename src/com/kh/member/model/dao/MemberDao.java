@@ -33,6 +33,8 @@ public class MemberDao {
 	
 	}
 	
+
+
 	//admin push 테스트
 	public ArrayList<Member> adminSelectListMember(Connection conn){
 		
@@ -146,6 +148,7 @@ public class MemberDao {
 		
 	}
 	
+
 	public int insertMember(Connection conn, Member m , String birth) {
 		
 		int result = 0;
@@ -154,7 +157,7 @@ public class MemberDao {
 		
 		String sql = prop.getProperty("insertMember");
 		
-		System.out.println(sql);
+		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, m.getMemberId());
@@ -351,46 +354,54 @@ public class MemberDao {
 	}
 	
 	public Member selectMember(Connection conn, String memberId) {
-	      Member sem = null;
-	      
-	      PreparedStatement pstmt = null;
-	      ResultSet rset = null;
-	      
-	      String sql = prop.getProperty("selectMember");
-	      
-	      try {
-	         pstmt = conn.prepareStatement(sql);
-	         pstmt.setString(1, memberId);
+
+		Member sem = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectMember");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberId);
+			
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				
+				sem = new Member(rset.getInt("member_no"),
+							   rset.getString("member_id"),
+							   rset.getString("member_pwd"),
+							   rset.getString("email"),
+							   rset.getString("member_name"),
+							   rset.getString("phone"),
+							   rset.getDate("birth"),
+							   rset.getInt("age"),
+							   rset.getDate("join_date"),
+							   rset.getString("del_yn"),
+							   rset.getDate("del_date"),
+							   rset.getString("blacklist"),
+							   rset.getDate("blacklist_date"),
+							   rset.getString("nickname"),
+							   rset.getString("gender"));
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return sem;
+	}
+
+	    
 	         
-	         rset = pstmt.executeQuery();
-	         if(rset.next()) {
-	            
-	            sem = new Member(rset.getInt("member_no"),
-	                        rset.getString("member_id"),
-	                        rset.getString("member_pwd"),
-	                        rset.getString("email"),
-	                        rset.getString("member_name"),
-	                        rset.getString("phone"),
-	                        rset.getDate("birth"),
-	                        rset.getInt("age"),
-	                        rset.getDate("join_date"),
-	                        rset.getString("del_yn"),
-	                        rset.getDate("del_date"),
-	                        rset.getString("blacklist"),
-	                        rset.getDate("blacklist_date"),
-	                        rset.getString("nickname"),
-	                        rset.getString("gender"));
-	            
-	         }
-	         
-	      } catch (SQLException e) {
-	         e.printStackTrace();
-	      }finally {
-	         close(rset);
-	         close(pstmt);
-	      }
+	 
 	      
 	      
-	      return sem;
-	   }
+	
 }

@@ -26,7 +26,7 @@ body {
 	display: inline-block;
 	margin-left: 10px;
 	margin-top: 20px;
-	box-shadow: 0px -1px 0px 0px #A864D0;
+	box-shadow: 0px -1px 0px 0px #5c186b;
 }
 
 .roomTitle {
@@ -47,7 +47,7 @@ body {
 }
 
 .roomCategory>div {
-	background-color : #A864D0;
+	background-color : #5c186b;
 	color : white;
 	display: inline-block;
 	font-size: 11px;
@@ -241,7 +241,7 @@ hr {
 }
 
 .modal-category>div {
-	background-color : #A864D0;
+	background-color : #5c186b;
 	color : white;
 	display: inline-block;
 	font-size: 15px;
@@ -305,7 +305,7 @@ hr {
 #btn_apply{
 	width: 130px;
     height: 50px;
-    background: #A864D0;
+    background: #5c186b;
     color: white;
     font-size: 18px;
     border-radius: 7px;
@@ -414,7 +414,7 @@ hr {
     padding: 0px;
     width: 90px;
     height: 38px;
-    background: #A864D0;
+    background: #5c186b;
     color: white;
     font-size: 18px;
     border-radius: 7px;
@@ -465,7 +465,7 @@ hr {
 .btnFixmeetSave{
 	width: 130px;
     height: 50px;
-    background: #A864D0;
+    background: #5c186b;
     color: white;
     font-size: 18px;
     border-radius: 7px;
@@ -477,7 +477,7 @@ hr {
 .btnFixmeetSave2{
 	width: 130px;
     height: 50px;
-    background: #A864D0;
+    background: #5c186b;
     color: white;
     font-size: 18px;
     border-radius: 7px;
@@ -630,10 +630,13 @@ hr {
 }
 
 .btnUploadFile{
-	margin-left: -184px;
-    width: 70px;
-    height: 35px;
+	margin-left: -194px;
+    width: 80px;
+    height: 40px;
     margin-top: 270px;
+    border-radius: 5px;
+    background-color: #5c186b;
+    color: white;
 }
 
 .settingMem-Img{
@@ -684,7 +687,8 @@ hr {
     width: 70px;
     border-radius: 5px;
     border: 1px solid gray;
-    background-color: white;
+    background-color: #5c186b;
+    color: white;
 }
 
 .btnMakeRoom{
@@ -694,7 +698,8 @@ hr {
     border: 1px solid gray;
     float: right;
     margin-right: 60px;
-    background-color: white;
+    background-color: #5c186b;
+    color: white;
 }
 
 .make-step1{
@@ -800,10 +805,12 @@ hr {
 
 .txt_room_name{
 	display: inline-block;
-	width: 590px;
+    width: 590px;
     height: 40px;
     border-radius: 5px;
     border: 1px solid gray;
+    padding-left: 15px;
+    font-size: 17px;
 }
 
 .txt_room_totalpp{
@@ -820,6 +827,10 @@ hr {
     border-radius: 5px;
     border: 1px solid gray;
     resize: none;
+    padding-left: 15px;
+    font-size: 18px;
+    padding-top: 2px;
+    line-height: 30px;
 }
 
 .txt_room_location{
@@ -829,6 +840,16 @@ hr {
     height: 40px;
     border-radius: 5px;
     border: 1px solid gray;
+}
+
+.p_room_name_count{
+	position: fixed;
+    right: 125px;
+}
+
+.p_room_content_count{
+	position: fixed;
+    right: 125px;
 }
 
 .p_room_name{
@@ -883,6 +904,15 @@ hr {
     font-weight: 500;
 }
 
+.pagingArea{
+	margin-bottom: 50px;
+    margin-top: 30px;
+}
+
+.pagingArea > button{
+	margin: 2px;
+    border-radius: 3px;
+}
 
 ::-webkit-scrollbar{width: 12px;}
 

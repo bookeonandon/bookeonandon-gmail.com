@@ -307,12 +307,17 @@
 			  <p class="makeRoomtitle">방 설정</p>
 				<p id="header-name2"></p>
 				<hr class="modal-hr">
-				<div class="room_name"><p class="p_room_name">모임 제목  </p><input type="text" class="txt_room_name"></input></div>
+				<div class="room_name">
+				<p class="p_room_name_count">(0 / 최대 30자)</p>
+				<p class="p_room_name">모임 제목  </p><input type="text" class="txt_room_name"></input>
+				</div>
 				<div class="room_location"><p class="p_room_location">약속 위치  </p><input id ="txt_room_location" class="txt_room_location" id="inputAddress2" type="text"
 								onclick="goAddressApi2('0')" placeholder="주소를 검색하시려면 여기를 눌러봐요!"
 								readonly="readonly"></input></div>
 				<div class="room_totalpp"><p class="p_room_totalpp">최대 인원 </p><input type="text" class="txt_room_totalpp"></input></div>
-				<div class="room_content"><p class="p_room_content">모임 설명  </p><textarea class="txt_room_content"></textarea></div>
+				<div class="room_content">
+				<p class="p_room_content_count">(0 / 최대 200자)</p>
+				<p class="p_room_content">모임 설명  </p><textarea class="txt_room_content"></textarea></div>
 				<button class="btn-next2" onclick="makeRoom();">만들기!</button>
 			  </div>
 			</div>
@@ -350,7 +355,7 @@
 								"</td>" +
 								"<td>" +
 								"<p class='leaderSetting-p'>" + list[i].memName + "</p>" +
-								"</td>" +
+								"</td>"+
 								"<td style='width: 50px;'><img class='approveMember' value='"+list[i].memberNo+"/"+list[i].roomNo+"' style='width:30px; height:30px; cursor: pointer;' src='resources/images/meetImage/approve.png'></td>" +
 								"</tr>"
 						}
@@ -1428,12 +1433,52 @@ function goAddressApi2(aaa) {
 		    $('#counter').html("("+content.length+" / 최대 30자)"); //글자수 실시간 카운팅
 
 		    if (content.length > 30){
-		        alert("최대 30자까지 입력 가능합니다.");
+		    	Swal.fire({
+					  position: 'center',
+					  icon: 'warning',
+					  title: '최대 30자까지 입력 가능해요!',
+					  showConfirmButton: false,
+					  timer: 1000 
+					})
 		        $(this).val(content.substring(0, 30));
 		        $('#counter').html("(30 / 최대 30자)");
 		    }
 		});
 		
+		$('.txt_room_name').keyup(function (e){
+		    var content = $(this).val();
+		    $('.p_room_name_count').html("("+content.length+" / 최대 30자)"); //글자수 실시간 카운팅
+
+		    if (content.length > 30){
+		    	Swal.fire({
+					  position: 'center',
+					  icon: 'warning',
+					  title: '최대 20자까지 입력 가능해요!',
+					  showConfirmButton: false,
+					  timer: 1000 
+					})
+		        $(this).val(content.substring(0, 30));
+		        $('.p_room_name_count').html("(30 / 최대 30자)");
+		    }
+		});
+		
+		
+		$('.txt_room_content').keyup(function (e){
+		    var content = $(this).val();
+		    $('.p_room_content_count').html("("+content.length+" / 최대 200자)"); //글자수 실시간 카운팅
+
+		    if (content.length > 200){
+		    	Swal.fire({
+					  position: 'center',
+					  icon: 'warning',
+					  title: '최대 200자까지 입력 가능해요!',
+					  showConfirmButton: false,
+					  timer: 1000 
+					})
+		        $(this).val(content.substring(0, 200));
+		        $('.p_room_content_count').html("(200 / 최대 200자)");
+		    }
+		});
 		</script>
 
 	<!-- 페이징바 영역 -->

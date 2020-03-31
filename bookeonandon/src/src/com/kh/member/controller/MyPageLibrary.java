@@ -18,16 +18,16 @@ import com.kh.member.model.vo.Wishlist;
 import com.kh.payment.model.service.PaymentService;
 
 /**
- * Servlet implementation class MyPageWishlist
+ * Servlet implementation class MyPageLibrary
  */
-@WebServlet("/myPageWishlist.my")
-public class MyPageWishlist extends HttpServlet {
+@WebServlet("/myPageLibrary.my")
+public class MyPageLibrary extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyPageWishlist() {
+    public MyPageLibrary() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -63,11 +63,11 @@ public class MyPageWishlist extends HttpServlet {
  		}
  		PageInfo pi = new PageInfo(listCount, currentPage, startPage, endPage, maxPage, pageLimit, boardLimit);
 		
- 		ArrayList<Wishlist> memberWishlist = new MemberService().memberWishlist(pi, memberNo);
+ 		ArrayList<Wishlist> memberLibrary = new MemberService().memberLibrary(pi, memberNo);
 		
-		request.setAttribute("memberWishlist", memberWishlist);
+		request.setAttribute("memberLibrary", memberLibrary);
  		request.setAttribute("pi", pi);
-		RequestDispatcher view = request.getRequestDispatcher("views/member/myPageWishlist.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("views/member/myPageLibrary.jsp");
 		view.forward(request, response);
 	}
 

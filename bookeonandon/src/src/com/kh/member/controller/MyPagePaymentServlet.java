@@ -16,6 +16,7 @@ import com.kh.member.model.vo.Member;
 import com.kh.member.model.vo.PageInfo;
 import com.kh.payment.model.service.PaymentService;
 import com.kh.payment.model.vo.Payment;
+import com.kh.payment.model.vo.Payments;
 
 /**
  * Servlet implementation class MyPagePaymentServlet
@@ -63,7 +64,7 @@ public class MyPagePaymentServlet extends HttpServlet {
 		}
 		PageInfo pi = new PageInfo(listCount, currentPage, startPage, endPage, maxPage, pageLimit, boardLimit);
 		
-		ArrayList<Payment> list = new MemberService().paymentInfo(pi, memberNo);
+		ArrayList<Payments> list = new MemberService().paymentInfo(pi, memberNo);
 		
 		request.setAttribute("list", list);
 		request.setAttribute("pi", pi);

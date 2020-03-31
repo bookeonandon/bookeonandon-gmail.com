@@ -83,7 +83,6 @@ public class Payment {
 
 	public Payment(int subPayNo, Date subPayDate, String bName, int payPrice, String payType) {
 		super();
-		
 		this.subPayNo = subPayNo;
 		this.subPayDate = subPayDate;
 		this.bName = bName;

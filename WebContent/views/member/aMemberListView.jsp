@@ -72,16 +72,15 @@
                                 <% }else{ %>
                                     <% for (Member m :  list){ %>
                                     <tr>
-                                        <td>
-                                        <input type="checkbox" class="chk" name="chk" value="<%=m.getMemberId()%>">
-                                        <input type ="hidden" value="<%=m.getMemberNo()%>"></td>
+                                        <td class="nonechk">
+                                        <input type="checkbox" class="chk nonechk" name="chk" value="<%=m.getMemberId()%>"><input type ="hidden" value="<%=m.getMemberNo()%>"></td>
                                         <td width="10%"><%=m.getMemberId()%></td>
                                         <td><%=m.getMemberName()%></td>
                                         <td><%=m.getEmail()%></td>
                                         <td><%=m.getPhone()%></td>
                                         <td><%=m.getJoinDate()%></td>
                                         <td><%=m.getDeleteDate()%></td>
-                                        <td class="report" data-toggle="modal" id="test" data-target=".bd-example-modal-lg" data-no="<%=m.getMemberNo()%>"><%=m.getReportTime()%></td>
+                                        <td class="report nonechk" data-toggle="modal" id="test" data-target=".bd-example-modal-lg" data-no="<%=m.getMemberNo()%>"><%=m.getReportTime()%></td>
                                         <td>
                                         <% if(m.getSbNo() != 0){ %>
                                         Y

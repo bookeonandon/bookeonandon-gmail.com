@@ -35,24 +35,25 @@
 
                 <!-- 컨텐츠 헤더 -->
                 <div class="form-validation">
-                    <form class="content-form" action="#" method="post">
+                    <form class="content-form" action="<%=contextPath%>/update.ame" method="post">
                 
                 <span class="content-header"> 회원 상세페이지 </span>
                 <hr>
 
                 <!-- 테이블 시작 -->
                 <div class="product-block">
+                	<input type="hidden" value="<%=m.getMemberNo()%>" name="uNo"> 
                     <label for="userId">회원아이디</label>
                     <input type="text" class="form-control col-md-2" id="userid" name="userid" value="<%=m.getMemberId() %>" disabled>
                 </div>
                 <div class="product-block">
                     <div class="product-inline">
                         <label for="username">회원명</label>
-                        <input type="text" class="form-control col-md-8" id="username" name="username" value="<%=m.getMemberName() %>">
+                        <input type="text" class="form-control col-md-8" id="username" name="uname" value="<%=m.getMemberName() %>">
                     </div>
                     <div class="product-inline">
                         <label for="nickname">닉네임</label>
-                        <input type="text" class="form-control col-md-8" id="nickname" name="nickname" value="<%=m.getNickname() %>">
+                        <input type="text" class="form-control col-md-8" id="nickname" name="nname" value="<%=m.getNickname() %>">
                     </div>
                 </div>
                 <div class="product-block">
@@ -62,7 +63,7 @@
                     </div>
                     <div class="product-inline">
                         <label for="birthday">생년월일</label>
-                        <input type="date" class="form-control col-md-8" id="birthday" name="birthday" value="<%=m.getBirth() %>">
+                        <input type="date" class="form-control col-md-8" id="birthday" name="birth" value="<%=m.getBirth() %>">
                     </div>
                 </div>
                 <div class="product-block">

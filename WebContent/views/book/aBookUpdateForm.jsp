@@ -30,7 +30,7 @@
 
                 <!-- 컨텐츠 헤더 -->
                 <div class="form-validation">
-                    <form class="content-form" action="<%=contextPath %>/update.abk" enctype="multipart/form-data" method="post">
+                    <form class="content-form" action="<%=contextPath %>/update.ame" enctype="multipart/form-data" method="post">
                 	<input type="hidden" name="bNo" value="<%=b.getBookNo()%>">
                 <span class="content-header"> 상품등록 </span>
                 <hr>

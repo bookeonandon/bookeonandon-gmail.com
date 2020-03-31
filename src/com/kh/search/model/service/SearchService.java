@@ -166,5 +166,17 @@ public class SearchService {
 		return list;
 	}
 	
+	public ArrayList<Search> best(){
+		Connection conn = getConnection();
+		ArrayList<Search> list = new SearchDao().best(conn);
+		close(conn);
+		return list;
+	}
+	public ArrayList<Search> newest(){
+		Connection conn = getConnection();
+		ArrayList<Search> list = new SearchDao().newest(conn);
+		close(conn);
+		return list;
+	}
 	
 }

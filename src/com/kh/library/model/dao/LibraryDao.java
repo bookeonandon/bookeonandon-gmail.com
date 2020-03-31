@@ -18,7 +18,7 @@ public class LibraryDao {
 	
 	public LibraryDao() {
 		
-		String fileName = SearchDao.class.getResource("/sql/review/review-query.properties").getPath();
+		String fileName = SearchDao.class.getResource("/sql/library/library-query.properties").getPath();
 		try {
 			prop.load(new FileReader(fileName));
 		} catch (IOException e) {
@@ -76,6 +76,52 @@ public class LibraryDao {
 			close(pstmt);
 		}
 		return result;
+	}
+	
+	public int insertWishList(Connection conn, int bookNo, int memberNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertWishList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bookNo);
+			pstmt.setInt(2, memberNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+		
+		
+	}
+	
+	public int insertLibrary(Connection conn, int bookNo, int memberNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertLibrary");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bookNo);
+			pstmt.setInt(2, memberNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+		
+		
 	}
 	
 }

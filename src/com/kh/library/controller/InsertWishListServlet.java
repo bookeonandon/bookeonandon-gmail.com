@@ -14,16 +14,16 @@ import com.kh.library.model.service.LibraryService;
 import com.kh.member.model.vo.Member;
 
 /**
- * Servlet implementation class InsertLibraryServlet
+ * Servlet implementation class InsertWishListServlet
  */
-@WebServlet("/insertLibrary.lib")
-public class InsertLibraryServlet extends HttpServlet {
+@WebServlet("/insertWishList.lib")
+public class InsertWishListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InsertLibraryServlet() {
+    public InsertWishListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,12 +40,11 @@ public class InsertLibraryServlet extends HttpServlet {
 	    
 		int bookNo = Integer.parseInt(request.getParameter("bookNo"));
 		
-		int result = new LibraryService().insertLibrary(memberNo, bookNo);
+		int result = new LibraryService().insertWishList(memberNo, bookNo);
 		
 		PrintWriter out = response.getWriter();
 		
 		out.print(result);
-		
 		
 	}
 

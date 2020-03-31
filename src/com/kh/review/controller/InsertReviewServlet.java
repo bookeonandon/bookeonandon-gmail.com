@@ -1,6 +1,7 @@
 package com.kh.review.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.kh.member.model.vo.Member;
 import com.kh.review.model.service.ReviewService;
 import com.kh.review.model.vo.Review;
@@ -45,6 +47,11 @@ public class InsertReviewServlet extends HttpServlet {
 		r.setStarRating(starRating);
 		
 		int result = new ReviewService().insertReview(r);
+		
+		response.setContentType("application/json; charset=utf-8");
+		
+		Gson gson = new Gson();
+		gson.toJson(result, response.getWriter());
 		
 	}
 

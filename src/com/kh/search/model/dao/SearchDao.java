@@ -350,4 +350,68 @@ public class SearchDao {
 		}
 		return list;
 	}
+	
+	public ArrayList<Search> best(Connection conn){
+		
+		ArrayList<Search> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("best");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			while(rset.next()) {
+				list.add(new Search(rset.getInt("book_no"),
+						rset.getString("book_title"),
+						rset.getString("book_moimage"),
+						rset.getString("author"),
+						rset.getDouble("book_rating"),
+						rset.getString("book_intro"),
+						rset.getString("publisher"),
+						rset.getInt("review_count")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+		
+	}
+	public ArrayList<Search> newest(Connection conn){
+		
+		ArrayList<Search> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("newest");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			while(rset.next()) {
+				list.add(new Search(rset.getInt("book_no"),
+						rset.getString("book_title"),
+						rset.getString("book_moimage"),
+						rset.getString("author"),
+						rset.getDouble("book_rating"),
+						rset.getString("book_intro"),
+						rset.getString("publisher"),
+						rset.getInt("review_count")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+		
+	}
+	
 }

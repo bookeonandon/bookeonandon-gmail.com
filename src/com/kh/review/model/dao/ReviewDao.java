@@ -132,7 +132,6 @@ public class ReviewDao {
 				r.setBookNo(rset.getInt("BOOK_NO"));
 				r.setMemberNo(rset.getInt("MEMBER_NO"));
 				r.setReviewStatus(rset.getString("REVIEW_STATUS"));
-				r.setMemberId(rset.getString("SUBSTR(MEMBER_ID,1,LENGTH(MEMBER_ID)-3)||LPAD('*',3,'*')"));
 				
 				list.add(r);
 			}

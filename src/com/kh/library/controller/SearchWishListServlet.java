@@ -40,9 +40,14 @@ public class SearchWishListServlet extends HttpServlet {
 		
 		int result = new LibraryService().searchWishList(bookNo, memberNo);
 		
-		PrintWriter out = response.getWriter();
+		if(result>0) {
+			PrintWriter out = response.getWriter();
+			out.print(result);
+		}else {
+			PrintWriter out = response.getWriter();
+			out.print(result);
+		}
 		
-		out.print(result);
 		
 	}
 

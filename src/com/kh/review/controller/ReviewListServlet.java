@@ -16,7 +16,7 @@ import com.kh.review.model.vo.Review;
 /**
  * Servlet implementation class ReviewListServlet
  */
-@WebServlet("/reviewList.rv")
+@WebServlet("/review.rv")
 public class ReviewListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

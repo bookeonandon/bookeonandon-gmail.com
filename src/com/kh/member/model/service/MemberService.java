@@ -276,7 +276,6 @@ public class MemberService {
 		int result = new MemberDao().updatePwdMember(conn, memberId, memberPwd, newPwd);
 
 		Member updateMem = null;
-		
 		if(result > 0) {
 			commit(conn);
 			updateMem = new MemberDao().selectMember(conn, memberId);
@@ -287,8 +286,7 @@ public class MemberService {
 		
 		return updateMem;
 	}
-	
-	
+
 	public int deleteMember(String memberId) {
 		Connection conn = getConnection();
 		
@@ -304,26 +302,23 @@ public class MemberService {
 		return result;
 	}
 	
-	
 	public ArrayList<Payments> paymentInfo(PageInfo pi, int memberNo) {
-	      Connection conn = getConnection();
-	      
-	      ArrayList<Payments> list = new MemberDao().paymentInfo(conn, pi, memberNo);
-	      close(conn);
-	      return list;
-	   }
-	
-	
+		Connection conn = getConnection();
+		
+		ArrayList<Payments> list = new MemberDao().paymentInfo(conn, pi, memberNo);
+		close(conn);
+		return list;
+	}
+
 	public ArrayList<MyCoupon> accountCoupon(int memberNo) {
-	      Connection conn = getConnection();
-	      
-	      ArrayList<MyCoupon> couponList = new MemberDao().accountCoupon(conn, memberNo);
-	      close(conn);
-	      
-	      return couponList;
-	   }
+		Connection conn = getConnection();
+		
+		ArrayList<MyCoupon> couponList = new MemberDao().accountCoupon(conn, memberNo);
+		close(conn);
+		return couponList;
+	}
 	
-	public ArrayList<Wishlist> memberWishlist(PageInfo pi, int memberNo){
+ 	public ArrayList<Wishlist> memberWishlist(PageInfo pi, int memberNo){
  		Connection conn = getConnection();
  		
  		ArrayList<Wishlist> memberWishlist = new MemberDao().memberWishlist(conn, pi, memberNo);

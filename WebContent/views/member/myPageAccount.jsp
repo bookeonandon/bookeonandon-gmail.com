@@ -3,7 +3,7 @@
 <%@page import="com.kh.myCoupon.model.vo.MyCoupon"%>
 <%@page import="java.util.ArrayList"%>
 <%
-   ArrayList<MyCoupon> couponList = (ArrayList<MyCoupon>)request.getAttribute("couponList");
+	ArrayList<MyCoupon> couponList = (ArrayList<MyCoupon>)request.getAttribute("couponList");
 %>
 
 <!DOCTYPE html>
@@ -23,6 +23,7 @@
       width: 1100px;
       margin: auto;
       padding: 0px;
+      margin-bottom: 40px;
     }
 
     .table-main {
@@ -84,7 +85,7 @@
 </head>
 
 <body>
-   <%@ include file="../common/menubar.jsp"%>
+	<%@ include file="../common/menubar.jsp"%>
   <br>
   <div class="body-content">
     <table class="table-main">
@@ -103,19 +104,9 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td>DFD</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                  <tr>
-                    <td>ㄷ</td>
-                    <td>@twitter</td>
-                    <td>what</td>
+                    <td>200506</td>
+                    <td>자바공부방</td>
+                    <td>호러</td>
                   </tr>
                 </tbody>
                 
@@ -139,11 +130,11 @@
                 </thead>
                 <tbody>
                   <% if(couponList.isEmpty() || couponList == null){ %>
-           <tr>
-              <td colspan="4" align="center">조회된 쿠폰이 없습니다.</td>
-           </tr>
-           <% }else{ %>
-              <% for(MyCoupon c : couponList){ %>
+        	<tr>
+        		<td colspan="4" align="center">조회된 쿠폰이 없습니다.</td>
+        	</tr>
+        	<% }else{ %>
+        		<% for(MyCoupon c : couponList){ %>
             <tr>
                 <td><%= c.getcName() %></td>
                 <td><%= c.getcStart() %></td>
@@ -176,19 +167,9 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td>DFD</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                  <tr>
-                    <td>ㄷ</td>
-                    <td>@twitter</td>
-                    <td>what</td>
+                    <td>자바의정석</td>
+                    <td>모니터받침^^</td>
+                    <td>2020/02/02</td>
                   </tr>
                 </tbody>
               </table>
@@ -203,26 +184,16 @@
               <table class="table-sub">
                 <thead>
                   <tr>
-                    <th>First</th>
-                    <th>Last</th>
-                    <th>Handle</th>
+                    <th>문의번호</th>
+                    <th>문의제목</th>
+                    <th>문의일</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>DFD</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                  <tr>
-                    <td>ㄷ</td>
-                    <td>@twitter</td>
-                    <td>what</td>
+                    <td>001213</td>
+                    <td>환불되나요?</td>
+                    <td>2020/01/11</td>
                   </tr>
                 </tbody>
               </table>
@@ -232,6 +203,8 @@
       </tr>
     </table>
   </div>
+<%@ include file="../common/footer.jsp" %>
 </body>
+
 
 </html>

@@ -497,67 +497,61 @@ public class MemberDao {
 	}
 
 	public ArrayList<Payments> paymentInfo(Connection conn, PageInfo pi, int memberNo) {
-	      ArrayList<Payments> list = new ArrayList<>();
-	      PreparedStatement pstmt = null;
-	      ResultSet rset = null;
-	      String sql = prop.getProperty("selectPaymentList");
-	      try {
-	         pstmt = conn.prepareStatement(sql);
-	         int startRow = (pi.getCurrentPage() -1) * pi.getBoardLimit() + 1;
-	         int endRow = startRow + pi.getBoardLimit() - 1;
-	         pstmt.setInt(1, memberNo);
-	         pstmt.setInt(2,  startRow);
-	         pstmt.setInt(3, endRow);
-	         rset = pstmt.executeQuery();
-	         while(rset.next()) {
-	            list.add(new Payments(rset.getInt("ROWNUM"),
-	                           rset.getInt("book_payno"),
-	                           rset.getString("book_title"),
-	                           rset.getDate("book_paydate"),
-	                           rset.getInt("book_payprice"),
-	                           rset.getString("book_paytype"),
-	                           rset.getInt("member_no"),
-	                           rset.getInt("book_no")));
-	         }
-	      } catch (SQLException e) {
-	         e.printStackTrace();
-	      }finally {
-	         close(rset);
-	         close(pstmt);
-	      }
-	      return list;
-	   }
-	 
-	      
+		ArrayList<Payments> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectPaymentList");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			int startRow = (pi.getCurrentPage() -1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() - 1;
+			pstmt.setInt(1, memberNo);
+			pstmt.setInt(2,  startRow);
+			pstmt.setInt(3, endRow);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				list.add(new Payments(rset.getInt("ROWNUM"),
+									rset.getInt("book_payno"),
+									rset.getString("book_title"),
+									rset.getDate("book_paydate"),
+								   rset.getInt("book_payprice"),
+								   rset.getString("book_paytype"),
+								   rset.getInt("member_no"),
+								   rset.getInt("book_no")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		} // 여기 syso 지움
+		return list;
+	}
+
 	public ArrayList<MyCoupon> accountCoupon(Connection conn, int memberNo) {
-	      ArrayList<MyCoupon> couponList = new ArrayList<>();
-	      PreparedStatement pstmt = null;
-	      ResultSet rset = null;
-	      String sql = prop.getProperty("selectMemberCoupon");
-	      
-	      System.out.println(sql);
-	      
-	      try {
-	         pstmt = conn.prepareStatement(sql);
-	         pstmt.setInt(1, memberNo);
-	         rset = pstmt.executeQuery();
-	         
-	         while(rset.next()) {
-	            couponList.add(new MyCoupon(rset.getString("coupon_name"),
-	                           rset.getDate("coupon_from"),
-	                           rset.getDate("coupon_until"),
-	                           rset.getInt("coupon_range")));
-	         }
-	      } catch (SQLException e) {
-	         e.printStackTrace();
-	      }finally {
-	         close(rset);
-	         close(pstmt);
-	      }
-	      return couponList;
-	   }
-	      
-	
+		ArrayList<MyCoupon> couponList = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectMemberCoupon");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNo);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				couponList.add(new MyCoupon(rset.getString("coupon_name"),
+									rset.getDate("coupon_from"),
+									rset.getDate("coupon_until"),
+									rset.getInt("coupon_range")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return couponList;
+	}
+
 	public ArrayList<Wishlist> memberWishlist(Connection conn, PageInfo pi, int memberNo) {
 		ArrayList<Wishlist> memberWishlist = new ArrayList<>();
 		PreparedStatement pstmt = null;

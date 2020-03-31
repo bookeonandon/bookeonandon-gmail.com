@@ -68,6 +68,7 @@ button {
 	border-top-right-radius: 5px;
 	margin-left: 5px;
 	margin-right: 5px;
+	margin-bottom: 50px;
 }
 
 #confirm-password {
@@ -107,6 +108,9 @@ button {
 		<button onclick="updatePwd();">비밀번호 변경</button>
 		<button onclick="deleteMember();">회원탈퇴</button>
 	</div>
+	
+	<%@ include file="../common/footer.jsp" %>
+	
 	<script>
 		function deleteMember() {
 			location.href = "<%=request.getContextPath()%>/myPageDelete.my";

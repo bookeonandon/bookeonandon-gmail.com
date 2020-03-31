@@ -48,10 +48,10 @@
             <script>
             	
             	$(function(){
-            		var novel = $("#category").val();
+            		
             		$.ajax({
             			url:"categorySearch.sc",
-            			data:{category:novel},
+            			
             			type:"get",
             			success:function(list){
 
@@ -65,7 +65,9 @@
             	            '</div>';
             				}
             				$("#bookListArea").html(value);
+
             			}
+
             			
             		});
             		           		
@@ -264,6 +266,8 @@
         <div class="bookListArea">
 
         </div>
+        
+        
     </div>
 
     

@@ -79,8 +79,32 @@
 		<div>
 			<button id="menuBtn">인기도서</button>
 		</div>
-		
-	</div>
+		        <div class="menu1">
+            <div class="thumbnail"><img src="<%=request.getContextPath()%>/resources/images/mainPage/best1.jpg" width="100%" height="100%"></div>
+            <div class="review-number"></div>
+            <div class="title"><a href="">언어의 온도</a></div>
+        </div>
+        <div class="menu1">
+            <div class="thumbnail"><img src="<%=request.getContextPath()%>/resources/images/mainPage/best2.jpg" width="100%" height="100%"></div>
+            <div class="review-number"></div>
+            <div class="title"><a href="">죽고싶지만떡볶이는 먹고싶어</a></div>
+        </div>
+        <div class="menu1">
+            <div class="thumbnail"><img src="<%=request.getContextPath()%>/resources/images/mainPage/best3.jpg" width="100%" height="100%"></div>
+            <div class="review-number"></div>
+            <div class="title"><a href="">나쁜국어 독해기술</a></div>
+        </div>
+        <div class="menu1">
+            <div class="thumbnail"><img src="<%=request.getContextPath()%>/resources/images/mainPage/best4.jpg" width="100%" height="100%"></div>
+            <div class="review-number"></div>
+            <div class="title"><a href="">누가 내 치즈를 옮겼을까</a></div>
+        </div>
+        <div class="menu1">
+            <div class="thumbnail"><img src="<%=request.getContextPath()%>/resources/images/mainPage/best5.jfif" width="100%" height="100%"></div>
+            <div class="review-number"></div>
+            <div class="title"><a href="">모든순간이 너였다</a></div>
+        </div>
+    </div>
 
 	<hr class="line">
 
@@ -88,12 +112,35 @@
 		<div>
 			<button id="menuBtn">최신도서</button>
 		</div>
-
-	</div>
+		        <div class="menu1">
+            <div class="thumbnail"><img src="<%=request.getContextPath()%>/resources/images/mainPage/best1.jpg" width="100%" height="100%"></div>
+            <div class="review-number"></div>
+            <div class="title"><a href="">언어의 온도</a></div>
+        </div>
+        <div class="menu1">
+            <div class="thumbnail"><img src="<%=request.getContextPath()%>/resources/images/mainPage/best2.jpg" width="100%" height="100%"></div>
+            <div class="review-number"></div>
+            <div class="title"><a href="">죽고싶지만떡볶이는 먹고싶어</a></div>
+        </div>
+        <div class="menu1">
+            <div class="thumbnail"><img src="<%=request.getContextPath()%>/resources/images/mainPage/best3.jpg" width="100%" height="100%"></div>
+            <div class="review-number"></div>
+            <div class="title"><a href="">나쁜국어 독해기술</a></div>
+        </div>
+        <div class="menu1">
+            <div class="thumbnail"><img src="<%=request.getContextPath()%>/resources/images/mainPage/best4.jpg" width="100%" height="100%"></div>
+            <div class="review-number"></div>
+            <div class="title"><a href="">누가 내 치즈를 옮겼을까</a></div>
+        </div>
+        <div class="menu1">
+            <div class="thumbnail"><img src="<%=request.getContextPath()%>/resources/images/mainPage/best5.jfif" width="100%" height="100%"></div>
+            <div class="review-number"></div>
+            <div class="title"><a href="">모든순간이 너였다</a></div>
+        </div>
+    </div>
 
 	<hr class="line">
 
-	<div id="wrap"></div>
 
 
 </body>

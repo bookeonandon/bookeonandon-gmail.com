@@ -53,7 +53,7 @@ public class LoginServlet extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("loginUser", loginUser);
 			
-				request.getRequestDispatcher("/views/common/menubar.jsp").forward(request, response);
+				response.sendRedirect(request.getContextPath());
 				
 			}else {
 				

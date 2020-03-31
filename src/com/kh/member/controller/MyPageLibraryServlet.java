@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import com.kh.member.model.service.MemberService;
 import com.kh.member.model.vo.Member;
 import com.kh.member.model.vo.PageInfo;
+import com.kh.member.model.vo.Wishlist;
 import com.kh.payment.model.service.PaymentService;
 
 /**
@@ -35,20 +36,7 @@ public class MyPageLibraryServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		private static final long serialVersionUID = 1L;
 
-	    /**
-	     * @see HttpServlet#HttpServlet()
-	     */
-	    public MyPageLibrary() {
-	        super();
-	        // TODO Auto-generated constructor stub
-	    }
-
-		/**
-		 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-		 */
-		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			HttpSession session = request.getSession();
 			Member loginUser = (Member)session.getAttribute("loginUser");
 			int memberNo = loginUser.getMemberNo();

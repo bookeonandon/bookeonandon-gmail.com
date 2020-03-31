@@ -1481,7 +1481,7 @@ function goAddressApi2(aaa) {
 		});
 		</script>
 
-	<!-- 페이징바 영역 -->
+	<!-- 페이징바 영역 ㅇㅇㅇㅇㅇㅇ-->
 		<div class="pagingArea" align="center">
 			<!-- 맨 처음으로 (<<) -->
 			<button onclick="location.href='<%=contextPath%>/meetMain.mt';"> &lt;&lt; </button>		

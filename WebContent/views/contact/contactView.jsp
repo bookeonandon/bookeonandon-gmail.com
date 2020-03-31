@@ -196,7 +196,7 @@
                 
 					
                         <div class="tab-content">
-                            <div id="question" class="tab-pane active">
+                            <div id="question" class="tab-pane">
                                 
                                 <div class="col-md-12">
                                     <form method="post">
@@ -244,7 +244,7 @@
                                 </div>
                                 
                             </div>
-                            <div id="questionlist" class="tab-pane">
+                            <div id="questionlist" class="tab-pane active">
                                 <div class="col-md-12">
                                     <div class="table-responsive">
                                         <table class="table header-border table-hover text-center">
@@ -289,6 +289,7 @@
         
         </form>
 
+	<%@ include file="../common/footer.jsp" %>
 
  		
     

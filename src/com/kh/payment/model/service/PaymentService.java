@@ -198,6 +198,32 @@ public class PaymentService {
 		return result;
 		
 	}
+	
+	/**
+	 * 10. 최다검색어
+	 * @return		조회된 검색어
+	 */
+	
+	public String manySearch() {
+		
+		Connection conn = getConnection();
+		
+		String result = new PaymentDao().manySearch(conn);
+		
+		close(conn);
+		
+		return result;
+		
+	}
+
+	
+	// 효우
+	public int getListCount(int memberNo) {
+		Connection conn = getConnection();
+		int listCount = new PaymentDao().getListCount(conn, memberNo);
+		close(conn);
+		return listCount;
+	}
 
 
 }

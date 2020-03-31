@@ -38,11 +38,8 @@ public class BookPaymentServlet extends HttpServlet {
 		
 		Book b = new BookService().paySelectDetail(bNo);
 		
-		MyCoupon mc = new MyCouponService().payDetailCoupon(uNo, b);
-		
-		if(b != null && mc != null) {
+		if(b != null) {
 			request.setAttribute("b", b);
-			request.setAttribute("mc", mc);
 			request.getRequestDispatcher("/views/payment/bookPayment.jsp").forward(request, response);
 		}else {
 			request.setAttribute("msg", "해당 구독권 조회 실패");

@@ -98,5 +98,35 @@ public class MyCouponDao {
 		return list;
 		
 	}
+	
+	
+	public ArrayList<MyCoupon> adminSelectMyCoupon(Connection conn, String nId){
+		
+		ArrayList<MyCoupon> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("adminSelectMyCoupon");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, nId);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()){
+				list.add(new MyCoupon(rset.getString("member_id"),
+									  rset.getString("coupon_name"),
+									  rset.getDate("COUPON_UNTIL")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
 
 }

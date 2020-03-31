@@ -20,6 +20,7 @@ public class Payment {
 	private String userNick;		// 구매자 닉네임
 	
 	private String bName;			// 구매한 도서명
+
 	
 	public Payment() {
 		
@@ -33,7 +34,7 @@ public class Payment {
 	}
 	
 	
-	// 가장 많이 구매한 구독권 조회용 + 도서 조회용
+	// 가장 많이 구매한 구독권 조회용 + 도서 조회용 + 검색어 조회용 search
 	public Payment(String sbName) {
 		super();
 		this.sbName = sbName;

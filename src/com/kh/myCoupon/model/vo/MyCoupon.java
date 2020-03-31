@@ -14,11 +14,38 @@ public class MyCoupon {
 	
 	private int cNo;			// 쿠폰번호
 	
+	private int cRange;		// 쿠폰 범위
+	
 	
 	public MyCoupon() {
 		
 	}
 	
+	
+
+	
+
+
+	public MyCoupon(String cName, Date cStart, Date cLast, int cRange) {
+		super();
+		this.cName = cName;
+		this.cStart = cStart;
+		this.cLast = cLast;
+		this.cRange = cRange;
+	}
+
+
+
+
+
+
+	public MyCoupon(String userId, String cName, Date cLast) {
+		super();
+		this.userId = userId;
+		this.cName = cName;
+		this.cLast = cLast;
+	}
+
 
 
 	public MyCoupon(String userId, String cName, Date cStart, Date cLast, int cNo) {
@@ -41,6 +68,26 @@ public class MyCoupon {
 		this.cUDate = cUDate;
 		this.cStatus = cStatus;
 	}
+
+	
+		
+	public int getcRange() {
+		return cRange;
+	}
+
+
+
+
+
+
+	public void setcRange(int cRange) {
+		this.cRange = cRange;
+	}
+
+
+
+
+
 
 	public String getUserId() {
 		return userId;

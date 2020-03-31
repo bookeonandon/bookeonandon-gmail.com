@@ -24,7 +24,7 @@
         ***********************************-->
         <div class="nav-header">
             <div class="brand-logo">
-                <a href="index.html">
+                <a href="<%=request.getContextPath()%>/payRe.apm">
                     <b class="logo-abbr"><img src="<%=request.getContextPath()%>/resources/admin/images/logo.png" alt=""> </b>
                     <span class="brand-title">
                         <img src="<%=request.getContextPath()%>/resources/admin/images/adminLogo.png" alt="">
@@ -93,7 +93,6 @@
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="#" onclick="goPay();">정산내역</a></li>
-                            <li><a href="#" onclick="goReport();">통계보고서</a></li>
                         </ul>
                     </li>
                     <li>

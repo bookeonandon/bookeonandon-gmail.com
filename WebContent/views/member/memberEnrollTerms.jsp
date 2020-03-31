@@ -38,6 +38,7 @@
 
        <div class="content-body joinbody">
          <div class="container-fluid">
+         	<form id="enrollBtn" action ="enrollForm.me" method="post">
              <div class="row">
                  <div class="col">
                      <div class="card cardsize">
@@ -294,17 +295,53 @@
                      <input type="checkbox" class="css-control-input" id="checkall" name="checkall" value="all">&nbsp&nbsp전체동의하기</label>
              </div>
 			
+	
              <div class="joinbtn">
                  <button type="button" onclick="history.back();" class="btn btn-light">이전</button>
-                 <button type="submit" onclick="enroll();" id="nextBtn" class="btn btn-primary">다음</button>
+                 <button type="button" onclick="return enroll();" id="nextBtn" class="btn btn-primary">다음</button>
              </div>
+             </form>
          </div>
       
         </div>
         <script>
-		  function enroll(){
-		   	location.href="<%=request.getContextPath()%>/enrollForm.me";
-		   }
+		
+        $(function(){     
+            $("#nextBtn").click(function(){    
+               if(!$('#join-terms').is(':checked')){
+                  alert("필수 약관에 동의 하셔야 다음 단계로 진행 가능합니다.");
+                    e.preventDefault();
+               }else if(!$('#join-terms2').is(':checked')){
+                  alert("필수 약관에 동의 하셔야 다음 단계로 진행 가능합니다.");
+                    e.preventDefault();   
+               }else if(!$('#join-terms3').is(':checked')){
+                  alert("필수 약관에 동의 하셔야 다음 단계로 진행 가능합니다.");
+                    e.preventDefault();   
+               }else{
+                  $("#enrollBtn").submit();
+               }
+               
+               
+               
+            //  if($("#input:checkbox[id='join-terms1']").is(":checked") == false){
+             //        alert("필수 약관에 동의 하셔야 다음 단계로 진행 가능합니다.");
+             //       return;
+                     
+             //    }else if($("#input:checkbox[id='join-terms2']").is(":checked") == false){
+             //       alert("필수 약관에 동의 하셔야 다음 단계로 진행 가능합니다.");
+              //       return;
+              //   }else if($("#input:checkbox[id='join-terms3']").is(":checked") == false){
+             //        alert("필수 약관에 동의 하셔야 다음 단계로 진행 가능합니다.");
+             //        return;
+              //   }else{
+                   
+             //       $("#enrollBtn").submit();
+            //    }
+                });    
+           });
+
+
+
 		        
         function allCheckFunc( obj ) {
     		$("[name=join-terms]").prop("checked", $(obj).prop("checked") );
@@ -343,25 +380,9 @@
 	    		});
 	    	});
 	    });
-/*
-	    $(document).ready(function(){
-                if($("#join-terms1").is(":checked") ==false){
-                    alert("필수 약관에 동의 하지 않으셨습니다. 이용약관에 동의해주세요.");
-                    $("#join-terms1").focus();
-                   
-                }else if($("#join-terms2").is(":checked") ==false){
-                    alert("필수 약관에 동의 하지 않으셨습니다. 이용약관에 동의해주세요.");
-                    $("#join-terms2").focus();
-                   
-                }else if($("#join-terms3").is(":checked") ==false){
-                    alert("필수 약관에 동의 하지 않으셨습니다. 이용약관에 동의해주세요.");
-                    
-                }else{
-					return true;
-                }
-         });    
-     
-*/
+
+	      
+
         </script>
         
 </body>

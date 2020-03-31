@@ -72,16 +72,15 @@
                                 <% }else{ %>
                                     <% for (Member m :  list){ %>
                                     <tr>
-                                        <td>
-                                        <input type="checkbox" class="chk" name="chk" value="<%=m.getMemberId()%>">
-                                        <input type ="hidden" value="<%=m.getMemberNo()%>"></td>
+                                        <td class="nonechk">
+                                        <input type="checkbox" class="chk nonechk" name="chk" value="<%=m.getMemberId()%>"><input type ="hidden" value="<%=m.getMemberNo()%>"></td>
                                         <td width="10%"><%=m.getMemberId()%></td>
                                         <td><%=m.getMemberName()%></td>
                                         <td><%=m.getEmail()%></td>
                                         <td><%=m.getPhone()%></td>
                                         <td><%=m.getJoinDate()%></td>
                                         <td><%=m.getDeleteDate()%></td>
-                                        <td class="report" data-toggle="modal" id="test" data-target=".bd-example-modal-lg" data-no="<%=m.getMemberNo()%>"><%=m.getReportTime()%></td>
+                                        <td class="report nonechk" data-toggle="modal" id="test" data-target=".bd-example-modal-lg" data-no="<%=m.getMemberNo()%>"><%=m.getReportTime()%></td>
                                         <td>
                                         <% if(m.getSbNo() != 0){ %>
                                         Y
@@ -107,40 +106,7 @@
             </form>
             
             <script>
-            $(function(){
-            	userNo = "";
-            	
-	        	$("#subManage").click(function(){
-	        		
-	        		// 2명 이상 체크 시 모달창 열리지 않음
-	        	    if($("input:checkbox[name=chk]:checked").length > 1){
-	        	        alert("해당 서비스는 한 명만 발급 및 연장이 가능합니다.");
-	        	        
-	        		}else{
-		        		 // 모달창 오픈
-		        	     $(this).attr({
-		        	        'data-toggle' : 'modal',
-		        	        'data-target' : '#basicModal2'
-		        	     });
-		        	     
-	        		     $("input:checkbox[name=chk]:checked").each(function(){
-	        		    	 userNo = $(this).next().val();
-	        		     })
-		        		     
-	        		     $.ajax({
-	        		    	 url:"detail.msb",
-	        		    	 data:{userNo:userNo},
-	        		    	 success:function(ms){
-	        		    		 
-	        		    		 $("#sel55").append("<option value='" + ms.sbNo +"'>" + ms.sbName + "</option>");
-	        		    	 }
-	        		     })
-		        	     
-		        	     
-		        	}
-		
-		        })
-            })
+            
 	            
             </script>
             
@@ -230,9 +196,6 @@
                 </div>
             </div>
             
-
-			
-			
             <!-- 구독권 모달 -->
 
             <div class="modal fade" id="basicModal2">
@@ -263,23 +226,7 @@
                     </div>
                 </div>
             </div>
-            
-            <script>
-            
-            	function subSubmit(){
-					console.log(userNo);
-            		subNewNo = $(".sub2").find("option:selected").val();
-           			
-           			$.ajax({
-           				url:"insert.ams",
-           				data:{userNo:userNo, subNewNo:subNewNo},
-           				success:function(){
-           					location.reload();
-           				}
-           			})
-            	}
-            </script>
-
+           
 
             <!-- 쿠폰 모달 -->
 
@@ -310,6 +257,7 @@
                     </div>
                 </div>
             </div>
+            
             <!-- #/ container -->
         </div>
 	

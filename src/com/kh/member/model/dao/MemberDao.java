@@ -14,6 +14,9 @@ import java.util.Properties;
 
 import com.kh.member.model.vo.Administrator;
 import com.kh.member.model.vo.Member;
+import com.kh.member.model.vo.PageInfo;
+import com.kh.myCoupon.model.vo.MyCoupon;
+import com.kh.payment.model.vo.Payments;
 public class MemberDao {
 
 	
@@ -104,7 +107,6 @@ public class MemberDao {
 			close(pstmt);
 		}
 		
-		System.out.println(result);
 		
 		return result;
 		
@@ -115,7 +117,7 @@ public class MemberDao {
 		  Member mem = null;
 	      PreparedStatement pstmt = null;
 	      ResultSet rset = null;
-	      String sql = prop.getProperty("selectMember");
+	      String sql = prop.getProperty("adminSelectMember");
 	      try {
 	         pstmt = conn.prepareStatement(sql);
 	         pstmt.setInt(1, uNo);
@@ -145,9 +147,40 @@ public class MemberDao {
 	      }
 	      
 	      return mem;
+	}
+	
+	public int adminUpdateMember(Connection conn, Member m, int uNo) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("adminUpdateMember");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, m.getEmail());
+			pstmt.setString(2, m.getMemberName());
+			pstmt.setDate(3, m.getBirth());
+			pstmt.setString(4, m.getPhone());
+			pstmt.setString(5,  m.getNickname());
+			pstmt.setInt(6, uNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		System.out.println(result);
 
+		return result;
 		
 	}
+	
 	
 
 	public int insertMember(Connection conn, Member m , String birth) {
@@ -356,12 +389,14 @@ public class MemberDao {
 	
 	public Member selectMember(Connection conn, String memberId) {
 
-		Member sem = null;
-		
+
+		Member mem = null;
+
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
 		String sql = prop.getProperty("selectMember");
+
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -370,7 +405,7 @@ public class MemberDao {
 			rset = pstmt.executeQuery();
 			if(rset.next()) {
 				
-				sem = new Member(rset.getInt("member_no"),
+				mem = new Member(rset.getInt("member_no"),
 							   rset.getString("member_id"),
 							   rset.getString("member_pwd"),
 							   rset.getString("email"),
@@ -395,14 +430,131 @@ public class MemberDao {
 			close(pstmt);
 		}
 		
-		
-		return sem;
+		return mem;
+
 	}
 
 	    
-	         
+
+	public int updateMember(Connection conn, Member m) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("myUpdateMember");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, m.getPhone());
+			pstmt.setString(2, m.getNickname());
+			pstmt.setString(3, m.getEmail());
+			pstmt.setString(4, m.getMemberId());
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int updatePwdMember(Connection conn, String memberId, String memberPwd, String newPwd) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("myUpdatePwdMember");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, newPwd);
+			pstmt.setString(2, memberId);
+			pstmt.setString(3, memberPwd);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int deleteMember(Connection conn, String memberId) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteMember");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberId);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public ArrayList<Payments> paymentInfo(Connection conn, PageInfo pi, int memberNo) {
+	      ArrayList<Payments> list = new ArrayList<>();
+	      PreparedStatement pstmt = null;
+	      ResultSet rset = null;
+	      String sql = prop.getProperty("selectPaymentList");
+	      try {
+	         pstmt = conn.prepareStatement(sql);
+	         int startRow = (pi.getCurrentPage() -1) * pi.getBoardLimit() + 1;
+	         int endRow = startRow + pi.getBoardLimit() - 1;
+	         pstmt.setInt(1, memberNo);
+	         pstmt.setInt(2,  startRow);
+	         pstmt.setInt(3, endRow);
+	         rset = pstmt.executeQuery();
+	         while(rset.next()) {
+	            list.add(new Payments(rset.getInt("ROWNUM"),
+	                           rset.getInt("book_payno"),
+	                           rset.getString("book_title"),
+	                           rset.getDate("book_paydate"),
+	                           rset.getInt("book_payprice"),
+	                           rset.getString("book_paytype"),
+	                           rset.getInt("member_no"),
+	                           rset.getInt("book_no")));
+	         }
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      }finally {
+	         close(rset);
+	         close(pstmt);
+	      }
+	      return list;
+	   }
 	 
 	      
+	public ArrayList<MyCoupon> accountCoupon(Connection conn, int memberNo) {
+	      ArrayList<MyCoupon> couponList = new ArrayList<>();
+	      PreparedStatement pstmt = null;
+	      ResultSet rset = null;
+	      String sql = prop.getProperty("selectMemberCoupon");
+	      
+	      System.out.println(sql);
+	      
+	      try {
+	         pstmt = conn.prepareStatement(sql);
+	         pstmt.setInt(1, memberNo);
+	         rset = pstmt.executeQuery();
+	         
+	         while(rset.next()) {
+	            couponList.add(new MyCoupon(rset.getString("coupon_name"),
+	                           rset.getDate("coupon_from"),
+	                           rset.getDate("coupon_until"),
+	                           rset.getInt("coupon_range")));
+	         }
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      }finally {
+	         close(rset);
+	         close(pstmt);
+	      }
+	      return couponList;
+	   }
 	      
 	
 }

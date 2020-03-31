@@ -12,9 +12,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import com.kh.member.model.vo.PageInfo;
 import com.kh.member.model.vo.Administrator;
 import com.kh.member.model.vo.Member;
+import com.kh.member.model.vo.PageInfo;
+import com.kh.myCoupon.model.vo.MyCoupon;
 import com.kh.payment.model.vo.Payments;
 public class MemberDao {
 
@@ -146,6 +147,38 @@ public class MemberDao {
 	      }
 	      
 	      return mem;
+	}
+	
+	public int adminUpdateMember(Connection conn, Member m, int uNo) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("adminUpdateMember");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, m.getEmail());
+			pstmt.setString(2, m.getMemberName());
+			pstmt.setDate(3, m.getBirth());
+			pstmt.setString(4, m.getPhone());
+			pstmt.setString(5,  m.getNickname());
+			pstmt.setInt(6, uNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		System.out.println(result);
+
+		return result;
+		
 	}
 	
 	
@@ -495,6 +528,33 @@ public class MemberDao {
 	   }
 	 
 	      
+	public ArrayList<MyCoupon> accountCoupon(Connection conn, int memberNo) {
+	      ArrayList<MyCoupon> couponList = new ArrayList<>();
+	      PreparedStatement pstmt = null;
+	      ResultSet rset = null;
+	      String sql = prop.getProperty("selectMemberCoupon");
+	      
+	      System.out.println(sql);
+	      
+	      try {
+	         pstmt = conn.prepareStatement(sql);
+	         pstmt.setInt(1, memberNo);
+	         rset = pstmt.executeQuery();
+	         
+	         while(rset.next()) {
+	            couponList.add(new MyCoupon(rset.getString("coupon_name"),
+	                           rset.getDate("coupon_from"),
+	                           rset.getDate("coupon_until"),
+	                           rset.getInt("coupon_range")));
+	         }
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      }finally {
+	         close(rset);
+	         close(pstmt);
+	      }
+	      return couponList;
+	   }
 	      
 	
 }

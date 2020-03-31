@@ -88,6 +88,60 @@ private Properties prop = new Properties();
 		
 	}
 	
+	public ArrayList<Meet> selectSearchList(Connection conn, PageInfo pi, String search){
+		ArrayList<Meet> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("searchSelectList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			/*
+			 * ex) boardLimit : 10
+			 * currentPage : 1		--> startRow : 1 	endRow : 10
+			 * currentPage : 2		--> startRow : 11	endRow : 20
+			 * currentPage : 3		--> startRow : 21	endRow : 30
+			 * 
+			 * startRow : (currentPage - 1) * boardLimit + 1
+			 * endRow : startRow + boardLimit - 1
+			 */
+			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() - 1;
+			
+			pstmt.setString(1,"%" + search + "%");
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Meet(rset.getInt("ROOM_NO"),
+							  rset.getString("ROOM_TITLE"),
+							  rset.getString("ROOM_CONTENT"),
+							  rset.getInt("ROOM_TOTAL_PP"),
+							  rset.getInt("ROOM_NOW_PP"),
+							  rset.getString("GENRE"),
+							  rset.getInt("BOOK_NO"),
+							  rset.getInt("MEMBER_NO"),
+							  rset.getDate("CREATE_DATE"),
+							  rset.getString("STATUS"),
+							  rset.getString("BOOK_IMG")));
+			}	
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+		
+	}
+	
 public Meet MeetSelect(Connection conn, int roomNo) {
 		
 		Meet meet = null;

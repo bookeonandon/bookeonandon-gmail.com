@@ -47,7 +47,7 @@
 	<div style="clear:both;"></div>
 	<div class ="main-header">
 	<input type="text" class="txtSearchRoom">
-	<button class="btnSearchRoom">검색</button>
+	<button class="btnSearchRoom" onclick="searchClick();">검색</button>
 	<%if(userNo != -1){ %>
 	<button class="btnMakeRoom" data-toggle="modal" data-target="#exampleModal2" onclick="startmakeroom();">방만들기</button>
 	<%} %>
@@ -332,6 +332,15 @@
 		var count=0;
 		var pickCategory ="";
 		var count1=0;
+		
+		
+		function searchClick(){
+			
+			var contextPath = "<%=request.getContextPath()%>";
+			console.log(contextPath+"/searchMeetMain.mt?search="+$(".txtSearchRoom").val());
+			
+			location.href = contextPath+"/searchMeetMain.mt?search="+$(".txtSearchRoom").val();
+		}
 		
 		function leaderSettingtable(){
 			roomNo = roomNo;

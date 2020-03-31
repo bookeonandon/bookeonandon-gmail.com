@@ -47,6 +47,16 @@ public class MeetService {
 
 		return list;
 	}
+	
+	public ArrayList<Meet> selectSearchList(PageInfo pi, String search) {
+		Connection conn = getConnection();
+
+		ArrayList<Meet> list = new MeetDao().selectSearchList(conn, pi, search);
+
+		close(conn);
+
+		return list;
+	}
 
 	public Meet MeetSelect(int roomNo) {
 		Connection conn = getConnection();

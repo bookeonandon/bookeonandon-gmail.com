@@ -1,3 +1,5 @@
+<%@page import="com.kh.search.model.vo.Search"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.kh.member.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -132,8 +134,8 @@
     function logout(){
         location.href="<%=request.getContextPath()%>/logout.me";
      }
+   
     
-
     
     </script>
 </body>

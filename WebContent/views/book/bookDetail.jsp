@@ -5,6 +5,11 @@
 <%
 	Book b = (Book)request.getAttribute("b");
 	int bookNo = Integer.parseInt(request.getParameter("bookNo"));
+	Member loginUser1 = (Member)session.getAttribute("loginUser");
+	int userNo = 0;
+	if(loginUser1 != null){
+		userNo = loginUser1.getMemberNo();
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -224,7 +229,7 @@
             </script>
 
 			<%if(loginUser != null){ %>
-			<form action="<%=contextPath%>/review.rv?bookNo=<%=bookNo %>" method="POST">
+			<form method="POST">
 
 				<div id="review">
 					<div style="margin-left: 30px; font-size: 25px; margin-top: 50px;">리뷰</div>
@@ -254,6 +259,7 @@
 				</div>
 			</form>
 			<%}else{%>
+			
 			<div id="review">
 				<div style="margin-left: 30px; font-size: 25px; margin-top: 50px;">리뷰</div>
 				<select id="example" style="width: 100px;" name="star-score"
@@ -396,84 +402,22 @@
 			</div>
 			<div id="list-area">
 				<ol>
-					<li><a href="" class="category-pop-list">dasd</a></li>
-					<li><a href="" class="category-pop-list"></a></li>
-					<li><a href="" class="category-pop-list"></a></li>
-					<li><a href="" class="category-pop-list"></a></li>
-					<li><a href="" class="category-pop-list"></a></li>
-					<li><a href="" class="category-pop-list"></a></li>
-					<li><a href="" class="category-pop-list"></a></li>
-					<li><a href="" class="category-pop-list"></a></li>
-					<li><a href="" class="category-pop-list"></a></li>
-					<li><a href="" class="category-pop-list"></a></li>
+					<li><a href="" class="category-pop-list">.</a></li>
+					<li><a href="" class="category-pop-list">.</a></li>
+					<li><a href="" class="category-pop-list">.</a></li>
+					<li><a href="" class="category-pop-list">.</a></li>
+					<li><a href="" class="category-pop-list">.</a></li>
+					<li><a href="" class="category-pop-list">.</a></li>
+					<li><a href="" class="category-pop-list">.</a></li>
+					<li><a href="" class="category-pop-list">.</a></li>
+					<li><a href="" class="category-pop-list">.</a></li>
+					<li><a href="" class="category-pop-list">.</a></li>
 				</ol>
 			</div>
 		</div>
 	</div>
 
-	<script>
-    	// 리뷰작성 ajax
-    	$(function(){
-    		selectReviewList();
-    		
-    		window.setInterval(selectReplyList, 10000);
-    		
-    		$("#reviewBtn").click(function(){
-				var starRating = $("#example").val();
-				var content = $("#review-content").val();	// 작성된 리뷰 내용
-				var bookNo = <%=b.getBookNo()%>;
-                $('#example').barrating({ theme: 'fontawesome-stars' , onSelect: function(value, text, event){
-                	var starRating = $("#example>option:selected").val();
-                	}
-                });
-                
-                $.ajax({
-                	url:"reviewInsert.rv",
-                	data:{content:content, bookNo:bookNo, starRating:starRating},
-                	type:"post",
-                	success:function(result){
-                		if(result == 1){
-                			selectReviewList();
-                		}
-                	},
-                	error:function(){
-                		console.log("ajax통신실패");
-                	}
-                });
-				
-    		});
-    	});
-    	// 리뷰리스트 조회 ajax
-    	var bookNo = <%=b.getBookNo()%>;
-    	function selectReviewList(){
-    		$.ajax({
-    			url:"review.rv",
-    			data:{bookNo:bookNo},
-    			type:"get",
-    			success:function(list){
-    				for(var i=0; i<list.length; i++){
-    					var value = "";
-    					value += '<tr>' +
-                        '<td width="80px">' +
-                        '<div style="font-size:14px;">' + <%=loginUser.getMemberId()%> + '</div>' + 
-                        '<div style="font-size:14px;">' + list[i].reviewDate + '</div>' + 
-                        '<div style="font-size:14px;">' + list[i].bookRating + '</div>' +
-                    '</td>' +
-                    '<td width="600px" style="font-size: 13px; white-space:pre-line; padding-right:40px; padding-left:20px">' + list[i].reviewContent + 
-                    '<td width="50px">' + '<button id="review-likeBtn">' + '<img src="<%=request.getContextPath()%>/resources/images/like1.png" alt="" width="100%">' + '</button>' + '</td>' +
-                    '<td style="padding-right:20px">' + list[i].recommend +'</td>' + 
-                    '<td width="50px">' + '<button id="reportBtn">' + '<img src="<%=request.getContextPath()%>/resources/images/report.png" alt="" width="100%">'
-										+ '</button>' + '</td>' + '</tr>';
 
-							}
-							$("#review-list1").html(value);
-						},
-						error : function() {
-							console.log("ajax통신실패");
-						}
-					});
-		}
-	</script>
 
 </body>
 </html>

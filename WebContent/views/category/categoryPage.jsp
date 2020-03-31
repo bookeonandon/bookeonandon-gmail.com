@@ -48,12 +48,13 @@
             <script>
             	
             	$(function(){
-            		var novel = $("#category").attr("value");
+            		var novel = $("#category").val();
             		$.ajax({
             			url:"categorySearch.sc",
             			data:{category:novel},
             			type:"get",
             			success:function(list){
+
             				var value="";
             				for(var i=0; i<list.length; i++){
             					value += '<div class="bookArea">' +
@@ -68,7 +69,7 @@
             			
             		});
             		           		
-        			$(".subCategoryBtn").on("click",function(){
+        			$(".subCategoryBtn>:button").on("click",function(){
         				var category = $(".category").val();
         				var subCategory = $(this).val();
         			
@@ -77,6 +78,7 @@
                 			data:{category:category, subCategory:subCategory},
                 			type:"get",
                 			success:function(list){
+                				console.log(subCategory);
                 				var value="";
                 				for(var i=0; i<list.length; i++){
                 					value += '<div class="bookArea">' +

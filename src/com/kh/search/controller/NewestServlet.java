@@ -3,6 +3,7 @@ package com.kh.search.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,12 +34,14 @@ public class NewestServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		ArrayList<Search> list = new SearchService().best();
+		ArrayList<Search> list2 = new SearchService().best();
 		
-		response.setContentType("application/json; charset=utf-8");
-		
-		Gson gson = new Gson();
-		gson.toJson(list, response.getWriter());
+		if(list2 != null) {
+			request.setAttribute("list2", list2);
+			
+			RequestDispatcher view = request.getRequestDispatcher("views/index.jsp");
+			view.forward(request, response);
+		}
 		
 	}
 

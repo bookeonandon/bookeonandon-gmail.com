@@ -1,17 +1,21 @@
+<%@page import="com.kh.search.model.vo.Search"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	ArrayList<Search> list1 = (ArrayList<Search>)request.getAttribute("list1");
+	ArrayList<Search> list2 = (ArrayList<Search>)request.getAttribute("list2");
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="<%=request.getContextPath()%>/resources/js/jquery-3.4.1.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="http://kenwheeler.github.io/slick/slick/slick.css" />
 <link rel="stylesheet" type="text/css"
 	href="http://kenwheeler.github.io/slick/slick/slick-theme.css" />
-<script src="http://code.jquery.com/jquery-3.2.1.slim.min.js"
-	integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
-	crossorigin="anonymous"></script>
 <script type="text/javascript"
 	src="http://kenwheeler.github.io/slick/slick/slick.min.js"></script>
 <link rel="stylesheet"
@@ -28,23 +32,23 @@
 
 	<div class="banner">
 		<div class="banner-1">
-			<a href=""><img src="images/logo.png"></a>
+			<a href=""><img src="<%=request.getContextPath()%>/resources/images/event/event1.png" width="100%"></a>
 		</div>
 		<div class="banner-1">
-			<a href=""><img src="images/logo.png"></a>
+			<a href=""><img src="<%=request.getContextPath()%>/resources/images/event/event2.jpg" width="100%"></a>
 		</div>
 		<div class="banner-1">
-			<a href=""><img src="images/logo.png"></a>
+			<a href=""><img src="<%=request.getContextPath()%>/resources/images/event/event3.jpg" width="100%"></a>
 		</div>
 		<div class="banner-1">
-			<a href=""><img src="images/logo.png"></a>
+			<a href=""><img src="<%=request.getContextPath()%>/resources/images/event/event4.jfif" width="100%"></a>
 		</div>
 		<div class="banner-1">
-			<a href=""><img src="images/logo.png"></a>
+			<a href=""><img src="<%=request.getContextPath()%>/resources/images/event/event5.jpg" width="100%"></a>
 		</div>
 	</div>
 
-	<script type="text/javascript">
+	<script>
         $(document).ready(function(){
             $('.banner').slick({
             infinite: true,
@@ -58,6 +62,7 @@
             pauseOnHover:true,
             });
         });
+        
     </script>
 
 
@@ -74,10 +79,7 @@
 		<div>
 			<button id="menuBtn">인기도서</button>
 		</div>
-		<%for(int i=0; i<10; i++) {%>
-		<div class="menu1"></div>
-		<%} %>
-
+		
 	</div>
 
 	<hr class="line">
@@ -86,61 +88,13 @@
 		<div>
 			<button id="menuBtn">최신도서</button>
 		</div>
-		<%for(int i=0; i<10; i++) {%>
-		<div class="menu2"></div>
-		<%} %>
+
 	</div>
 
 	<hr class="line">
 
 	<div id="wrap"></div>
 
-	<script>
-    	$(function(){
-    		$.ajax({
-    			url:"best.mg",
-    			type:"get",
-    			success:function(list){
-    				var value = ""
-    				for(var i=0; i<list.length; i++){
-    				value += '<div class="menu1">' + 
-    	            '<div class="thumbnail">' + '<img src="<%=request.getContextPath()%>/resources/images/book-thumbnail.jpg" alt="" style="width: 80%; height: 100%;">' + '</div>' +
-    	            '<div class="title">'+ list[i].title + '</div>' +
-    	            '<div class="star-rating">' + list[i].starRating + '</div>' +
-    	            '<div class="review-number">' + list[i].reviewCount + '</div>' +
-    	        	'</div>';
-    				}
-    				$(".menu1").html(value);
-    				
-   				},
-				error:function(){
-					console.log("ajax통신실패");
-				}
-    			
-    		});
-
-    		
-    		$.ajax({
-    			url:"newest.mg",
-    			type:"get",
-    			success:function(list){
-    				var value = ""
-    				for(var i=0; i<list.length; i++){
-    				value += '<div class="menu1">' + 
-    	            '<div class="thumbnail">' + '<img src="<%=request.getContextPath()%>/resources/images/book-thumbnail.jpg" alt="" style="width: 80%; height: 100%;">' + '</div>' +
-    	            '<div class="title">'+ list[i].title + '</div>' +
-    	            '<div class="star-rating">' + list[i].starRating + '</div>' +
-    	            '<div class="review-number">' + list[i].reviewCount + '</div>' +
-    	        	'</div>';
-    				}
-    				$(".menu2").html(value);
-    			},
-				error:function(){
-					console.log("ajax통신실패");
-				}
-    		});
-    	});
-    </script>
 
 </body>
 </html>

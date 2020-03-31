@@ -12,7 +12,6 @@
     <meta charset="UTF-8">
     <title>Document</title>
     <link rel= "stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/1.css"/>
-    <script src="<%=request.getContextPath()%>/resources/js/1.js" rel="javascript" type="text/javascript"></script>
 
 </head>
 <body>

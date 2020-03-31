@@ -71,6 +71,24 @@ public class MemberService {
 		return m;
 		
 	}
+	
+	
+	/**
+	 * 관리자 회원관리 상세보기
+	 * @param nId		전달된 회원 아이디
+	 * @return			조회된 회원 정보
+	 */
+	public Member adminUpdateFormMember(String nId) {
+		
+		Connection conn = getConnection();
+		
+		Member m = new MemberDao().selectMember(conn, nId);
+		
+		close(conn);
+		
+		return m;
+		
+	}
 
 /**
     * 1. 회원가입용 서비스

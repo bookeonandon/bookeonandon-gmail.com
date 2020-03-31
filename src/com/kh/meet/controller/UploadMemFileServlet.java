@@ -43,8 +43,8 @@ public class UploadMemFileServlet extends HttpServlet {
 		int roomNo = 0;
 		String memContent = "";
 		if(ServletFileUpload.isMultipartContent(request)) {
+			System.out.println(1);
 			int maxSize = 1024*1024*10;
-
 			String resources = request.getSession().getServletContext().getRealPath("/resources");
 			String savePath = resources + "\\meetMemImg\\";
 
@@ -53,12 +53,12 @@ public class UploadMemFileServlet extends HttpServlet {
 			Enumeration files=multiRequest.getFileNames();
 			String file1=(String)files.nextElement();
 			
-			
 			 userNo = Integer.parseInt(multiRequest.getParameter("userNo")); 
 			 roomNo = Integer.parseInt(multiRequest.getParameter("roomNo"));
 			 memContent = multiRequest.getParameter("memContent");
 			
 			if(multiRequest.getOriginalFileName(file1) != null) {
+				System.out.println(2);
 			// 첨부파일의 원본명
 			String originName = multiRequest.getOriginalFileName(file1);
 			// 첨부파일의 수정명
@@ -67,6 +67,7 @@ public class UploadMemFileServlet extends HttpServlet {
 			result = new MeetService().uploadMemFile(changeName, roomNo, userNo, memContent);
 			}else{
 			result = new MeetService().uploadMemFile(roomNo, userNo, memContent);
+			System.out.println(3);
 			}
 		}
 		response.setContentType("applocation/json; charset=UTF-8");

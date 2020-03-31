@@ -12,6 +12,7 @@
 	ArrayList<Payment> recentBP = (ArrayList<Payment>)request.getAttribute("rBP");
 	
 	Payment manyGP = (Payment)request.getAttribute("mGP");
+	String manyS = (String)request.getAttribute("ms");
 %>
 
 <!DOCTYPE html>
@@ -34,7 +35,7 @@
             <!-- 컨텐츠 헤더 -->
             <div class="content-form">
         
-                <span class="content-header"> 통계보고서 </span>
+                <span class="content-header">통계보고서 </span>
                 <hr>
 
                 <!-- 가장 많이 ~ 영역 -->
@@ -42,9 +43,9 @@
                     <div class="col-lg-3 col-sm-6">
                         <div class="card gradient-1">
                             <div class="card-body">
-                                <h3 class="card-title text-white">최다 구매자</h3>
+                                <h3 class="card-title text-white">최다 검색어</h3>
                                 <div class="d-inline-block">
-                                    <h2 class="text-white">검색어 컬럼에서 불러오기</h2>
+                                    <h2 class="text-white"><%= manyS %></h2>
                                     <p class="text-white mb-0">한 달 기준</p>
                                 </div>
                                 <span class="float-right display-5 opacity-5"><i class="fa fa-shopping-cart"></i></span>

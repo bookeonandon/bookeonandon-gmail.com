@@ -198,6 +198,23 @@ public class PaymentService {
 		return result;
 		
 	}
+	
+	/**
+	 * 10. 최다검색어
+	 * @return		조회된 검색어
+	 */
+	
+	public String manySearch() {
+		
+		Connection conn = getConnection();
+		
+		String result = new PaymentDao().manySearch(conn);
+		
+		close(conn);
+		
+		return result;
+		
+	}
 
 	
 	// 효우

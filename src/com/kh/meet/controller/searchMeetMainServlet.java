@@ -2,8 +2,6 @@ package com.kh.meet.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,25 +16,27 @@ import com.kh.meet.model.vo.Meet;
 import com.kh.meet.model.vo.PageInfo;
 
 /**
- * Servlet implementation class meetMainservlet
+ * Servlet implementation class searchMeetMainServlet
  */
-@WebServlet("/meetMain.mt")
-public class MeetMainservlet extends HttpServlet {
+@WebServlet("/searchMeetMain.mt")
+public class searchMeetMainServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MeetMainservlet() {
+    public searchMeetMainServlet() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
+
+		String search = request.getParameter("search");
+		System.out.println(search);
 		HttpSession session = request.getSession();
 		session.setAttribute("userNo", "1");
 
@@ -88,7 +88,7 @@ public class MeetMainservlet extends HttpServlet {
 				//System.out.println(pi);
 				
 				// 현재 페이지에 보여질 게시글 리스트 조회하기
-		ArrayList<Meet> list = new MeetService().selectList(pi);
+		ArrayList<Meet> list = new MeetService().selectSearchList(pi, search);
 		
 		request.setAttribute("list", list);
 		request.setAttribute("pi", pi);

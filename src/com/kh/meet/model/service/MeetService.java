@@ -47,6 +47,16 @@ public class MeetService {
 
 		return list;
 	}
+	
+	public ArrayList<Meet> selectSearchList(PageInfo pi, String search) {
+		Connection conn = getConnection();
+
+		ArrayList<Meet> list = new MeetDao().selectSearchList(conn, pi, search);
+
+		close(conn);
+
+		return list;
+	}
 
 	public Meet MeetSelect(int roomNo) {
 		Connection conn = getConnection();
@@ -91,6 +101,16 @@ public class MeetService {
 		Connection conn = getConnection();
 
 		ArrayList<MemMeet> list = new MeetDao().selectRoomMemList(conn, roomNo);
+
+		close(conn);
+
+		return list;
+	}
+	
+	public ArrayList<MemMeet> selectRoomMemListN(int roomNo) {
+		Connection conn = getConnection();
+
+		ArrayList<MemMeet> list = new MeetDao().selectRoomMemListN(conn, roomNo);
 
 		close(conn);
 
@@ -143,6 +163,22 @@ public class MeetService {
 		Connection conn = getConnection();
 		
 		int result = new MeetDao().deleteMember(conn, memberNo, roomNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+	
+	public int approveMember(int memberNo,int roomNo) {
+		Connection conn = getConnection();
+		
+		int result = new MeetDao().approveMember(conn, memberNo, roomNo);
 		
 		if(result > 0) {
 			commit(conn);
@@ -263,6 +299,40 @@ public class MeetService {
 		return result;
 	}
 	
+	public int joinYapplyY(int roomNo, int memberNo) {
+
+		Connection conn = getConnection();
+		int result = new MeetDao().joinYapplyY(conn, roomNo, memberNo);
+
+		if (result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+
+		close(conn);
+
+		return result;
+
+	}
+	
+	public int selectNewRoomNum(int memberNo) {
+		Connection conn = getConnection();
+		int roomNo = new MeetDao().selectNewRoomNum(conn, memberNo);
+		
+		close(conn);
+
+		return roomNo;
+	}
+	
+	public int insertLocation(int roomNo, String location) {
+		Connection conn = getConnection();
+		int result = new MeetDao().insertLocation(conn, roomNo, location);
+		
+		close(conn);
+
+		return result;
+	}
 }
 
 

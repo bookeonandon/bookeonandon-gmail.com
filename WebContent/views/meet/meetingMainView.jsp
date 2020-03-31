@@ -47,14 +47,14 @@
 	<div style="clear:both;"></div>
 	<div class ="main-header">
 	<input type="text" class="txtSearchRoom">
-	<button class="btnSearchRoom">검색</button>
+	<button class="btnSearchRoom" onclick="searchClick();">검색</button>
 	<%if(userNo != -1){ %>
 	<button class="btnMakeRoom" data-toggle="modal" data-target="#exampleModal2" onclick="startmakeroom();">방만들기</button>
 	<%} %>
 	</div>
 	<div class="meetContent">
 		<!-- 미팅방 -->
-		<!-- ㅇㅇㅁㅇㄴㅁㅇafasfsafasdasd -->
+		<!-- ㅇㅇㅁㅇㄴㅁㅇafasfsafasㅁㄴㅇdasd -->
 		<% if(list.isEmpty()){ %>	
 					<p>조회된 리스트가 없습니다.</p>
 				<% }else{ %>
@@ -114,6 +114,7 @@
 						<a class="a-leaderrSetting" href="javascript:ModalDropdownSel('leaderSetting');">회원관리</a>
 					</div>
 				</div>
+				<div class="modal1-title-div"><p class="modal1-title-p"></p></div>
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
 					<span aria-hidden="true" class="closeX">&times;</span>
@@ -224,7 +225,7 @@
 							<p class="showDateTime"></p>
 						</div>
 						<div id="map"
-							style="width: 100%; height: 500px; border-radius: 20px; margin-left: 20px;"></div>
+							style="width: 100%; height: 455px; border-radius: 20px; margin-left: 20px;"></div>
 					</div>
 					<div class="fixmeet-right1">
 						<div>
@@ -306,15 +307,19 @@
 			  <p class="makeRoomtitle">방 설정</p>
 				<p id="header-name2"></p>
 				<hr class="modal-hr">
-				<div class="room_name"><p class="p_room_name">모임 제목  </p><input type="text" class="txt_room_name"></input></div>
+				<div class="room_name">
+				<p class="p_room_name_count">(0 / 최대 30자)</p>
+				<p class="p_room_name">모임 제목  </p><input type="text" class="txt_room_name"></input>
+				</div>
 				<div class="room_location"><p class="p_room_location">약속 위치  </p><input id ="txt_room_location" class="txt_room_location" id="inputAddress2" type="text"
 								onclick="goAddressApi2('0')" placeholder="주소를 검색하시려면 여기를 눌러봐요!"
 								readonly="readonly"></input></div>
 				<div class="room_totalpp"><p class="p_room_totalpp">최대 인원 </p><input type="text" class="txt_room_totalpp"></input></div>
-				<div class="room_content"><p class="p_room_content">모임 설명  </p><textarea class="txt_room_content"></textarea></div>
+				<div class="room_content">
+				<p class="p_room_content_count">(0 / 최대 200자)</p>
+				<p class="p_room_content">모임 설명  </p><textarea class="txt_room_content"></textarea></div>
 				<button class="btn-next2" onclick="makeRoom();">만들기!</button>
 			  </div>
-			  
 			</div>
 		</div>
 	</div>
@@ -328,28 +333,42 @@
 		var pickCategory ="";
 		var count1=0;
 		
+		
+		function searchClick(){
+			
+			var contextPath = "<%=request.getContextPath()%>";
+			console.log(contextPath+"/searchMeetMain.mt?search="+$(".txtSearchRoom").val());
+			
+			location.href = contextPath+"/searchMeetMain.mt?search="+$(".txtSearchRoom").val();
+		}
+		
 		function leaderSettingtable(){
 			roomNo = roomNo;
 			$.ajax({
 	 			url:"doleaderSetting.mt",
 				data : {
+					/* userNo : userNo, */
 					roomNo : roomNo
 				},
 				type : "POST",
 				success : function(list) {
-					/* console.log(list); */
+					console.log(list);
 					if(list != null){
 						var value="";
-						var contextPath = "<%=request.getContextPath()%>";
+						var contextPath = "<%=request.getContextPath()%>/resources/meetMemImg";
 						for(var i=0;i<list.length;i++){
 							value += 
-							"<tr>" +
-							"<td style='font-weight : 600; width: 60px;'><p>" + list[i].memberName + "</p></td>" +
-							"<td style='width: 450px;'><p>" + list[i].cmmmtCntnt + "</p></td>" +
-							"<td style='width: 140px;'><p>" + list[i].createDate + "</p></td>" +
-							"<td style='width: 50px;'><img class='deleteCmmmt' value='"+list[i].cmmmtNo+"' style='width:15px; height:15px;' src='resources/images/meetImage/close.png'></td>" +
-							"</tr>"
+								"<tr>" +
+								"<td>" +
+								"<img style='width:50px; height:50px; border-radius:30px; margin: 10px;' src='"+ contextPath + "/" + list[i].memberPic +"'>" +
+								"</td>" +
+								"<td>" +
+								"<p class='leaderSetting-p'>" + list[i].memName + "</p>" +
+								"</td>"+
+								"<td style='width: 50px;'><img class='approveMember' value='"+list[i].memberNo+"/"+list[i].roomNo+"' style='width:30px; height:30px; cursor: pointer;' src='resources/images/meetImage/approve.png'></td>" +
+								"</tr>"
 						}
+						
 						$(".leaderSetting-table").empty();
 						$(".leaderSetting-table").append(value);
 					}
@@ -402,11 +421,11 @@
 					roomcontent :$(".txt_room_content").val(), 
 					memberno : <%=userNo%>,
 					roomtotalpp : $(".txt_room_totalpp").val(),
+					location : $(".txt_room_location").val(),
 					genre : category
 				},
 				type : "POST",
 				success : function(result) {
-					console.log(result);
 					location.reload();
 				},
 				error:function(request,status,error){
@@ -652,6 +671,7 @@
                         data: formData,
                         type: 'POST',
                         success: function(result){
+                        	console.log("result : "+result);
                             if(result > 0){
                             	Swal.fire({
                   				  position: 'center',
@@ -781,14 +801,14 @@
 				var roomContent = $(this).children().eq(5).text();
 				$("#modalBookImg").attr('src', $(this).find('img').attr('src'));
 				<%-- <img id="bookImg" style="width: 90px; height: 139px;" src="<%=request.getContextPath()+"/resources/images/meetImage/"+m.getBookImg() %>"> --%>
-				console.log(roomNo);
+				/* console.log(roomNo);
 				console.log(memberNo);
 				console.log(roomTitle);
 				console.log(ctgy0);
 				console.log(ctgy1);
 				console.log(ctgy2);
 				console.log(roomMembers);
-				console.log(roomContent);
+				console.log(roomContent); */
 				/* console.log(src); */
 				
 				document.getElementById("modal-title").innerHTML=roomTitle;
@@ -834,6 +854,12 @@
 								$('#btn_apply').css("display", "none");
 								$('#btn_applyDone').css("display", "none");
 							}
+							
+							if(<%=userNo%> == memberNo){
+								$('#modalDropdown').css("visibility", "visible");
+								$('#btn_apply').css("display", "none");
+								$('#btn_applyDone').css("display", "none");
+							}
 						},
 						error : function() {
 							console.log("ajax 통신 실패!!");
@@ -870,6 +896,7 @@
  				$('#fixmeet').css("display", "none");
  				$('#setting').css("display", "none");
  				$('#leaderSetting').css("display", "none");
+ 				$('.modal1-title-p').text("메인화면");
  				initModalMain();
  				showImg2();
 			}
@@ -879,6 +906,7 @@
  				$('#fixmeet').css("display", "none");
  				$('#setting').css("display", "none");
  				$('#leaderSetting').css("display", "none");
+ 				$('.modal1-title-p').text("커뮤니티");
  				setCommunication();
  				setchatting();
 			}
@@ -888,6 +916,7 @@
  				$('#fixmeet').css("display", "block");
  				$('#setting').css("display", "none");
  				$('#leaderSetting').css("display", "none");
+ 				$('.modal1-title-p').text("정기모임");
  				initfixmeet();
 			}
 			if(val == "setting"){
@@ -896,6 +925,7 @@
  				$('#fixmeet').css("display", "none");
  				$('#setting').css("display", "block");
  				$('#leaderSetting').css("display", "none");
+ 				$('.modal1-title-p').text("회원설정");
  				showImg();
 			}
 			
@@ -903,9 +933,10 @@
 				$('#modalMain').css("display", "none");
  				$('#modalCommunity').css("display", "none");
  				$('#fixmeet').css("display", "none");
- 				$('#setting').css("display", "none`");
+ 				$('#setting').css("display", "none");
  				$('#leaderSetting').css("display", "block");
- 				showImg();
+ 				$('.modal1-title-p').text("회원관리");
+ 				leaderSettingtable();
 			}
 		    /* case "fixmeet" : break;
 		    case "setting" : break; */
@@ -923,7 +954,7 @@
 				},
 				type : "POST",
 				success : function(list) {
-					console.log(list);
+					/* console.log(list); */
 					if(list != null){
 						var value="";
 						var contextPath = "<%=request.getContextPath()%>/resources/meetMemImg";
@@ -934,9 +965,12 @@
 									"<td>" +
 									"<img style='width:40px; height:40px; border-radius:20px; margin: 10px; margin-left:30px;' src='"+ contextPath + "/" + list[i].memberPic +"'>" + 
 									"<p class='modal2-nav-lt-p'>" + list[i].memName + "</p>" +
-									"</td>" +
-									"<td style='width: 50px;'><img class='deleteMember' value='"+list[i].memberNo+"/"+list[i].roomNo+"' style='width:15px; height:15px;' src='resources/images/meetImage/close.png'></td>" +
-									"</tr>"
+									"</td>"
+									if(userNo != list[i].memberNo){
+										value += 
+										"<td style='width: 50px;'><img class='deleteMember' value='"+list[i].memberNo+"/"+list[i].roomNo+"' style='width:15px; height:15px;' src='resources/images/meetImage/close.png'></td>"
+									}
+									value += "</tr>"
 							}else{
 								 value += 
 									"<tr>" +
@@ -962,7 +996,7 @@
 			roomNo = roomNo;
 			memberNo = memberNo;
 			userNo = <%=userNo%>;
-			console.log(memberNo);
+			/* console.log(memberNo); */
 			$.ajax({
 	 			url:"dochatt.mt",
 				data : {
@@ -1065,6 +1099,50 @@
 				})
 		})
 		
+		$('body').on('click','.approveMember',function(){
+			var value = $(this).attr("value");
+			var valSplit = value.split('/');
+			var memberNo = valSplit[0];
+			var roomNo = valSplit[1];
+			
+			Swal.fire({
+				  title: '정말 승인 하시겠습니까?',
+				  text: "",
+				  icon: 'info',
+				  showCancelButton: true,
+				  confirmButtonColor: '#3085d6',
+				  cancelButtonColor: '#d33',
+				  cancelButtonText: '취소',
+				  confirmButtonText: '승인'
+				}).then((result) => {
+				  if (result.value) {
+					  Swal.fire({
+						  position: 'center',
+						  icon: 'success',
+						  title: '승인성공!',
+						  showConfirmButton: false,
+						  timer: 1000 
+						})
+				   if(result.value){
+					   $.ajax({
+				 			url:"approveMember.mt",
+							data : {
+								memberNo : memberNo,
+								roomNo : roomNo
+							},
+							type : "POST",
+							success : function(result) {
+								leaderSettingtable();
+							},
+							error : function() {
+								console.log("ajax 통신 실패!!");
+							}
+						});
+				   }
+				  }
+				})
+		})
+		
 		$('body').on('click','.deleteMember',function(){
 			var value = $(this).attr("value");
 			var valSplit = value.split('/');
@@ -1134,7 +1212,7 @@
 				},
 				type : "POST",
 				success : function(mt) {
-					console.log(mt);
+					/* console.log(mt); */
 					if(mt != null){
 						if(memberNo == userNo){
 							// 방장일때
@@ -1201,7 +1279,7 @@
 			var meetContents = $(".fixmeet-right-text").val();
 			var meetLocation = $(".inputAddress").val();
 			var meetTime =  $(".sui-picker-input").val();
-			console.log(meetTime);
+			/* console.log(meetTime); */
 			roomNo = roomNo;
 			var userNo = <%=userNo%>;
 			
@@ -1364,15 +1442,55 @@ function goAddressApi2(aaa) {
 		    $('#counter').html("("+content.length+" / 최대 30자)"); //글자수 실시간 카운팅
 
 		    if (content.length > 30){
-		        alert("최대 30자까지 입력 가능합니다.");
+		    	Swal.fire({
+					  position: 'center',
+					  icon: 'warning',
+					  title: '최대 30자까지 입력 가능해요!',
+					  showConfirmButton: false,
+					  timer: 1000 
+					})
 		        $(this).val(content.substring(0, 30));
 		        $('#counter').html("(30 / 최대 30자)");
 		    }
 		});
 		
+		$('.txt_room_name').keyup(function (e){
+		    var content = $(this).val();
+		    $('.p_room_name_count').html("("+content.length+" / 최대 30자)"); //글자수 실시간 카운팅
+
+		    if (content.length > 30){
+		    	Swal.fire({
+					  position: 'center',
+					  icon: 'warning',
+					  title: '최대 20자까지 입력 가능해요!',
+					  showConfirmButton: false,
+					  timer: 1000 
+					})
+		        $(this).val(content.substring(0, 30));
+		        $('.p_room_name_count').html("(30 / 최대 30자)");
+		    }
+		});
+		
+		
+		$('.txt_room_content').keyup(function (e){
+		    var content = $(this).val();
+		    $('.p_room_content_count').html("("+content.length+" / 최대 200자)"); //글자수 실시간 카운팅
+
+		    if (content.length > 200){
+		    	Swal.fire({
+					  position: 'center',
+					  icon: 'warning',
+					  title: '최대 200자까지 입력 가능해요!',
+					  showConfirmButton: false,
+					  timer: 1000 
+					})
+		        $(this).val(content.substring(0, 200));
+		        $('.p_room_content_count').html("(200 / 최대 200자)");
+		    }
+		});
 		</script>
 
-	<!-- 페이징바 영역 -->
+	<!-- 페이징바 영역 ㅇㅇㅇㅇㅇㅇ-->
 		<div class="pagingArea" align="center">
 			<!-- 맨 처음으로 (<<) -->
 			<button onclick="location.href='<%=contextPath%>/meetMain.mt';"> &lt;&lt; </button>		

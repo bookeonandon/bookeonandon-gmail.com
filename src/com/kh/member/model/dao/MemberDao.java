@@ -15,6 +15,7 @@ import java.util.Properties;
 import com.kh.member.model.vo.Administrator;
 import com.kh.member.model.vo.Member;
 import com.kh.member.model.vo.PageInfo;
+import com.kh.member.model.vo.Wishlist;
 import com.kh.myCoupon.model.vo.MyCoupon;
 import com.kh.payment.model.vo.Payments;
 public class MemberDao {
@@ -556,5 +557,94 @@ public class MemberDao {
 	      return couponList;
 	   }
 	      
+	
+	public ArrayList<Wishlist> memberWishlist(Connection conn, PageInfo pi, int memberNo) {
+		ArrayList<Wishlist> memberWishlist = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectWishlist");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			int startRow = (pi.getCurrentPage() -1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() - 1;
+			pstmt.setInt(1, memberNo);
+			pstmt.setInt(2,  startRow);
+			pstmt.setInt(3, endRow);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				memberWishlist.add(new Wishlist(rset.getInt("ROWNUM"),
+												rset.getInt("member_no"),
+												rset.getInt("book_no"),
+												rset.getString("book_title"),
+												rset.getString("book_pdf"),
+												rset.getString("book_image"),
+												rset.getString("book_moimage")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return memberWishlist;
+	}
+
+	public ArrayList<Wishlist> memberLibrary(Connection conn, PageInfo pi, int memberNo) {
+		ArrayList<Wishlist> memberLibrary = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectLibrary");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			int startRow = (pi.getCurrentPage() -1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() - 1;
+			pstmt.setInt(1, memberNo);
+			pstmt.setInt(2,  startRow);
+			pstmt.setInt(3, endRow);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				memberLibrary.add(new Wishlist(rset.getInt("ROWNUM"),
+												rset.getInt("member_no"),
+												rset.getInt("book_no"),
+												rset.getString("book_title"),
+												rset.getString("book_pdf"),
+												rset.getString("book_image"),
+												rset.getString("book_moimage")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return memberLibrary;
+	}
+
+	public ArrayList<Wishlist> memberWishlist(Connection conn, int memberNo) {
+		ArrayList<Wishlist> memberWishlist = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectWishlistShort");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNo);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				memberWishlist.add(new Wishlist(
+												rset.getInt("member_no"),
+												rset.getInt("book_no"),
+												rset.getString("book_title"),
+												rset.getString("book_pdf"),
+												rset.getString("book_image"),
+												rset.getString("book_moimage")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return memberWishlist;
+	}
 	
 }

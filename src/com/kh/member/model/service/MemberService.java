@@ -12,6 +12,7 @@ import com.kh.member.model.dao.MemberDao;
 import com.kh.member.model.vo.Administrator;
 import com.kh.member.model.vo.Member;
 import com.kh.member.model.vo.PageInfo;
+import com.kh.member.model.vo.Wishlist;
 import com.kh.myCoupon.model.vo.MyCoupon;
 import com.kh.payment.model.vo.Payments;
 
@@ -322,6 +323,29 @@ public class MemberService {
 	      return couponList;
 	   }
 	
+	public ArrayList<Wishlist> memberWishlist(PageInfo pi, int memberNo){
+ 		Connection conn = getConnection();
+ 		
+ 		ArrayList<Wishlist> memberWishlist = new MemberDao().memberWishlist(conn, pi, memberNo);
+ 		close(conn);
+ 		return memberWishlist;
+ 	}
+
+	public ArrayList<Wishlist> memberLibrary(PageInfo pi, int memberNo) {
+		Connection conn = getConnection();
+ 		
+ 		ArrayList<Wishlist> memberLibrary = new MemberDao().memberLibrary(conn, pi, memberNo);
+ 		close(conn);
+ 		return memberLibrary;
+	}
+
+	public ArrayList<Wishlist> memberWishlist(int memberNo) {
+		Connection conn = getConnection();
+ 		
+ 		ArrayList<Wishlist> memberWishlist = new MemberDao().memberWishlist(conn, memberNo);
+ 		close(conn);
+ 		return memberWishlist;
+	}
 	
 
 }

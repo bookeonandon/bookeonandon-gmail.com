@@ -79,7 +79,6 @@
                     <h1>결제완료</h1>
                     <p class="subComMent">주문하신 결제가 완료되었습니다.</p>
                     <div class="subCom">
-                        <button class="btn-sbCom">주문내역</button>
                         <button class="btn-home" onclick="goHome();">홈으로</button>
                     </div>
                 </div>
@@ -87,6 +86,8 @@
         
         </div>
     </div>
+    
+    <%@ include file="../common/footer.jsp" %>
     
     <script>
     function goHome(){

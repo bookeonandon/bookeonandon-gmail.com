@@ -51,7 +51,8 @@ public class AdminPaymentIndex extends HttpServlet {
 		// 최근 구매한 다섯명
 		Payment mGP = new PaymentService().manyBGPayment();
 		
-		
+		// 가장 많이 검색된 검색어 
+		String ms = new PaymentService().manySearch();
 
 		
 		if(sPC != null && mP != null && bPC != null) {
@@ -64,6 +65,7 @@ public class AdminPaymentIndex extends HttpServlet {
 			request.setAttribute("rBP", rBP);
 			
 			request.setAttribute("mGP", mGP);
+			request.setAttribute("ms", ms);
 			request.getRequestDispatcher("views/payment/aPaymentIndex.jsp").forward(request, response);
 		}else {
 			request.setAttribute("msg", "통계 조회 실패");

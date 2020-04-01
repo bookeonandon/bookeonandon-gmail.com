@@ -8,10 +8,12 @@ import static com.kh.common.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import com.kh.member.model.vo.PageInfo;
 import com.kh.member.model.dao.MemberDao;
 import com.kh.member.model.vo.Administrator;
 import com.kh.member.model.vo.Member;
+import com.kh.member.model.vo.PageInfo;
+import com.kh.member.model.vo.Wishlist;
+import com.kh.myCoupon.model.vo.MyCoupon;
 import com.kh.payment.model.vo.Payments;
 
 public class MemberService {
@@ -69,6 +71,50 @@ public class MemberService {
 		close(conn);
 		
 		return m;
+		
+	}
+	
+	
+	/**
+	 * 관리자 회원관리 상세보기
+	 * @param nId		전달된 회원 아이디
+	 * @return			조회된 회원 정보
+	 */
+	public Member adminUpdateFormMember(String nId) {
+		
+		Connection conn = getConnection();
+		
+		Member m = new MemberDao().selectMember(conn, nId);
+		
+		close(conn);
+		
+		return m;
+		
+	}
+	
+
+	/**
+	 * 관리자 회원 정보 수정
+	 * @param m			수정된 회원 정보 객체
+	 * @param uNo		수정할 회원 번호
+	 * @return			처리된 행의 개수
+	 */
+	public int adminUpdateMember(Member m, int uNo) {
+		
+		Connection conn = getConnection();
+		
+		int result = new MemberDao().adminUpdateMember(conn, m, uNo);
+		
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
 		
 	}
 
@@ -200,6 +246,7 @@ public class MemberService {
       return newPwdMember;
    }
    
+   
 
 	/** 효우
 	 * @param m
@@ -229,7 +276,6 @@ public class MemberService {
 		int result = new MemberDao().updatePwdMember(conn, memberId, memberPwd, newPwd);
 
 		Member updateMem = null;
-		
 		if(result > 0) {
 			commit(conn);
 			updateMem = new MemberDao().selectMember(conn, memberId);
@@ -240,8 +286,7 @@ public class MemberService {
 		
 		return updateMem;
 	}
-	
-	
+
 	public int deleteMember(String memberId) {
 		Connection conn = getConnection();
 		
@@ -257,13 +302,45 @@ public class MemberService {
 		return result;
 	}
 	
-	
 	public ArrayList<Payments> paymentInfo(PageInfo pi, int memberNo) {
-	      Connection conn = getConnection();
-	      
-	      ArrayList<Payments> list = new MemberDao().paymentInfo(conn, pi, memberNo);
-	      close(conn);
-	      return list;
-	   }
+		Connection conn = getConnection();
+		
+		ArrayList<Payments> list = new MemberDao().paymentInfo(conn, pi, memberNo);
+		close(conn);
+		return list;
+	}
+
+	public ArrayList<MyCoupon> accountCoupon(int memberNo) {
+		Connection conn = getConnection();
+		
+		ArrayList<MyCoupon> couponList = new MemberDao().accountCoupon(conn, memberNo);
+		close(conn);
+		return couponList;
+	}
+	
+ 	public ArrayList<Wishlist> memberWishlist(PageInfo pi, int memberNo){
+ 		Connection conn = getConnection();
+ 		
+ 		ArrayList<Wishlist> memberWishlist = new MemberDao().memberWishlist(conn, pi, memberNo);
+ 		close(conn);
+ 		return memberWishlist;
+ 	}
+
+	public ArrayList<Wishlist> memberLibrary(PageInfo pi, int memberNo) {
+		Connection conn = getConnection();
+ 		
+ 		ArrayList<Wishlist> memberLibrary = new MemberDao().memberLibrary(conn, pi, memberNo);
+ 		close(conn);
+ 		return memberLibrary;
+	}
+
+	public ArrayList<Wishlist> memberWishlist(int memberNo) {
+		Connection conn = getConnection();
+ 		
+ 		ArrayList<Wishlist> memberWishlist = new MemberDao().memberWishlist(conn, memberNo);
+ 		close(conn);
+ 		return memberWishlist;
+	}
+	
 
 }

@@ -53,7 +53,7 @@ public class LoginServlet extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("loginUser", loginUser);
 			
-				request.getRequestDispatcher("/views/common/menubar.jsp").forward(request, response);
+				response.sendRedirect(request.getContextPath());
 				
 			}else {
 				
@@ -62,7 +62,7 @@ public class LoginServlet extends HttpServlet {
 				if(adminUser != null) {
 					HttpSession session = request.getSession();
 					session.setAttribute("loginUser", loginUser);
-					request.getRequestDispatcher("/views/common/adminMenubar.jsp").forward(request, response);
+					request.getRequestDispatcher("payRe.apm").forward(request, response);
 					
 				}else {
 					response.sendRedirect("loginForm.me");

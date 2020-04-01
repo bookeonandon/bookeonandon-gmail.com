@@ -1,6 +1,7 @@
 package com.kh.member.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import com.kh.member.model.service.MemberService;
 import com.kh.member.model.vo.Member;
+import com.kh.member.model.vo.Wishlist;
 
 /**
  * Servlet implementation class MyPageServlet
@@ -35,13 +37,14 @@ public class MyPageServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		String memberId = loginUser.getMemberId();
-		
+		int memberNo = loginUser.getMemberNo();
+
 		Member mem = new MemberService().selectMember(memberId);
-		
-		System.out.println(mem);
-		
+		ArrayList<Wishlist> memberWishlist = new MemberService().memberWishlist(memberNo);
+
 		if(mem != null) {
 			request.setAttribute("mem", mem);
+			request.setAttribute("memberWishlist", memberWishlist);
 			RequestDispatcher view = request.getRequestDispatcher("views/member/myPageMain.jsp");
 			view.forward(request, response);
 		}else {

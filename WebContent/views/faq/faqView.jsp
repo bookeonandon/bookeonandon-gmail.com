@@ -134,6 +134,8 @@
                 </div>       
                 
             </div>
+            
+            <%@ include file="../common/footer.jsp" %>
              <script type="text/javascript">
 				     $(document).ready(function(){
 				        var i=0;

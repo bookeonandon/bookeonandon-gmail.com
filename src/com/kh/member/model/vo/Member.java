@@ -263,14 +263,18 @@ public class Member {
 		this.gender = gender;
 	}
 
+
+
+
 	@Override
 	public String toString() {
 		return "Member [memberNo=" + memberNo + ", memberId=" + memberId + ", memberPwd=" + memberPwd + ", email="
 				+ email + ", memberName=" + memberName + ", phone=" + phone + ", birth=" + birth + ", age=" + age
 				+ ", reportTime=" + reportTime + ", joinDate=" + joinDate + ", deleteStatus=" + deleteStatus
 				+ ", deleteDate=" + deleteDate + ", blacklist=" + blacklist + ", blacklistDate=" + blacklistDate
-				+ ", nickname=" + nickname + ", gender=" + gender + "]";
+				+ ", nickname=" + nickname + ", gender=" + gender + ", sbNo=" + sbNo + "]";
 	}
+
 	
 	
 

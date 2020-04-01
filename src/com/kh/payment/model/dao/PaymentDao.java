@@ -376,6 +376,37 @@ private Properties prop = new Properties();
 		
 	}
 	
+	public String manySearch(Connection conn) {
+		
+		
+		String p = null;
+		
+		Statement stmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("manySearch");
+		
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(sql);
+			
+			while(rset.next()) {
+				p = rset.getString("KEYWORD");
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(stmt);
+		}
+		
+		return p;
+		
+	}
+	
 	
 	public int getListCount(Connection conn, int memberNo) {
 		int listCount = 0;

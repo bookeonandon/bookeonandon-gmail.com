@@ -37,7 +37,6 @@ public class MeetMainservlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-		
 		HttpSession session = request.getSession();
 		session.setAttribute("userNo", "1");
 

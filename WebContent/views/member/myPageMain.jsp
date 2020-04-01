@@ -1,8 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="com.kh.member.model.vo.Member"%>
+<%@page import="com.kh.member.model.vo.Wishlist"%>
+<%@page import="java.util.ArrayList"%>
 <%
 	Member mem = (Member) request.getAttribute("mem");
+	ArrayList<Wishlist> memberWishlist = (ArrayList<Wishlist>)request.getAttribute("memberWishlist");
 
 	String nickname = mem.getNickname();
 	String phone = mem.getPhone();
@@ -95,6 +98,18 @@ a:hover {
 	text-decoration: underline;
 	color: darkslategrey;
 }
+
+.card-list {
+	width: 1100px;
+	margin: auto;
+}
+
+.card-title {
+	width: 100%;
+	height: 100%;
+	padding: 5px;
+	overflow: hidden !important;
+}
 </style>
 </head>
 
@@ -123,21 +138,21 @@ a:hover {
 				<div class="card-body">
 					<div class="container">
 						<div class="row">
-							<div class="col" align="center">
-								<img src="image_placeholder_150x150.png" width="100%"><br>
-								My 리뷰<br class="br-l">1개
+							<div class="col" align="center" onclick="toAccount();">
+								<img src="<%=contextPath%>/resources/images/review_image.png" width="100%"><br>
+								My 리뷰<br class="br-l">
 							</div>
-							<div class="col" align="center">
-								<img src="image_placeholder_150x150.png" width="100%"><br>
-								My 소모임<br class="br-l">0모임
+							<div class="col" align="center" onclick="toAccount();">
+								<img src="<%=contextPath%>/resources/images/meeting_image.jpg" width="100%"><br>
+								My 소모임<br class="br-l">
 							</div>
-							<div class="col" align="center">
-								<img src="image_placeholder_150x150.png" width="100%"><br>
-								My 문의<br class="br-l">1건
+							<div class="col" align="center" onclick="toAccount();">
+								<img src="<%=contextPath%>/resources/images/faq_image.jpg" width="100%"><br>
+								My 문의<br class="br-l">
 							</div>
-							<div class="col" align="center">
-								<img src="image_placeholder_150x150.png" width="100%"><br>
-								My 쿠폰<br class="br-l">0개
+							<div class="col" align="center" onclick="toAccount();">
+								<img src="<%=contextPath%>/resources/images/coupon_image.png" width="100%"><br>
+								My 쿠폰<br class="br-l">
 							</div>
 						</div>
 						<div class="row">
@@ -156,55 +171,43 @@ a:hover {
 		<br> <br>
 		<div class="hr-sect">&emsp;My 관심서적&emsp;</div>
 		<br>
-		<div class="card-deck">
-			<div class="card">
-				<img src="image_placeholder_200x300.png" class="card-img-top"
-					alt="...">
-				<div class="card-body">
-					<p class="card-text-book">book title 1</p>
+		<div class="body-content">
+
+		<br>
+
+		<div class="card-list" style="margin-bottom:50px;">
+			<% if(memberWishlist.isEmpty()){ %>
+				<div align="center"><h6>조회된 관심서적이 없습니다.</h4></div>
+			<% }else{ %>
+			<div class="row row-cols-1 row-cols-md-6">
+				<% for(Wishlist w : memberWishlist){ %>
+				<div class="col mb-4">
+					<div style="height: 12px;">
+					</div>
+					<div class="card">
+						<img src="<%= w.getBook_image() %>" class="card-img-top">
+						<div class="card-body">
+							<div class="card-title"><%= w.getBook_title() %></div>
+						</div>
+					</div>
 				</div>
-			</div>
-			<div class="card">
-				<img src="image_placeholder_200x300.png" class="card-img-top"
-					alt="...">
-				<div class="card-body">
-					<p class="card-text-book">book title 2</p>
-				</div>
-			</div>
-			<div class="card">
-				<img src="image_placeholder_200x300.png" class="card-img-top"
-					alt="...">
-				<div class="card-body">
-					<p class="card-text-book">book title 3</p>
-				</div>
-			</div>
-			<div class="card">
-				<img src="image_placeholder_200x300.png" class="card-img-top"
-					alt="...">
-				<div class="card-body">
-					<p class="card-text-book">book title 4</p>
-				</div>
-			</div>
-			<div class="card">
-				<img src="image_placeholder_200x300.png" class="card-img-top"
-					alt="...">
-				<div class="card-body">
-					<p class="card-text-book">book title 5</p>
-				</div>
-			</div>
-			<div class="card">
-				<img src="image_placeholder_200x300.png" class="card-img-top"
-					alt="...">
-				<div class="card-body">
-					<p class="card-text-book">book title 6</p>
-				</div>
+					<% } %>
+				<% } %>
 			</div>
 		</div>
 		<br>
 		<div align="center" style="font-size: 12px;">
-			<a href="">더보기</a>
+			<a href="<%=request.getContextPath() %>/myPageWishlist.my">더보기</a>
 		</div>
 	</div>
+	
+	<%@ include file="../common/footer.jsp" %>
+	
+	<Script>
+		function toAccount(){
+			location.href = "<%=request.getContextPath()%>/myPageAccount.my";
+		}
+	</Script>
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
 		crossorigin="anonymous"></script>

@@ -29,7 +29,7 @@
     <div class="login-form-bg h-100">
         <div class="container h-100">
             <div class="row justify-content-center h-100">
-                <div class="col-xl-6">
+                <div class="col-xl-3">
                     <div class="form-input-content">
                         <div class="card login-form mb-0">
                             <div class="card-body pt-5">
@@ -61,7 +61,7 @@
                                     <div id="loginthreebtn">
                                         <button type="button" class="btn mb-1 btn-light loginbtn" onclick="memberJoin();">회원가입</button>
                                         <button type="submit" class="btn mb-1 btn-primary loginbtn">로그인</button>
-                                        <button type="button" class="btn mb-1 btn-light loginbtn" onclick="">홈</button>
+                                        <button type="button" class="btn mb-1 btn-light loginbtn" onclick="location.href='<%=request.getContextPath() %>'">홈</button>
                                     </div>
                                 </form>
                                

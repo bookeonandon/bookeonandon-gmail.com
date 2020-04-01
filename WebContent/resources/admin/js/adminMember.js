@@ -218,11 +218,77 @@ $(function(){
 			    success:function(result){
 			    	alert("쿠폰이 발급되었습니다.");
 			    	location.reload();
-			    	console.log("ajax 통신성공!!");
 			    },
 			    error:function(){
-			    	console.log("ajax 통신실패!!");
 			    }
 			})
 			
 		}
+
+	// 보유 구독권 표시
+
+		function subSubmit(){
+			console.log(userNo);
+			subNewNo = $(".sub2").find("option:selected").val();
+				
+				$.ajax({
+					url:"insert.ams",
+					data:{userNo:userNo, subNewNo:subNewNo},
+					success:function(){
+						location.reload();
+					}
+				})
+		}
+
+	// 구독권 관리
+
+		$(function(){
+        	userNo = "";
+        	
+        	$("#subManage").click(function(){
+        		
+        		// 2명 이상 체크 시 모달창 열리지 않음
+        	    if($("input:checkbox[name=chk]:checked").length > 1){
+        	        alert("해당 서비스는 한 명만 발급 및 연장이 가능합니다.");
+        	        
+        		}else{
+	        		 // 모달창 오픈
+	        	     $(this).attr({
+	        	        'data-toggle' : 'modal',
+	        	        'data-target' : '#basicModal2'
+	        	     });
+	        	     
+        		     $("input:checkbox[name=chk]:checked").each(function(){
+        		    	 userNo = $(this).next().val();
+        		     })
+	        		     
+        		     $.ajax({
+        		    	 url:"detail.msb",
+        		    	 data:{userNo:userNo},
+        		    	 success:function(ms){
+        		    		 
+        		    		 $("#sel55").append("<option value='" + ms.sbNo +"'>" + ms.sbName + "</option>");
+        		    	 }
+        		     })
+	        	     
+	        	     
+	        	}
+	
+	        })
+        })
+        
+        
+     // 회원 상세
+        
+      $(function(){
+			
+			$(".member-table>tbody>tr>td").not(".nonechk").click(function(){
+				var nId = $(this).parent().children().eq(1).text();
+
+				location.href="updateForm.ame?nId=" + nId;
+				
+			})
+	 
+	});
+
+	

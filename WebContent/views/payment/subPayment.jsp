@@ -23,7 +23,6 @@
         height:100%;
     }
     div{
-        border: 1px solid #fff;
         box-sizing:border-box;
     }
     .subList, .sumPayment{
@@ -35,7 +34,6 @@
         margin-top:30px;
         margin-bottom:20px;
     }
-
     .btnDiv{
         width:100%;
         height:15%;
@@ -117,8 +115,10 @@
             </div>
         </form>
         </div>
+        
     </div>
     
+    	<%@ include file="../common/footer.jsp" %>
     
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
     

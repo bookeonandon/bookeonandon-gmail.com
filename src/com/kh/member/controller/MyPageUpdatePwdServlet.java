@@ -33,22 +33,22 @@ public class MyPageUpdatePwdServlet extends HttpServlet {
 	 */
 	 protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	 
-	 String memberPwd = request.getParameter("memberPwd");
-	 String newPwd = request.getParameter("newPwd");
-	 
-	 HttpSession session = request.getSession();
-	 String memberId = ((Member)session.getAttribute("loginUser")).getMemberId();
-	 Member updateMem = new MemberService().updatePwdMember(memberId, memberPwd, newPwd);
-	 
-	 if(updateMem != null) {
-		 request.setAttribute("msg", "비밀번호 변경 성공");
-		 session.setAttribute("loginUser", updateMem);
-		 System.out.println(updateMem);
-		 RequestDispatcher view = request.getRequestDispatcher("/myPageInfo.my");
-		 view.forward(request, response);
-	 }else {
-		 request.setAttribute("msg", "비밀번호 변경 실패");
-	 }
+		 String memberPwd = request.getParameter("memberPwd");
+		 String newPwd = request.getParameter("newPwd");
+
+		 HttpSession session = request.getSession();
+		 String memberId = ((Member)session.getAttribute("loginUser")).getMemberId();
+		 Member updateMem = new MemberService().updatePwdMember(memberId, memberPwd, newPwd);
+
+		 if(updateMem != null) {
+			 request.setAttribute("msg", "비밀번호 변경 성공");
+			 session.setAttribute("loginUser", updateMem);
+			 System.out.println(updateMem);
+			 RequestDispatcher view = request.getRequestDispatcher("/myPageInfo.my");
+			 view.forward(request, response);
+		 }else {
+			 request.setAttribute("msg", "비밀번호 변경 실패");
+		 }
 	 
 	 }
 	 

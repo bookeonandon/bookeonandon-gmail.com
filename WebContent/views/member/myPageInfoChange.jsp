@@ -68,6 +68,7 @@ button {
 	border-top-right-radius: 5px;
 	margin-left: 5px;
 	margin-right: 5px;
+		margin-bottom: 50px;
 }
 </style>
 </head>
@@ -108,6 +109,9 @@ button {
 			<button type="button" onclick="deleteMember();">회원탈퇴</button>
 		</div>
 	</form>
+	
+	<%@ include file="../common/footer.jsp" %>
+	
 	<script>
 		function deleteMember() {
 			location.href = "<%=request.getContextPath()%>/myPageDelete.my";

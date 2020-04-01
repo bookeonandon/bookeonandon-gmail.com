@@ -51,6 +51,13 @@ public class MySubService {
 	}
 	
 	
+	/**
+	 * 3. 관리자 보유구독권 추가 및 연장하기
+	 * @param uNo		회원 번호
+	 * @param s			추가할 구독권 정보
+	 * @param ms		보유 구독권 여부
+	 * @return			처리된 행의 개수
+	 */
 	public int adminInsertMySubService(int uNo, Subscription s, MySub ms) {
 		
 		Connection conn = getConnection();
@@ -79,6 +86,22 @@ public class MySubService {
 		
 		return result;
 		
+	}
+	
+	/**
+	 * 4. 관리자 회원 상세 보유구독권 정보
+	 * @param nId		회원아이디
+	 * @return			보유 구독권 정보
+	 */
+	public MySub adminSelectMySub(String nId) {
+		
+		Connection conn = getConnection();
+		
+		MySub ms = new MySubDao().adminSelectMySub(conn, nId);
+		
+		close(conn);
+		
+		return ms;
 	}
 
 }

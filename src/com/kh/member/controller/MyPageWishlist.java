@@ -1,6 +1,7 @@
 package com.kh.member.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +13,9 @@ import javax.servlet.http.HttpSession;
 
 import com.kh.member.model.service.MemberService;
 import com.kh.member.model.vo.Member;
+import com.kh.member.model.vo.PageInfo;
+import com.kh.member.model.vo.Wishlist;
+import com.kh.payment.model.service.PaymentService;
 
 /**
  * Servlet implementation class MyPageWishlist
@@ -34,18 +38,37 @@ public class MyPageWishlist extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		Member loginUser = (Member)session.getAttribute("loginUser");
-		String memberId = loginUser.getMemberId();
+		int memberNo = loginUser.getMemberNo();
 		
-		Member mem = new MemberService().selectMember(memberId); // 이거말고 책목록 불러와야함
+  		int listCount;
+  		int currentPage;
+ 		int startPage;
+ 		int endPage;
+ 		int maxPage;
+ 		int pageLimit;
+ 		int boardLimit;
+ 		
+ 		listCount = new PaymentService().getListCount(memberNo);
+ 		currentPage = 1;
+ 		if(request.getParameter("currentPage") != null) {
+ 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+ 		}
+ 		pageLimit = 5;
+ 		boardLimit = 10;
+ 		maxPage = (int)Math.ceil((double)listCount/boardLimit);
+ 		startPage = (currentPage - 1) / pageLimit * pageLimit + 1;
+ 		endPage = startPage + pageLimit - 1;
+ 		if(maxPage < endPage) {
+ 			endPage = maxPage;
+ 		}
+ 		PageInfo pi = new PageInfo(listCount, currentPage, startPage, endPage, maxPage, pageLimit, boardLimit);
 		
-		if(mem != null) {
-			request.setAttribute("mem", mem);
-			RequestDispatcher view = request.getRequestDispatcher("views/member/myPageWishlist.jsp");
-			view.forward(request, response);
-		}else {
-			request.setAttribute("msg", "조회실패");
-			
-		}
+ 		ArrayList<Wishlist> memberWishlist = new MemberService().memberWishlist(pi, memberNo);
+		
+		request.setAttribute("memberWishlist", memberWishlist);
+ 		request.setAttribute("pi", pi);
+		RequestDispatcher view = request.getRequestDispatcher("views/member/myPageWishlist.jsp");
+		view.forward(request, response);
 	}
 
 	/**

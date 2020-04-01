@@ -324,10 +324,10 @@
                                 생생하며, 얼마나 있을 산야에 있는 만천하의 거선의 때까지 운다.
                                 옷을 우리 사는가 가치를 간에 교향악이다.
                                 웅대한 구하지 같이, 청춘의 우리 풀이 때문이다.</td>
-                            <td width="50px"><button id="review-likeBtn"><img src="image/like1.png" alt=""
+                            <td width="50px"><button id="review-likeBtn"><img src="<%=request.getContextPath()%>/resources/images/like1.png" alt=""
                                         width="100%"></button></td>
                             <td style="padding-right:20px">0</td>
-                            <td width="50px"><button id="reportBtn"><img src="image/report.png" alt=""
+                            <td width="50px"><button id="reportBtn"><img src="<%=request.getContextPath()%>/resources/images/report.png" alt=""
                                         width="100%"></button></td>
                         </tr>
                         <tr>
@@ -340,10 +340,10 @@
                             <td width="600px"
                                 style="font-size: 13px; white-space:pre-line; padding-right:40px; padding-left:20px;">찾아
                                 방황하였으며, 청춘 장식하는 어디 교향악이다.</td>
-                            <td width="50px"><button id="review-likeBtn"><img src="image/like1.png" alt=""
+                            <td width="50px"><button id="review-likeBtn"><img src="<%=request.getContextPath()%>/resources/images/like1.png" alt=""
                                         width="100%"></button></td>
                             <td style="padding-right:20px">0</td>
-                            <td width="50px"><button id="reportBtn"><img src="image/report.png" alt=""
+                            <td width="50px"><button id="reportBtn"><img src="<%=request.getContextPath()%>/resources/images/report.png" alt=""
                                         width="100%"></button></td>
                         </tr>
                         <tr>
@@ -361,10 +361,10 @@
                                 우리 풀이 때문이다. 아니한 스며들어 같으며, 이상은 되는 따뜻한 힘차게 관현악이며, 찾아다녀도, 철환하였는가? 끝까지 열락의 열매를 철환하였는가? 인간은
                                 가는 끝에 싸인 수 하는 인간에 청춘의 것이다. 봄바람을 실로 얼마나 우는 이상은 귀는 그것은 그들의 그들은 것이다. 그것은 구할 무엇을 예가 풀이 그들에게
                                 사막이다.</td>
-                            <td width="50px"><button id="review-likeBtn"><img src="image/like1.png" alt=""
+                            <td width="50px"><button id="review-likeBtn"><img src="<%=request.getContextPath()%>/resources/images/like1.png" alt=""
                                         width="100%"></button></td>
                             <td style="padding-right:20px">0</td>
-                            <td width="50px"><button id="reportBtn"><img src="image/report.png" alt=""
+                            <td width="50px"><button id="reportBtn"><img src="<%=request.getContextPath()%>/resources/images/report.png" alt=""
                                         width="100%"></button></td>
                         </tr>
 					</table>
